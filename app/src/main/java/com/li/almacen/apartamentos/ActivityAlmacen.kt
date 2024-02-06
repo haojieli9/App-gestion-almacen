@@ -9,6 +9,7 @@ import com.li.almacen.R
 import com.li.almacen.kt.CustomAdapter
 import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.databinding.ActivityAlmacenBinding
+import com.li.almacen.kt.listaArticulo
 
 class ActivityAlmacen : AppCompatActivity() {
     private lateinit var binding: ActivityAlmacenBinding
@@ -21,6 +22,7 @@ class ActivityAlmacen : AppCompatActivity() {
 
         binding.rvAlma.adapter = CustomAdapter(listaAlmacen)
         binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

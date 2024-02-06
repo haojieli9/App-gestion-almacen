@@ -8,7 +8,8 @@ data class Almacenes(
 
 data class Articulos(
     val id: String,
-    val nombre: String
+    val nombre: String,
+    val precio: Float
 )
 
 val listaAlmacen: MutableList<Almacenes> = mutableListOf(
@@ -22,11 +23,12 @@ val listaAlmacen: MutableList<Almacenes> = mutableListOf(
     )
 
 val listaArticulo: MutableList<Articulos> = mutableListOf(
-    Articulos("SQRGR001", "Monster"),
-    Articulos("SQRGR002", "Monster"),
-    Articulos("SQRGR003", "Monster"),
-    Articulos("SQRGR004", "Monster"),
-    Articulos("SQRGR005", "Monster"),
-    Articulos("SQRGR006", "Monster"),
+    Articulos("SQRGR001", "Monster1", 1.45f),
+    Articulos("SQRGR002", "Monster2", 1.55f),
+    Articulos("SQRGR003", "Monster3", 1.65f),
+    Articulos("SQRGR004", "Monster4", 1.75f),
+    Articulos("SQRGR005", "Monster5", 1.85f),
+    Articulos("SQRGR006", "Monster6", 1.95f),
+    Articulos("SQRGR007", "Monster7", 2.05f)
 
 )

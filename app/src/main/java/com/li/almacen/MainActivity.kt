@@ -10,6 +10,7 @@ import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.ActivityMainBinding
 import com.li.almacen.kt.CustomAdapter
 import com.li.almacen.kt.CustomArticulo
+import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.kt.listaArticulo
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +34,15 @@ class MainActivity : AppCompatActivity() {
         binding.imgMain2.setOnClickListener {
             Toast.makeText(this, "Información general de almacenes disponibles", Toast.LENGTH_SHORT).show()
         }
+
+        val cantidadAlmacen = listaAlmacen.size
+        binding.tvMainAlmDisp.text = cantidadAlmacen.toString()
+
+        val totalArticulo = listaArticulo.size
+        binding.tvMainArtTot.text = totalArticulo.toString() + " units"
+
+        val totalValue = listaArticulo.sumOf { it.precio.toDouble() }.toFloat()
+        binding.tvMainValTot.text = totalValue.toString() + "€"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
