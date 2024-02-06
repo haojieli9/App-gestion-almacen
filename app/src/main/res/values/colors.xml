@@ -4,4 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="custom_button">#99ccff</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="gray">#808080</color>
 </resources>
