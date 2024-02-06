@@ -3,7 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="custom_button">#99ccff</color>
+    <color name="custom_button">#008000</color>
+    <color name="custom_azul">#99ccff</color>
+
+    <color name="custom_blanco">#FFFACD</color>
+    <color name="custom_blancoHueso">#FAF0E6</color>
 
     <color name="transparent">#00000000</color>
     <color name="gray">#808080</color>

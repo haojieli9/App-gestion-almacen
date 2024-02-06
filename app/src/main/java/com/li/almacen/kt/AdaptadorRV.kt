@@ -1,4 +1,4 @@
-package com.li.almacen.kotlin
+package com.li.almacen.kt
 
 import android.view.LayoutInflater
 import android.view.View

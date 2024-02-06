@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Proyecto Multimedia</string>
 
-    <string name="desc_almacen">Detalles de los almacenes</string>
-    <string name="desc_producto">Detalles de los productos</string>
-    <string name="desc_proveedor">Detalles de los proveedores</string>
-    <string name="desc_movimiento">Detalles de los movimientos</string>
+    <string name="desc_almacen">Detalles almacenes</string>
+    <string name="desc_producto">Detalles productos</string>
+    <string name="desc_proveedor">Detalles proveedores</string>
+    <string name="desc_movimiento">Detalles movimientos</string>
 </resources>

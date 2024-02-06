@@ -18,8 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="InventFlow"
-        app:titleMarginStart="50dp" />
+        app:title="InventFlow" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -80,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Total stock"
+                android:text="Total art."
                 android:textColor="@color/gray" />
 
             <TextView
@@ -107,25 +106,25 @@
                 android:text="5"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="10sp" />
+                android:textSize="11sp" />
 
             <TextView
-                android:layout_width="68dp"
+                android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="0 unidades"
+                android:text="0 unit"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="10sp" />
+                android:textSize="11sp" />
 
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="24014€"
+                android:text="2401€"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="10sp" />
+                android:textSize="11sp" />
 
 
         </LinearLayout>
@@ -170,7 +169,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="137dp"
+            android:layout_width="96dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
@@ -179,11 +178,11 @@
 
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="120dp"
-            android:src="@drawable/img_op_almacen" />
+            android:layout_marginLeft="125dp"
+            android:src="@drawable/img_producto" />
 
 
     </androidx.cardview.widget.CardView>
@@ -213,7 +212,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="137dp"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
@@ -221,8 +220,8 @@
             android:textSize="12sp" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="120dp"
             android:src="@drawable/img_op_almacen" />
@@ -256,7 +255,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="137dp"
+            android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
@@ -264,11 +263,11 @@
             android:textSize="12sp" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="120dp"
-            android:src="@drawable/img_op_almacen" />
+            android:src="@drawable/img_movimiento" />
 
 
     </androidx.cardview.widget.CardView>
@@ -298,7 +297,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="137dp"
+            android:layout_width="96dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
@@ -310,7 +309,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="120dp"
-            android:src="@drawable/img_op_almacen" />
+            android:src="@drawable/img_proveedor" />
 
 
     </androidx.cardview.widget.CardView>

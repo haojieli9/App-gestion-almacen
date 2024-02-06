@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
-import androidx.appcompat.widget.TooltipCompat
-import com.li.almacen.apartamentos.Almacen
+import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         binding.cardview2.setOnClickListener {
-            val intent = Intent(this, Almacen::class.java)
+            val intent = Intent(this@MainActivity, ActivityAlmacen::class.java)
             startActivity(intent)
         }
 
