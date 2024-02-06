@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.li.almacen.databinding.ActivityLoginBinding
 
 class Login : AppCompatActivity() {
@@ -22,9 +23,14 @@ class Login : AppCompatActivity() {
             val nombreCorrecto = binding.username.text.toString() == "li"
             val pwdCorrecto = binding.password.text.toString() == "1234"
 
-            if (nombreCorrecto && pwdCorrecto && binding.checkLegacy.isChecked) {
-                val intent = Intent(this@Login, MainActivity::class.java)
-                startActivity(intent)
+            if (nombreCorrecto && pwdCorrecto) {
+                if (binding.checkLegacy.isChecked) {
+                    val intent = Intent(this@Login, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@Login, "Debes aceptar condiciones legales para continuar.", Toast.LENGTH_SHORT).show()
+                }
+
             } else {
                 if (!nombreCorrecto) {
                     binding.username.setTextColor(Color.parseColor("#FF0000"))
@@ -33,13 +39,9 @@ class Login : AppCompatActivity() {
                     binding.password.setTextColor(Color.parseColor("#FF0000"))
                 }
 
-                var mensajeError = "Nombre/Contraseña incorrecta"
-                if (!binding.checkLegacy.isChecked) {
-                    mensajeError += " o debes estar de acuerdo de la privacidad"
-                }
+                var mensajeError = "Error de autenticación. Aegurese de que los datos sean correctos."
 
                 //Snackbar.make(binding.root, mensajeError, Snackbar.LENGTH_SHORT).show()
-                //Toast.makeText(this@Login, mensajeError, Toast.LENGTH_SHORT).show()
 
                 val builder = AlertDialog.Builder(this@Login)
                 builder.setMessage(mensajeError)

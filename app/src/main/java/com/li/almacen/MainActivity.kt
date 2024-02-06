@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.ActivityMainBinding
+import com.li.almacen.kt.CustomAdapter
+import com.li.almacen.kt.CustomArticulo
+import com.li.almacen.kt.listaArticulo
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -17,9 +21,13 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        binding.rvArt.adapter = CustomArticulo(listaArticulo)
+        binding.rvArt.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         binding.cardview2.setOnClickListener {
             val intent = Intent(this@MainActivity, ActivityAlmacen::class.java)
             startActivity(intent)
+
         }
 
         binding.imgMain2.setOnClickListener {
