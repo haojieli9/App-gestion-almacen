@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="-1dp"
+    tools:layout_editor_absoluteY="55dp">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -19,73 +21,38 @@
         app:title="InventFlow"
         app:titleMarginStart="50dp" />
 
-    <LinearLayout
-        android:id="@+id/linearOperations"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMainOptions">
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="30dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/png_almacen" />
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="30dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/img_producto" />
-
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/img_proveedor" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvMainOptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:text="Gestionamientos"
-        android:textColor="#D00B1E7E"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="426dp" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="16dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="12dp"
+        app:cardElevation="7dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/imgMain1"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_margin="10dp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/img_layout" />
+
+        <ImageView
+            android:id="@+id/imgMain2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="10dp"
+
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/img_interrogante" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,10 +60,11 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
             android:text="Información general"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="70dp"
@@ -120,13 +88,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="Valor"
+                android:textAlignment="center"
                 android:textColor="@color/gray" />
 
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="95dp"
@@ -137,55 +106,214 @@
                 android:layout_height="wrap_content"
                 android:text="5"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="10sp" />
 
             <TextView
-                android:layout_width="67dp"
+                android:layout_width="68dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="201435"
+                android:text="0 unidades"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="10sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="24014€"
-                android:textColor="@color/black" />
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
 
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/tvMainTitulo1"
+        android:layout_width="174dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="16dp"
+        android:text="Mis operaciones"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardview2"
-        android:layout_width="220dp"
+        android:id="@+id/cardview3"
+        android:layout_width="210dp"
         android:layout_height="120dp"
-        android:layout_marginEnd="191dp"
+        android:layout_marginStart="200dp"
+        android:padding="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="12dp"
+        app:cardElevation="7dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Productos"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/desc_producto"
+            android:textSize="12sp" />
+
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="120dp"
+            android:src="@drawable/img_op_almacen" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview2"
+        android:layout_width="210dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="191dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Almacenes"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/desc_almacen"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="120dp"
+            android:src="@drawable/img_op_almacen" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview4"
+        android:layout_width="210dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="8dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toStartOf="@+id/cardview3"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Almacenes"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Movimientos"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/desc_movimiento"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="120dp"
+            android:src="@drawable/img_op_almacen" />
 
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview5"
+        android:layout_width="210dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="152dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintStart_toEndOf="@+id/cardview4"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Proveedor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/desc_proveedor"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="120dp"
+            android:src="@drawable/img_op_almacen" />
+
+
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

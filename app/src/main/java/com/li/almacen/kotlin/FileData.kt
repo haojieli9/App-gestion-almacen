@@ -1,4 +1,4 @@
-package com.li.almacen
+package com.li.almacen.kotlin
 
 data class Almacenes(
     val id: String,
