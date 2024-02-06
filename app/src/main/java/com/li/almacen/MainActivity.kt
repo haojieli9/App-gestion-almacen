@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.imgMain2.setOnClickListener {
-            Toast.makeText(this, "Funcionalidad en desarrollo", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Información general de almacenes disponibles", Toast.LENGTH_SHORT).show()
         }
     }
 

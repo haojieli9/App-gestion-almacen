@@ -3,6 +3,7 @@ package com.li.almacen.apartamentos
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.li.almacen.R
 import com.li.almacen.kt.CustomAdapter
@@ -23,7 +24,17 @@ class ActivityAlmacen : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        menuInflater.inflate(R.menu.second_menu, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.itemBack -> {
+                finish()
+                true
+            }
+            else -> { true }
+        }
     }
 }

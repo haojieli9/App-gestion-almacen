@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="InventFlow" />
+        app:title="InventFlow"
+        app:titleTextColor="@color/custom_blancoHueso"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -135,7 +136,7 @@
         android:id="@+id/tvMainTitulo1"
         android:layout_width="174dp"
         android:layout_height="31dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="Mis operaciones"
         android:textSize="17sp"
         android:textStyle="bold"
@@ -238,7 +239,7 @@
         android:id="@+id/cardview_articulo"
         android:layout_width="210dp"
         android:layout_height="120dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="144dp"
         android:layout_marginEnd="8dp"
         android:padding="5dp"
         app:cardBackgroundColor="@color/white"
@@ -281,7 +282,7 @@
         android:id="@+id/cardview5"
         android:layout_width="210dp"
         android:layout_height="120dp"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="144dp"
         android:padding="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
@@ -334,7 +335,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="137dp"
         android:text="Articulos añadidas recientemente"
         android:textSize="17sp"
@@ -346,11 +347,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvArt"
-        android:layout_width="407dp"
-        android:layout_height="187dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:listitem="@layout/viewholder_articulos" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
