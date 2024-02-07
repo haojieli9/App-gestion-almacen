@@ -3,7 +3,8 @@ package com.li.almacen.kt
 data class Almacenes(
     val id: String,
     val nombre: String,
-    val ubicacion: String
+    val ubicacion: String,
+    val cover: String
 )
 
 data class Articulos(
@@ -13,13 +14,13 @@ data class Articulos(
 )
 
 val listaAlmacen: MutableList<Almacenes> = mutableListOf(
-    Almacenes("SQRGR001", "Almacen principal", "Av. Gregorio Gea"),
-    Almacenes("SQRGR002", "Almacen respaldo", "Av. Gregorio Gea"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea")
+    Almacenes("SQRGR001", "Almacen principal", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=1"),
+    Almacenes("SQRGR002", "Almacen respaldo", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=2"),
+    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=3"),
+    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=4"),
+    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea","https://loremflickr.com/80/80?lock=5"),
+    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=6"),
+    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=7")
     )
 
 val listaArticulo: MutableList<Articulos> = mutableListOf(

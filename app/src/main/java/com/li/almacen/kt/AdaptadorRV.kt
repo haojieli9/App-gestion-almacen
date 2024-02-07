@@ -3,8 +3,10 @@ package com.li.almacen.kt
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.li.almacen.R
 
 class CustomAdapter (private var listaAlmacen : List<Almacenes>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -12,10 +14,12 @@ class CustomAdapter (private var listaAlmacen : List<Almacenes>) : RecyclerView.
         val tvID : TextView
         val tvNombre : TextView
         val tvUbicacion : TextView
+        val imgV : ImageView
         init {
             tvID = itemView.findViewById(R.id.tvID)
             tvNombre = itemView.findViewById(R.id.tvNombre)
             tvUbicacion = itemView.findViewById(R.id.tvUbicacion)
+            imgV = itemView.findViewById(R.id.imageView)
 
         }
     }
@@ -38,10 +42,19 @@ class CustomAdapter (private var listaAlmacen : List<Almacenes>) : RecyclerView.
     override fun getItemCount(): Int = listaAlmacen.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        //inicio recyclerview con la informacion
         holder.tvID.text = listaAlmacen[position].id
         holder.tvNombre.text = listaAlmacen[position].nombre
         holder.tvUbicacion.text = listaAlmacen[position].ubicacion
 
+        //libreria GLIDE para cargar imagenes
+        Glide.with(holder.itemView.context)
+            .load(listaAlmacen[position].cover)
+            .into(holder.imgV)
+
+        //inicio accion clickable
+        holder.itemView.setOnClickListener{
+            listener(listaAlmacen[position], position)
+        }
     }
 }

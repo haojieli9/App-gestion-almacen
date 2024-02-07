@@ -27,7 +27,7 @@ class FormAlmacen : AppCompatActivity() {
             val tfNombre = binding.tfNombre
             val tfDir = binding.tfDir
 
-            listaAlmacen.add(Almacenes(tfID.text.toString(), tfNombre.text.toString(), tfDir.text.toString()))
+            listaAlmacen.add(Almacenes(tfID.text.toString(), tfNombre.text.toString(), tfDir.text.toString(), "https://loremflickr.com/80/80?lock=1"))
 
             val intent = Intent(this@FormAlmacen, ActivityAlmacen::class.java)
             startActivity(intent)
