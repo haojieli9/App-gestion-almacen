@@ -30,6 +30,15 @@ class ActivityAlmacen : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val cantidadAlmacen = listaAlmacen.size
+        binding.tvCantAlm.text = cantidadAlmacen.toString()
+
+        val totalArticulo = listaArticulo.size
+        binding.tvUnitArt.text = totalArticulo.toString() + " units"
+
+        val totalValue = listaArticulo.sumOf { it.precio.toDouble() }.toFloat()
+        binding.tvValor.text = totalValue.toString() + "€"
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

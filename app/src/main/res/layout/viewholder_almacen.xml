@@ -72,16 +72,12 @@
         android:id="@+id/tvFavoritos"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="192dp"
+        android:layout_marginStart="230dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/png_estrella"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvOptions"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tvID"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,10 +45,11 @@
             android:id="@+id/imgAdd"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="280dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="340dp"
+            android:layout_marginTop="1dp"
+            android:backgroundTint="#FFFFFF"
             android:contentDescription="@string/app_name"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:src="@drawable/img_add" />
 
         <TextView
@@ -134,7 +135,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAlma"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

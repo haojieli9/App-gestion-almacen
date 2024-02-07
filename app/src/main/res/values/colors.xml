@@ -11,4 +11,8 @@
 
     <color name="transparent">#00000000</color>
     <color name="gray">#808080</color>
+
+    <color name="custom_verde1">#1BCEB8</color>
+    <color name="custom_verde2">#09ADB5</color>
+    <color name="custom_verde3">#0DBFBA</color>
 </resources>

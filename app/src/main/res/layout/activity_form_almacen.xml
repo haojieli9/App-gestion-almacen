@@ -23,23 +23,23 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Foto del almacén"
+        android:text="Foto del almacén*"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="7dp"
         android:textSize="20sp"
         android:textStyle="bold"/>
 
     <ImageView
-        android:layout_width="400dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="1dp"
+        android:layout_width="350dp"
+        android:layout_height="190dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:src="@drawable/png_file"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dato del almacén"
+        android:text="Datos del almacén"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="7dp"
         android:textSize="20sp"
@@ -77,4 +77,33 @@
             />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nombreTextInputLayout2"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:hint="Dirección" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tfDir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/btGuardar"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Guardar los cambios"
+        android:background="@drawable/custom_border"
+        app:icon="@drawable/img_save"
+        android:textSize="20sp"
+        app:iconSize="30sp"
+        app:iconGravity="textEnd"/>
 </LinearLayout>
