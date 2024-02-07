@@ -28,6 +28,7 @@ class ActivityAlmacen : AppCompatActivity() {
         binding.imgAdd.setOnClickListener {
             val intent = Intent(this, FormAlmacen::class.java)
             startActivity(intent)
+            this@ActivityAlmacen.finish()
         }
 
         val cantidadAlmacen = listaAlmacen.size
