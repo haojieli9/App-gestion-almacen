@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.ActivityMainBinding
+import com.li.almacen.databinding.ActivityPruebasBinding
 import com.li.almacen.kt.CustomAdapter
 import com.li.almacen.kt.CustomArticulo
 import com.li.almacen.kt.listaAlmacen
@@ -28,7 +29,11 @@ class MainActivity : AppCompatActivity() {
         binding.cardview2.setOnClickListener {
             val intent = Intent(this@MainActivity, ActivityAlmacen::class.java)
             startActivity(intent)
+        }
 
+        binding.cardviewArticulo.setOnClickListener {
+            val intent = Intent(this@MainActivity, ActivityPruebas::class.java)
+            startActivity(intent)
         }
 
         binding.imgMain2.setOnClickListener {
