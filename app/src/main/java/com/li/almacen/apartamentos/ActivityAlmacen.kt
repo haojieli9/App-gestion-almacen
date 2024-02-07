@@ -23,7 +23,7 @@ class ActivityAlmacen : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         binding.rvAlma.adapter = CustomAdapter(listaAlmacen)
-        binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
 
         binding.imgAdd.setOnClickListener {
             val intent = Intent(this, FormAlmacen::class.java)
