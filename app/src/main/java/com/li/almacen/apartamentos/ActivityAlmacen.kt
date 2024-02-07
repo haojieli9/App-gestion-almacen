@@ -1,5 +1,6 @@
 package com.li.almacen.apartamentos
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -9,6 +10,7 @@ import com.li.almacen.R
 import com.li.almacen.kt.CustomAdapter
 import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.databinding.ActivityAlmacenBinding
+import com.li.almacen.formularios.FormAlmacen
 import com.li.almacen.kt.listaArticulo
 
 class ActivityAlmacen : AppCompatActivity() {
@@ -22,6 +24,11 @@ class ActivityAlmacen : AppCompatActivity() {
 
         binding.rvAlma.adapter = CustomAdapter(listaAlmacen)
         binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        binding.imgAdd.setOnClickListener {
+            val intent = Intent(this, FormAlmacen::class.java)
+            startActivity(intent)
+        }
 
     }
 

@@ -30,5 +30,4 @@ val listaArticulo: MutableList<Articulos> = mutableListOf(
     Articulos("SQRGR005", "Monster5", 1.85f),
     Articulos("SQRGR006", "Monster6", 1.95f),
     Articulos("SQRGR007", "Monster7", 2.05f)
-
 )

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".formularios.FormAlmacen">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/custom_button"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="InventFlow"
+        app:titleTextColor="@color/custom_blancoHueso"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Foto del almacén"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="7dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="1dp"
+        android:layout_gravity="center"
+        android:src="@drawable/png_file"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dato del almacén"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="7dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nombreTextInputLayout"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:hint="ID" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tfID"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nombreTextInputLayout1"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:hint="Nombre" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tfNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>
