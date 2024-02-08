@@ -1,5 +1,6 @@
 package com.li.almacen
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -37,7 +38,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.imgMain2.setOnClickListener {
-            Toast.makeText(this, "Información general de almacenes disponibles", Toast.LENGTH_SHORT).show()
+            val builder = AlertDialog.Builder(this@MainActivity)
+            builder.setMessage("Información general de almacenes disponibles")
+            //builder.setPositiveButton("ACEPTAR") { dialog, _ -> dialog.dismiss() }
+            val alertDialog = builder.create()
+            alertDialog.show()
+            //Toast.makeText(this, "Información general de almacenes disponibles", Toast.LENGTH_SHORT).show()
         }
 
         val cantidadAlmacen = listaAlmacen.size
@@ -48,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         val totalValue = listaArticulo.sumOf { it.precio.toDouble() }.toFloat()
         binding.tvMainValTot.text = totalValue.toString() + "€"
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
