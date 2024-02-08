@@ -8,6 +8,19 @@
     tools:layout_editor_absoluteX="-1dp"
     tools:layout_editor_absoluteY="55dp">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/custom_button"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="InventFlow"
+        app:titleTextColor="@color/custom_blancoHueso"/>
+
     <FrameLayout
         android:id="@+id/flFragment"
         android:layout_width="match_parent"

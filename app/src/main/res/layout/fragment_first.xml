@@ -8,24 +8,11 @@
     tools:layout_editor_absoluteX="-1dp"
     tools:layout_editor_absoluteY="55dp">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/custom_button"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="InventFlow"
-        app:titleTextColor="@color/custom_blancoHueso"/>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="80dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="7dp"
@@ -34,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/imgMain1"
@@ -51,17 +38,17 @@
             android:layout_marginLeft="350dp"
             android:layout_marginTop="10dp"
 
-            android:scaleType="centerCrop"
-            android:clipToOutline="true"
-            android:outlineProvider="background"
-
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
             android:background="@drawable/cardview_selector"
-
+            android:clickable="true"
+            android:clipToOutline="true"
 
             android:contentDescription="@string/app_name"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:outlineProvider="background"
+
+
+            android:scaleType="centerCrop"
             android:src="@drawable/img_interrogante" />
 
         <TextView
@@ -112,18 +99,18 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tvMainAlmDisp"
                 android:layout_width="97dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvMainAlmDisp"
                 android:text="5"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tvMainArtTot"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvMainArtTot"
                 android:layout_marginLeft="20dp"
                 android:text="0 unit"
                 android:textAlignment="center"
@@ -131,9 +118,9 @@
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tvMainValTot"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvMainValTot"
                 android:layout_marginLeft="20dp"
                 android:text="2401€"
                 android:textAlignment="center"
