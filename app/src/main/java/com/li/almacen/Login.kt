@@ -27,6 +27,7 @@ class Login : AppCompatActivity() {
                 if (binding.checkLegacy.isChecked) {
                     val intent = Intent(this@Login, MainActivity::class.java)
                     startActivity(intent)
+                    this@Login.finish()
                 } else {
                     Toast.makeText(this@Login, "Debes aceptar condiciones legales para continuar.", Toast.LENGTH_SHORT).show()
                 }
