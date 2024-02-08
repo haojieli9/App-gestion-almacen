@@ -39,8 +39,7 @@ class FirstFragment : Fragment() {
         }
 
         binding.cardviewArticulo.setOnClickListener {
-            // Aquí puedes agregar el código para manejar el clic en el cardview de artículo
-            // Por ejemplo, iniciar otra actividad o fragmento
+
         }
 
         binding.imgMain2.setOnClickListener {
