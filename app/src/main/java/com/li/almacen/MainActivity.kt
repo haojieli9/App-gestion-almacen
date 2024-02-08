@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.ActivityMainBinding
 import com.li.almacen.databinding.ActivityPruebasBinding
+import com.li.almacen.fragmentos.FirstFragment
+import com.li.almacen.fragmentos.SecondFragment
+import com.li.almacen.fragmentos.ThirdFragment
 import com.li.almacen.kt.CustomAdapter
 import com.li.almacen.kt.CustomArticulo
 import com.li.almacen.kt.listaAlmacen
@@ -21,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+/*
         setSupportActionBar(binding.toolbar)
 
         binding.rvArt.adapter = CustomArticulo(listaArticulo)
@@ -54,12 +58,32 @@ class MainActivity : AppCompatActivity() {
 
         val totalValue = listaArticulo.sumOf { it.precio.toDouble() }.toFloat()
         binding.tvMainValTot.text = totalValue.toString() + "€"
+*/
+        val firstFragment = FirstFragment()
+        val secondFragment = SecondFragment()
+        val thirdFragment = ThirdFragment()
 
+        setCurrentFragment(firstFragment)
+
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.home -> setCurrentFragment(firstFragment)
+                R.id.products -> setCurrentFragment(secondFragment)
+                R.id.perfil -> setCurrentFragment(thirdFragment)
+            }
+            true
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
+    }
+
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flFragment, fragment)
+            commit()
     }
 
 
