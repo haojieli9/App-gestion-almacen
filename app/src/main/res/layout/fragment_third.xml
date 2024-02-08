@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragmentos.ThirdFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragmentos.ThirdFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/per_card1"
+        android:layout_marginTop="70dp"
+        android:layout_gravity="center_horizontal"
+        app:cardCornerRadius="30dp" >
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/perfil"
+            android:src="@drawable/png_perfil" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/per_card2"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        app:cardCornerRadius="10dp" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/per_tf1"
+            android:text="Configuración"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/per_tf2"
+            android:text="Privacidad y aviso legal"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical" />
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
