@@ -23,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Foto del almacén*"
+        android:text="@string/form_almacen_foto"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="7dp"
         android:textSize="20sp"
@@ -39,7 +39,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Datos del almacén"
+        android:text="@string/form_almacen_dato"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="7dp"
         android:textSize="20sp"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:hint="ID" >
+        android:hint="@string/form_almacen_id" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tfID"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
-        android:hint="Nombre" >
+        android:hint="@string/form_almacen_nombre" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tfNombre"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
-        android:hint="Dirección" >
+        android:hint="@string/form_almacen_direccion" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tfDir"
@@ -100,7 +100,7 @@
         android:id="@+id/btGuardar"
         android:layout_marginTop="30dp"
         android:layout_gravity="center_horizontal"
-        android:text="Guardar los cambios"
+        android:text="@string/form_almacen_save"
         android:background="@drawable/custom_border"
         app:icon="@drawable/img_save"
         android:textSize="20sp"

@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Proyecto Multimedia</string>
+
+    <string name="desc_almacen">仓库信息</string>
+    <string name="desc_producto">货物信息</string>
+    <string name="desc_proveedor">供应商</string>
+    <string name="desc_movimiento">出入库</string>
+
+
+    <!-- Activity login -->
+    <string name="welcome_message">欢迎来到 InventFlow</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="login_legacy">接受隐私条款</string>
+    <string name="login_button">Log in</string>
+
+    <!-- Activity main -->
+
+    <!-- Activity almacen -->
+    <string name="almacen_allinfo">仓库信息</string>
+    <string name="almacen_disponible">可用仓库</string>
+    <string name="almacen_totalart">已创货物</string>
+    <string name="almacen_valor">总金额</string>
+
+    <!-- Activity formulario almacen -->
+    <string name="form_almacen_foto">仓库照片*</string>
+    <string name="form_almacen_dato">仓库信息</string>
+    <string name="form_almacen_id">ID</string>
+    <string name="form_almacen_nombre">名字</string>
+    <string name="form_almacen_direccion">地址</string>
+    <string name="form_almacen_save">保存改动</string>
+
+    <!-- Activity splash  -->
+    <string name="splash_title">InventFlow</string>
+
+    <!-- Activity first fragment-->
+    <string name="fragment1_operations">可用操作</string>
+    <string name="fragment1_almacen">仓库</string>
+    <string name="fragment1_producto">货物</string>
+    <string name="fragment1_movimiento">出入记录</string>
+    <string name="fragment1_proveedor">供应商</string>
+    <string name="fragment1_recientes">新创建货物</string>
+    <string name="fragment1_language">语言</string>
+
+    <!-- Activity third fragment-->
+    <string name="fragment3_user">Haojie Li</string>
+    <string name="fragment3_email">ty0192sd@gmail.com</string>
+    <string name="fragment3_configuration">设置</string>
+    <string name="fragment3_enviar">发送留言</string>
+    <string name="fragment3_terminos">用户条款</string>
+    <string name="fragment3_politica">隐私信息</string>
+    <string name="fragment3_about">关于我们</string>
+    <string name="fragment3_sesion">登出</string>
+
+    <!-- Bottom nav menu -->
+    <string name="bottom_menu_home">Home</string>
+    <string name="bottom_menu_productos">货物</string>
+    <string name="bottom_menu_perfil">用户</string>
+
+</resources>

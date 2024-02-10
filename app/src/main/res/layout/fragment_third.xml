@@ -41,7 +41,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Haojie Li"
+        android:text="@string/fragment3_user"
         android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
@@ -50,7 +50,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ty0192sd@gmail.com"
+        android:text="@string/fragment3_email"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:textSize="14sp"/>
@@ -75,7 +75,19 @@
                 android:id="@+id/per_config"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="Configuración"
+                android:text="@string/fragment3_configuration"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:background="@color/transparent"
+                app:icon="@drawable/img_flecha"
+                app:iconTint="@color/black"
+                app:iconGravity="end"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/per_language"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="@string/fragment1_language"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
                 android:background="@color/transparent"
@@ -87,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
-                android:text="Enviar comentarios"
+                android:text="@string/fragment3_enviar"
                 android:textColor="@color/black"
                 android:background="@color/transparent"
                 app:icon="@drawable/img_flecha"
@@ -116,7 +128,7 @@
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="Términos de uso"
+                android:text="@string/fragment3_terminos"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
                 android:background="@color/transparent"
@@ -129,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
-                android:text="Politica de privacidad"
+                android:text="@string/fragment3_politica"
                 android:textColor="@color/black"
                 android:background="@color/transparent"
                 app:icon="@drawable/img_flecha"
@@ -141,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
-                android:text="About"
+                android:text="@string/fragment3_about"
                 android:textColor="@color/black"
                 android:background="@color/transparent"
                 app:icon="@drawable/img_flecha"
@@ -175,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:text="Cerrar sesión"
+                android:text="@string/fragment3_sesion"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="#E53935"/>

@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
-            android:text="Información general"
+            android:text="@string/almacen_allinfo"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -83,21 +83,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alm. disponible"
+                android:text="@string/almacen_disponible"
                 android:textColor="@color/gray" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Total art."
+                android:text="@string/almacen_totalart"
                 android:textColor="@color/gray" />
 
             <TextView
                 android:layout_width="47dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Valor"
+                android:text="@string/almacen_valor"
                 android:textAlignment="center"
                 android:textColor="@color/gray" />
 
@@ -150,7 +150,7 @@
         android:layout_width="174dp"
         android:layout_height="31dp"
         android:layout_marginTop="4dp"
-        android:text="Mis operaciones"
+        android:text="@string/fragment1_operations"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -183,7 +183,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="Productos"
+            android:text="@string/fragment1_producto"
             android:textStyle="bold" />
 
         <TextView
@@ -235,7 +235,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="Almacenes"
+            android:text="@string/fragment1_almacen"
             android:textStyle="bold" />
 
         <TextView
@@ -282,7 +282,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="Movimientos"
+            android:text="@string/fragment1_movimiento"
             android:textStyle="bold" />
 
         <TextView
@@ -328,7 +328,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:text="Proveedor"
+            android:text="@string/fragment1_proveedor"
             android:textStyle="bold" />
 
         <TextView
@@ -356,7 +356,7 @@
         android:layout_marginStart="17dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="137dp"
-        android:text="Articulos recientes"
+        android:text="@string/fragment1_recientes"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
