@@ -7,47 +7,177 @@
     tools:context=".fragmentos.ThirdFragment"
     android:orientation="vertical">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/custom_button"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="InventFlow"
+        app:titleTextColor="@color/custom_blancoHueso" />
+
     <androidx.cardview.widget.CardView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:id="@+id/per_card1"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center_horizontal"
-        app:cardCornerRadius="30dp" >
+        app:cardCornerRadius="200dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/perfil"
-            android:src="@drawable/png_perfil" />
+            android:src="@drawable/png_foto" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Haojie Li"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ty0192sd@gmail.com"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:textSize="14sp"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/per_card2"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Configuración"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:background="@color/transparent"
+                app:icon="@drawable/img_flecha"
+                app:iconTint="@color/black"
+                app:iconGravity="end" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Enviar comentarios"
+                android:textColor="@color/black"
+                android:background="@color/transparent"
+                app:icon="@drawable/img_flecha"
+                app:iconTint="@color/black"
+                app:iconGravity="end"/>
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="390dp"
         android:layout_height="wrap_content"
-        android:id="@+id/per_card2"
-        android:layout_marginTop="20dp"
+        android:id="@+id/per_card3"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"
-        app:cardCornerRadius="10dp" >
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/per_tf1"
-            android:text="Configuración"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TextView
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Términos de uso"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:background="@color/transparent"
+                app:icon="@drawable/img_flecha"
+                app:iconTint="@color/black"
+                app:iconGravity="end"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="Politica de privacidad"
+                android:textColor="@color/black"
+                android:background="@color/transparent"
+                app:icon="@drawable/img_flecha"
+                app:iconTint="@color/black"
+                app:iconGravity="end"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="About"
+                android:textColor="@color/black"
+                android:background="@color/transparent"
+                app:icon="@drawable/img_flecha"
+                app:iconTint="@color/black"
+                app:iconGravity="end"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/per_card4"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/cardview_selector" >
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/per_tf2"
-            android:text="Privacidad y aviso legal"
-            android:layout_marginTop="60dp"
-            android:layout_marginLeft="5dp"
-            android:gravity="center_vertical" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="Cerrar sesión"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="#E53935"/>
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 
