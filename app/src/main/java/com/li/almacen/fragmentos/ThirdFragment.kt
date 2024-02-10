@@ -1,15 +1,18 @@
 package com.li.almacen.fragmentos
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import com.google.android.material.button.MaterialButton
 import com.li.almacen.Login
+import com.li.almacen.Politica_web
 import com.li.almacen.R
+
 
 class ThirdFragment : Fragment() {
     private var param1: String? = null
@@ -37,6 +40,21 @@ class ThirdFragment : Fragment() {
             startActivity(intent)
             this.requireActivity().finish()
         }
+
+        val about = view.findViewById<MaterialButton>(R.id.about)
+
+        about.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://tameformacion.com/"))
+            startActivity(intent)
+        }
+
+        val politica = view.findViewById<MaterialButton>(R.id.per_politica)
+
+        politica.setOnClickListener {
+            val intent2 = Intent(requireContext(), Politica_web::class.java)
+            startActivity(intent2)
+        }
+
         return view
     }
 

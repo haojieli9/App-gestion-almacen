@@ -72,6 +72,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/per_config"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:text="Configuración"
@@ -80,7 +81,7 @@
                 android:background="@color/transparent"
                 app:icon="@drawable/img_flecha"
                 app:iconTint="@color/black"
-                app:iconGravity="end" />
+                app:iconGravity="end"/>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
@@ -124,6 +125,7 @@
                 app:iconGravity="end"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/per_politica"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
@@ -135,6 +137,7 @@
                 app:iconGravity="end"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/about"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center_vertical"
