@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.li.almacen.ActivityPruebas
 import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.FragmentFirstBinding
 import com.li.almacen.kt.CustomArticulo
@@ -39,7 +40,8 @@ class FirstFragment : Fragment() {
         }
 
         binding.cardviewArticulo.setOnClickListener {
-
+            val intent = Intent(requireContext(), ActivityPruebas::class.java)
+            startActivity(intent)
         }
 
         binding.imgMain2.setOnClickListener {

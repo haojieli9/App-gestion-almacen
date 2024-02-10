@@ -28,13 +28,11 @@ class ActivityAlmacen : AppCompatActivity() {
         //inicio recyclerview
         val adapter = CustomAdapter(listaAlmacen)
         binding.rvAlma.adapter = adapter
-        binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
 
         adapter.setOnClickListener() { _: Almacenes, _: Int ->
             Toast.makeText(this@ActivityAlmacen, "Clicked", Toast.LENGTH_SHORT).show()
         }
-
-
 
         //boton intent al formulario
         binding.imgAdd.setOnClickListener {
