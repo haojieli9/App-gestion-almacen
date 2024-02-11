@@ -32,7 +32,7 @@ class FormAlmacen : AppCompatActivity() {
                 Toast.makeText(this@FormAlmacen, "Los campos no puede estar vacio.", Toast.LENGTH_SHORT).show()
             } else {
                 listaAlmacen.add(Almacenes(tfID.text.toString(), tfNombre.text.toString(), tfDir.text.toString(), "https://loremflickr.com/80/80?lock=1"))
-
+                Toast.makeText(this@FormAlmacen, "Almacén creado.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@FormAlmacen, ActivityAlmacen::class.java)
                 startActivity(intent)
                 this@FormAlmacen.finish()

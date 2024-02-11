@@ -31,10 +31,10 @@ class ThirdFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_third, container, false)
-        // Encuentra el botón por su ID
+
         val cardv4 = view.findViewById<CardView>(R.id.per_card4)
 
-        // Configura un OnClickListener para el botón
+        // OnClickListener para el botón
         cardv4.setOnClickListener {
             val intent = Intent(requireContext(), Login::class.java)
             startActivity(intent)
