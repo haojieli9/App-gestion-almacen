@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.li.almacen.ActivityPruebas
 import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.FragmentFirstBinding
@@ -45,10 +46,11 @@ class FirstFragment : Fragment() {
         }
 
         binding.imgMain2.setOnClickListener {
-            val builder = AlertDialog.Builder(requireContext())
+            /*val builder = AlertDialog.Builder(requireContext())
             builder.setMessage("Información general de almacenes disponibles")
             val alertDialog = builder.create()
-            alertDialog.show()
+            alertDialog.show()*/
+            Snackbar.make(binding.root, "Información general de almacenes disponibles", Snackbar.LENGTH_SHORT).show()
         }
 
         val cantidadAlmacen = listaAlmacen.size

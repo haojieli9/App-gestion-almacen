@@ -14,13 +14,13 @@ data class Articulos(
 )
 
 val listaAlmacen: MutableList<Almacenes> = mutableListOf(
-    Almacenes("SQRGR001", "Almacen principal", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=1"),
-    Almacenes("SQRGR002", "Almacen respaldo", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=2"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=3"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=4"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea","https://loremflickr.com/80/80?lock=5"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=6"),
-    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea", "https://loremflickr.com/80/80?lock=7")
+    Almacenes("SQRGR001", "Almacen principal", "Av. Gregorio Gea1", "https://loremflickr.com/80/80?lock=1"),
+    Almacenes("SQRGR002", "Almacen respaldo", "Av. Gregorio Gea2", "https://loremflickr.com/80/80?lock=2"),
+    Almacenes("SQRGR003", "Almacen tercero", "Av. Gregorio Gea3", "https://loremflickr.com/80/80?lock=3"),
+    Almacenes("SQRGR004", "Almacen cuarto", "Av. Gregorio Gea4", "https://loremflickr.com/80/80?lock=4"),
+    Almacenes("SQRGR005", "Almacen quinto", "Av. Gregorio Gea5","https://loremflickr.com/80/80?lock=5"),
+    Almacenes("SQRGR006", "Almacen sexto", "Av. Gregorio Gea6", "https://loremflickr.com/80/80?lock=6"),
+    Almacenes("SQRGR007", "Almacen septimo", "Av. Gregorio Gea7", "https://loremflickr.com/80/80?lock=7")
     )
 
 val listaArticulo: MutableList<Articulos> = mutableListOf(
