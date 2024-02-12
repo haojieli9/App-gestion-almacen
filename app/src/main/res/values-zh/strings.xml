@@ -13,6 +13,8 @@
     <string name="password_hint">Password</string>
     <string name="login_legacy">接受隐私条款</string>
     <string name="login_button">Log in</string>
+    <string name="ligin_password">忘记密码?</string>
+
 
     <!-- Activity main -->
 
@@ -57,4 +59,6 @@
     <string name="bottom_menu_productos">货物</string>
     <string name="bottom_menu_perfil">用户</string>
 
+    <!-- Descripciones imagen -->
+    <string name="description_img">一张图片</string>
 </resources>

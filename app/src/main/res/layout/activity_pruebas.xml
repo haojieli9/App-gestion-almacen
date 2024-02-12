@@ -1,90 +1,378 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/custom_blancoHueso">
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="-1dp"
+    tools:layout_editor_absoluteY="55dp">
 
-    <androidx.cardview.widget.CardView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp"
-        android:background="@drawable/custom_button">
+        android:background="@color/custom_button"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="InventFlow"
+        app:titleTextColor="@color/custom_blancoHueso"/>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <ImageView
+            android:id="@+id/imgMain1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/img_layout" />
+
+        <ImageView
+            android:id="@+id/imgMain2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
+            android:outlineProvider="background"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@drawable/cardview_selector"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/img_interrogante" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/almacen_allinfo"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:padding="24dp">
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                card_view:srcCompat="@drawable/png_logo"
-                android:layout_gravity="center"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/loginText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bienvenido a InventFlow"
-                android:textAlignment="center"
-                android:textColor="@color/custom_button"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/username"
-                android:background="@drawable/custom_border"
-                android:drawablePadding="8dp"
-                android:hint="Username"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="40dp"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/password"
-                android:background="@drawable/custom_border"
-                android:drawablePadding="8dp"
-                android:hint="Password"
-                android:padding="8dp"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="20dp"/>
-
-            <CheckBox
-                android:id="@+id/checkLegacy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="3dp"
-                android:text="Acepto condiciones legales" />
+                android:text="@string/almacen_disponible"
+                android:textColor="@color/gray" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/loginButton"
-                android:text="Log in"
-                android:textSize="18sp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/custom_button"
-                app:cornerRadius = "16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/almacen_totalart"
+                android:textColor="@color/gray" />
+
+            <TextView
+                android:layout_width="47dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/almacen_valor"
+                android:textAlignment="center"
+                android:textColor="@color/gray" />
+
+
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="95dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="97dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvMainAlmDisp"
+                android:text="5"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvMainArtTot"
+                android:layout_marginStart="20dp"
+                android:text="0 unit"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvMainValTot"
+                android:layout_marginStart="20dp"
+                android:text="2401€"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvMainTitulo1"
+        android:layout_width="174dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/fragment1_operations"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview3"
+        android:layout_width="210dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="200dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/cardview_selector">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/fragment1_producto"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/desc_producto"
+            android:textSize="12sp" />
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="125dp"
+            android:contentDescription="@string/description_img"
+            android:src="@drawable/img_producto" />
+
+        <FrameLayout
+            android:id="@+id/flFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview2"
+        android:layout_width="210dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="191dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/cardview_selector">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/fragment1_almacen"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="94dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/desc_almacen"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="120dp"
+            android:contentDescription="@string/description_img"
+            android:src="@drawable/img_op_almacen" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_articulo"
+        android:layout_width="210dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="8dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toStartOf="@+id/cardview3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/cardview_selector">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/fragment1_movimiento"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/desc_movimiento"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="120dp"
+            android:contentDescription="@string/description_img"
+            android:src="@drawable/img_movimiento" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview5"
+        android:layout_width="210dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="144dp"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintStart_toEndOf="@+id/cardview_articulo"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/cardview_selector">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/fragment1_proveedor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/desc_proveedor"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="120dp"
+            android:contentDescription="@string/description_img"
+            android:src="@drawable/img_proveedor" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="137dp"
+        android:text="@string/fragment1_recientes"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardview_articulo" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvArt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:listitem="@layout/viewholder_articulos" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@
     <string name="password_hint">Password</string>
     <string name="login_legacy">Acepto condiciones legales</string>
     <string name="login_button">Log in</string>
+    <string name="ligin_password">Forgot your password?</string>
 
     <!-- Activity main -->
 
@@ -56,6 +57,9 @@
     <string name="bottom_menu_home">Home</string>
     <string name="bottom_menu_productos">Productos</string>
     <string name="bottom_menu_perfil">Perfil</string>
+
+    <!-- Descripciones imagen -->
+    <string name="description_img">Es una imagen</string>
 
 
 </resources>

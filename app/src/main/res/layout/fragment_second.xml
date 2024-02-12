@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragmentos.SecondFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello world" />
-
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="7dp" />
 </FrameLayout>
