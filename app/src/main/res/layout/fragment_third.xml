@@ -35,7 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/perfil"
-            android:src="@drawable/png_foto" />
+            android:src="@drawable/png_foto"
+            android:contentDescription="@string/description_img"/>
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -64,7 +65,7 @@
         android:layout_gravity="center"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="7dp" >
+        app:cardElevation="4dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,7 +75,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/per_config"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:text="@string/fragment3_configuration"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
@@ -86,7 +87,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/per_language"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:text="@string/fragment1_language"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
@@ -97,7 +98,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:text="@string/fragment3_enviar"
                 android:textColor="@color/black"
@@ -118,7 +119,7 @@
         android:layout_gravity="center"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="7dp">
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -127,19 +128,19 @@
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="@string/fragment3_terminos"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
+                android:layout_height="45dp"
                 android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:text="@string/fragment3_terminos"
+                android:textColor="@color/black"
                 app:icon="@drawable/img_flecha"
-                app:iconTint="@color/black"
-                app:iconGravity="end"/>
+                app:iconGravity="end"
+                app:iconTint="@color/black" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/per_politica"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:text="@string/fragment3_politica"
                 android:textColor="@color/black"
@@ -151,7 +152,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/about"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:gravity="center_vertical"
                 android:text="@string/fragment3_about"
                 android:textColor="@color/black"
@@ -168,11 +169,11 @@
         android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:id="@+id/per_card4"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="7dp"
+        app:cardElevation="4dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
@@ -185,7 +186,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="45dp"
                 android:gravity="center"
                 android:text="@string/fragment3_sesion"
                 android:textAlignment="center"

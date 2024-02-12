@@ -157,7 +157,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview3"
-        android:layout_width="210dp"
+        android:layout_width="207dp"
         android:layout_height="120dp"
         android:layout_marginStart="200dp"
         android:padding="5dp"
@@ -210,23 +210,22 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview2"
-        android:layout_width="210dp"
+        android:layout_width="207dp"
         android:layout_height="120dp"
-        android:layout_marginEnd="191dp"
+        android:background="@drawable/cardview_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:padding="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="7dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cardview3"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/cardview_selector">
+        app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -257,9 +256,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_articulo"
-        android:layout_width="210dp"
+        android:layout_width="205dp"
         android:layout_height="120dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="8dp"
         android:padding="5dp"
         app:cardBackgroundColor="@color/white"
@@ -305,9 +304,13 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview5"
-        android:layout_width="210dp"
+        android:layout_width="205dp"
         android:layout_height="120dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/cardview_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         android:padding="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
@@ -315,13 +318,9 @@
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/cardview_articulo"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/cardview_selector">
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <TextView
             android:layout_width="wrap_content"
