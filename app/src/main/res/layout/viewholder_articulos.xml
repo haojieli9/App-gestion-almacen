@@ -3,25 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="230dp">
+    android:layout_height="210dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_articulo"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_width="140dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="7dp"
+        android:background="@drawable/cardview_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
-        app:cardElevation="7dp"
-        android:layout_margin="7dp"
+        app:cardElevation="4dp"
         app:cardPreventCornerOverlap="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/cardview_selector">
+        app:layout_constraintVertical_bias="0.1">
 
         <ImageView
             android:layout_width="match_parent"
