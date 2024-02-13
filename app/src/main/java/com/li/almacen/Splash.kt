@@ -14,7 +14,7 @@ class Splash : AppCompatActivity() {
     }
 
     private fun lanzarMain() {
-        object : CountDownTimer(200,2500) {
+        object : CountDownTimer(1000,2500) {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {

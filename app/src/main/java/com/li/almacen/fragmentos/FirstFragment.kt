@@ -41,8 +41,8 @@ class FirstFragment : Fragment() {
         }
 
         binding.cardviewArticulo.setOnClickListener {
-            val intent = Intent(requireContext(), ActivityPruebas::class.java)
-            startActivity(intent)
+            /*val intent = Intent(requireContext(), ActivityPruebas::class.java)
+            startActivity(intent)*/
         }
 
         binding.imgMain2.setOnClickListener {

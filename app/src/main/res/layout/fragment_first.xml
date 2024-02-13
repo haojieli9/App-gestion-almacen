@@ -19,21 +19,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="InventFlow"
-        app:titleTextColor="@color/custom_blancoHueso"/>
+        app:titleTextColor="@color/custom_blancoHueso" />
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
+        android:layout_width="390dp"
         android:layout_height="160dp"
         android:layout_marginTop="16dp"
         app:cardBackgroundColor="@color/white"
+        android:padding="5dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="7dp"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
@@ -49,16 +49,16 @@
             android:id="@+id/imgMain2"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="350dp"
+            android:layout_marginStart="360dp"
             android:layout_marginTop="10dp"
-            android:scaleType="centerCrop"
-            android:clipToOutline="true"
-            android:outlineProvider="background"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
             android:background="@drawable/cardview_selector"
+            android:clickable="true"
+            android:clipToOutline="true"
             android:contentDescription="@string/app_name"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:outlineProvider="background"
+            android:scaleType="centerCrop"
             android:src="@drawable/img_interrogante" />
 
         <TextView
@@ -109,18 +109,18 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tvMainAlmDisp"
                 android:layout_width="97dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvMainAlmDisp"
                 android:text="5"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tvMainArtTot"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvMainArtTot"
                 android:layout_marginStart="20dp"
                 android:text="0 unit"
                 android:textAlignment="center"
@@ -128,9 +128,9 @@
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tvMainValTot"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvMainValTot"
                 android:layout_marginStart="20dp"
                 android:text="2401€"
                 android:textAlignment="center"
@@ -146,34 +146,33 @@
         android:id="@+id/tvMainTitulo1"
         android:layout_width="174dp"
         android:layout_height="31dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:text="@string/fragment1_operations"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview3"
-        android:layout_width="207dp"
-        android:layout_height="120dp"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
         android:layout_marginStart="200dp"
-        android:padding="5dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/cardview_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="7dp"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/cardview_selector">
+        app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -210,20 +209,20 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview2"
-        android:layout_width="207dp"
-        android:layout_height="120dp"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="191dp"
         android:background="@drawable/cardview_selector"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        android:padding="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="7dp"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toStartOf="@+id/cardview3"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMainTitulo1">
 
@@ -255,70 +254,20 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardview_articulo"
-        android:layout_width="205dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="8dp"
-        android:padding="5dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="7dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toStartOf="@+id/cardview3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="@drawable/cardview_selector">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/fragment1_movimiento"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="92dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/desc_movimiento"
-            android:textSize="12sp" />
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="120dp"
-            android:contentDescription="@string/description_img"
-            android:src="@drawable/img_movimiento" />
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:id="@+id/cardview5"
-        android:layout_width="205dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="140dp"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="168dp"
         android:background="@drawable/cardview_selector"
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        android:padding="5dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="10dp"
         app:cardElevation="7dp"
         app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toEndOf="@+id/cardview_articulo"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
@@ -349,12 +298,58 @@
 
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_articulo"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/cardview_selector"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="7dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintEnd_toStartOf="@+id/cardview3"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/fragment1_movimiento"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/desc_movimiento"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="120dp"
+            android:contentDescription="@string/description_img"
+            android:src="@drawable/img_movimiento" />
+
+
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="137dp"
         android:text="@string/fragment1_recientes"
         android:textSize="17sp"
