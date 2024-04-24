@@ -48,9 +48,11 @@ class CustomAdapter (private var listaAlmacen : List<Almacenes>) : RecyclerView.
         holder.tvUbicacion.text = listaAlmacen[position].ubicacion
 
         //libreria GLIDE para cargar imagenes
+/*
         Glide.with(holder.itemView.context)
             .load(listaAlmacen[position].cover)
             .into(holder.imgV)
+*/
 
         //inicio accion clickable
         holder.itemView.setOnClickListener{

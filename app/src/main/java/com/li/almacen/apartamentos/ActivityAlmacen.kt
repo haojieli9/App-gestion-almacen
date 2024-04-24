@@ -28,7 +28,7 @@ class ActivityAlmacen : AppCompatActivity() {
         //inicio recyclerview
         val adapter = CustomAdapter(listaAlmacen)
         binding.rvAlma.adapter = adapter
-        binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true)
+        binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         adapter.setOnClickListener() { _: Almacenes, _: Int ->
             Toast.makeText(this@ActivityAlmacen, "Clicked", Toast.LENGTH_SHORT).show()

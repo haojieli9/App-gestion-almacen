@@ -21,20 +21,21 @@
         app:titleTextColor="@color/custom_blancoHueso"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/form_almacen_foto"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="7dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:text="ALTA ALMACEN"
+        android:textColor="@color/custom_azul"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
     <ImageView
-        android:layout_width="350dp"
+        android:layout_width="351dp"
         android:layout_height="190dp"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:src="@drawable/png_file"/>
+        android:layout_marginTop="10dp"
+        android:src="@drawable/png_file" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,15 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:hint="@string/form_almacen_id" >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tfID"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:maxLines="1" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:hint="@string/form_almacen_id" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nombreTextInputLayout1"
