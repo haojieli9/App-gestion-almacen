@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import com.li.almacen.usuarios.Login
 
 class Splash : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +19,7 @@ class Splash : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {
-                startActivity(Intent(this@Splash,Login::class.java))
+                startActivity(Intent(this@Splash, Login::class.java))
                 finish()
             }
         }.start()

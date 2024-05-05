@@ -9,8 +9,8 @@
 
     <!-- Activity login -->
     <string name="welcome_message">Bienvenido a InventFlow</string>
-    <string name="username_hint">Username</string>
-    <string name="password_hint">Password</string>
+    <string name="username_hint">Correo electrónico</string>
+    <string name="password_hint">Contraseña</string>
     <string name="login_legacy">Acepto condiciones legales</string>
     <string name="login_button">Log in</string>
     <string name="ligin_password">Olvidaste tu contraseña?</string>

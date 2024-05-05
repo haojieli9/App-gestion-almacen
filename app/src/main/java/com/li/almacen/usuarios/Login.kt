@@ -1,10 +1,11 @@
-package com.li.almacen
+package com.li.almacen.usuarios
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.li.almacen.MainActivity
 import com.li.almacen.databinding.ActivityLoginBinding
 
 class Login : AppCompatActivity() {

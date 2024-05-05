@@ -11,7 +11,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="650dp"
+        android:layout_height="670dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp"
@@ -44,6 +44,14 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre y apellido"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -51,11 +59,20 @@
                 android:inputType="text"
                 android:background="@drawable/custom_border"
                 android:drawablePadding="8dp"
-                android:hint="Nombre y apellido"
+                android:hint="Rubén García"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginTop="5dp"/>
+
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo electrónico"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <EditText
                 android:layout_width="match_parent"
@@ -64,14 +81,21 @@
                 android:inputType="textEmailAddress"
                 android:background="@drawable/custom_border"
                 android:drawablePadding="8dp"
-                android:hint="Correo electrónico"
+                android:hint="example@gmail.com"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contraseña"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
 
             <RelativeLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -137,9 +161,9 @@
                 android:id="@+id/regButton"
                 android:text="REGISTRAR"
                 android:textSize="17sp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="@color/custom_button"
-                app:cornerRadius = "16dp"/>
+                app:cornerRadius="16dp"/>
 
 
             <LinearLayout

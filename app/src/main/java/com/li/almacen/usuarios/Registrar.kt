@@ -1,4 +1,4 @@
-package com.li.almacen
+package com.li.almacen.usuarios
 
 import android.content.Intent
 import android.os.Bundle
