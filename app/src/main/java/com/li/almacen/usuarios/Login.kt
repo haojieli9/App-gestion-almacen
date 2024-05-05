@@ -22,7 +22,7 @@ class Login : AppCompatActivity() {
 
         // Configura el OnClickListener para el botón de inicio de sesión
         binding.loginButton.setOnClickListener {
-            if (binding.username.text.isEmpty() && binding.password.text.isEmpty()) {
+            if (binding.username.text.isEmpty() || binding.password.text.isEmpty()) {
                 Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 // Obtiene los datos de inicio de sesión
@@ -46,7 +46,7 @@ class Login : AppCompatActivity() {
                     startActivity(intent)
                     Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Error al iniciar sesión, compruebe los datos rellenados.", Toast.LENGTH_SHORT).show()
                 }
             }
     }
