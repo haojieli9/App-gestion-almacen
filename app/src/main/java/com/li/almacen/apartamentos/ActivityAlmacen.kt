@@ -13,6 +13,7 @@ import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.formularios.FormAlmacen
 import com.li.almacen.kt.Almacenes
+import com.li.almacen.kt.BottomSheetFragment
 import com.li.almacen.kt.listaArticulo
 
 class ActivityAlmacen : AppCompatActivity() {
@@ -21,6 +22,12 @@ class ActivityAlmacen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAlmacenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val bottomSheetFragment = BottomSheetFragment()
+
+        binding.floating1.setOnClickListener {
+            bottomSheetFragment.show(supportFragmentManager, "BottomSheetDiaglog")
+        }
 
         //inicio toolbar
         setSupportActionBar(binding.toolbar)
@@ -34,12 +41,6 @@ class ActivityAlmacen : AppCompatActivity() {
             Toast.makeText(this@ActivityAlmacen, "Clicked", Toast.LENGTH_SHORT).show()
         }
 
-        //boton intent al formulario
-/*        binding.imgAdd.setOnClickListener {
-            val intent = Intent(this, FormAlmacen::class.java)
-            startActivity(intent)
-            this@ActivityAlmacen.finish()
-        }*/
 
         //cardview informacion general
         val cantidadAlmacen = listaAlmacen.size

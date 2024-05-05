@@ -13,7 +13,7 @@
     <string name="password_hint">Password</string>
     <string name="login_legacy">Acepto condiciones legales</string>
     <string name="login_button">Log in</string>
-    <string name="ligin_password">Forgot your password?</string>
+    <string name="ligin_password">Olvidaste tu contraseña?</string>
 
     <!-- Activity main -->
 

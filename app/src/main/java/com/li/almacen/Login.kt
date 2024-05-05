@@ -21,7 +21,7 @@ class Login : AppCompatActivity() {
 
         // Configura el OnClickListener para el botón de inicio de sesión
         binding.loginButton.setOnClickListener {
-            if (binding.username.text.isEmpty() && binding.password.text.isEmpty() && binding.checkLegacy.isChecked) {
+            if (binding.username.text.isEmpty() && binding.password.text.isEmpty()) {
                 Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()
 
             } else {
