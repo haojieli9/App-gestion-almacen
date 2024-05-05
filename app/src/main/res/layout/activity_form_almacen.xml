@@ -17,86 +17,128 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="InventFlow"
-        app:titleTextColor="@color/custom_blancoHueso"/>
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ALTA ALMACEN"
-        android:textColor="@color/custom_azul"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
+        app:title="NUEVO ALMACÉN"
+        app:titleTextColor="@color/custom_blancoHueso" />
 
     <ImageView
-        android:layout_width="351dp"
-        android:layout_height="190dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/png_file" />
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/png_logo"
+        android:layout_gravity="center" />
 
     <TextView
+        android:id="@+id/na_Tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/form_almacen_dato"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="7dp"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:layout_marginTop="30sp"
+        android:layout_marginStart="10sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Nombre Almacén"/>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nombreTextInputLayout"
-        android:layout_width="400dp"
+    <EditText
+        android:id="@+id/na_edit1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:hint="@string/form_almacen_id" />
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="50sp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/gray"
+        android:backgroundTint="@color/gray"
+        android:hint="Almacén de la Iglesia" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nombreTextInputLayout1"
-        android:layout_width="400dp"
+    <TextView
+        android:id="@+id/na_Tv2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:hint="@string/form_almacen_nombre" >
+        android:layout_marginTop="15sp"
+        android:layout_marginStart="10sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Dirección Almacén"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tfNombre"
+    <EditText
+        android:id="@+id/na_edit2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="50sp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/gray"
+        android:backgroundTint="@color/gray"
+        android:hint="Plaza Iglesia de los Angeles " />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="50sp"
+        android:orientation="horizontal">
+
+        <!-- Primer par de TextView y EditText -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="10sp">
+
+            <TextView
+                android:id="@+id/na_Tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Gerente"/>
+
+            <EditText
+                android:id="@+id/na_edit3"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/gray"
+                android:backgroundTint="@color/gray"
+                android:hint="Jose Luis"/>
+        </LinearLayout>
+
+        <!-- Segundo par de TextView y EditText -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginStart="20sp"
+            android:orientation="vertical">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/na_Tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Capacidad"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nombreTextInputLayout2"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:hint="@string/form_almacen_direccion" >
+            <EditText
+                android:id="@+id/na_edit4"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:ems="10"
+                android:inputType="text"
+                android:textColor="@color/gray"
+                android:backgroundTint="@color/gray"
+                android:hint="2000m²"/>
+        </LinearLayout>
+    </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tfDir"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
 
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/btGuardar"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/form_almacen_save"
-        android:background="@drawable/custom_border"
-        app:icon="@drawable/img_save"
-        android:textSize="20sp"
-        app:iconSize="30sp"
-        app:iconGravity="textEnd"/>
+
+
+
 </LinearLayout>

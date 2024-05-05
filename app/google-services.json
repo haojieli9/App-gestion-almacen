@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1037203242601",
+    "project_id": "inventflow-290c4",
+    "storage_bucket": "inventflow-290c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037203242601:android:21832523413a4d275e2cf8",
+        "android_client_info": {
+          "package_name": "com.li.almacen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmsH_PJ2p6pmGq9MhIIIt1i4Y0pN2g4DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

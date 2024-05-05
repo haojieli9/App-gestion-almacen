@@ -35,11 +35,11 @@ class ActivityAlmacen : AppCompatActivity() {
         }
 
         //boton intent al formulario
-        binding.imgAdd.setOnClickListener {
+/*        binding.imgAdd.setOnClickListener {
             val intent = Intent(this, FormAlmacen::class.java)
             startActivity(intent)
             this@ActivityAlmacen.finish()
-        }
+        }*/
 
         //cardview informacion general
         val cantidadAlmacen = listaAlmacen.size

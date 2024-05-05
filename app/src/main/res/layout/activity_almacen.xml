@@ -41,16 +41,6 @@
             android:contentDescription="@string/app_name"
             android:src="@drawable/img_layout" />
 
-        <ImageButton
-            android:id="@+id/imgAdd"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="340dp"
-            android:layout_marginTop="1dp"
-            android:backgroundTint="#FFFFFF"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_add" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -140,4 +130,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
         tools:listitem="@layout/viewholder_almacen" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:backgroundTint="@color/custom_verde1"
+        android:tint="@color/custom_verde3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvAlma"
+        app:srcCompat="@drawable/ic_button_add"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

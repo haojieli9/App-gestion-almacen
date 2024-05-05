@@ -1,58 +1,49 @@
 package com.li.almacen
 
-import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.li.almacen.databinding.ActivityLoginBinding
 
 class Login : AppCompatActivity() {
-    lateinit var binding: ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-/*        binding.username.setText("li")
-        binding.password.setText("1234")
-        binding.checkLegacy.isChecked = true
-*/
+        // Inicializa Firebase Auth
+        auth = FirebaseAuth.getInstance()
+
+        // Configura el OnClickListener para el botón de inicio de sesión
         binding.loginButton.setOnClickListener {
-            val nombreCorrecto = binding.username.text.toString() == "li"
-            val pwdCorrecto = binding.password.text.toString() == "1234"
-            if (binding.username.text.isEmpty() || binding.password.text.isEmpty()) {
-                Toast.makeText(this@Login, "Rellene los datos antes de continuar.", Toast.LENGTH_SHORT).show()
+            if (binding.username.text.isEmpty() && binding.password.text.isEmpty() && binding.checkLegacy.isChecked) {
+                Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()
+
             } else {
-                if (nombreCorrecto && pwdCorrecto) {
-                    if (binding.checkLegacy.isChecked) {
-                        val intent = Intent(this@Login, MainActivity::class.java)
-                        startActivity(intent)
-                        this@Login.finish()
-                    } else {
-                        Toast.makeText(this@Login, "Debes aceptar condiciones legales para continuar.", Toast.LENGTH_SHORT).show()
-                    }
+                // Obtiene los datos de inicio de sesión
+                val email = binding.username.text.toString()
+                val password = binding.password.text.toString()
+                signIn(email, password)
 
-                } else {
-                    var mensajeError = "Error de autenticación. Aegurese de que los datos sean correctos."
-
-                    //Snackbar.make(binding.root, mensajeError, Snackbar.LENGTH_SHORT).show()
-
-                    val builder = AlertDialog.Builder(this@Login)
-                    builder.setMessage(mensajeError)
-                    builder.setPositiveButton("ACEPTAR") { dialog, _ -> dialog.dismiss() }
-                    val alertDialog = builder.create()
-                    alertDialog.show()
-
-                    /*Tipo de notiifcaciones
-                        - Snackbar
-                        - AlerDialog
-                        - Toast
-                        - Custom toast
-                    */
-                }
             }
         }
+    }
+
+    private fun signIn(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val intent = Intent(this@Login, MainActivity::class.java)
+                    startActivity(intent)
+                    Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }

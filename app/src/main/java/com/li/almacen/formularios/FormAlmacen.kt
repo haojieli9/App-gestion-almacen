@@ -23,7 +23,7 @@ class FormAlmacen : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        binding.btGuardar.setOnClickListener {
+        /*binding.btGuardar.setOnClickListener {
             val tfNombre = binding.tfNombre
             val tfDir = binding.tfDir
 
@@ -52,7 +52,6 @@ class FormAlmacen : AppCompatActivity() {
                 this@FormAlmacen.finish()
                 true
             } else -> { true }
-        }
+        }*/
     }
-
 }
