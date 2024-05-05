@@ -78,7 +78,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/password"
+                    android:id="@+id/reg_password1"
                     android:background="@drawable/custom_border"
                     android:drawablePadding="8dp"
                     android:hint="Contraseña"
@@ -108,7 +108,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:id="@+id/password2"
+                    android:id="@+id/reg_password2"
                     android:background="@drawable/custom_border"
                     android:drawablePadding="8dp"
                     android:hint="Confirmar contraseña"
@@ -134,8 +134,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/loginButton"
-                android:text="REGISTRARSE"
+                android:id="@+id/regButton"
+                android:text="REGISTRAR"
                 android:textSize="17sp"
                 android:layout_marginTop="30dp"
                 android:backgroundTint="@color/custom_button"
@@ -146,32 +146,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
+                android:gravity="center_vertical|center_horizontal"
                 android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/log_tv2"
+                    android:id="@+id/regTv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Ya tienes cuenta? " />
 
                 <TextView
-                    android:id="@+id/log_tv3"
+                    android:id="@+id/regTv3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Log in"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textColor="@color/custom_button"
                     android:clickable="true"/>
             </LinearLayout>
-
-
-
-
-
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

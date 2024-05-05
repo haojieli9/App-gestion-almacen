@@ -32,6 +32,11 @@ class Login : AppCompatActivity() {
 
             }
         }
+
+        binding.logTv3.setOnClickListener() {
+            val intent = Intent(this, Registrar::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun signIn(email: String, password: String) {
