@@ -24,13 +24,11 @@ class Login : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             if (binding.username.text.isEmpty() && binding.password.text.isEmpty()) {
                 Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()
-
             } else {
                 // Obtiene los datos de inicio de sesión
                 val email = binding.username.text.toString()
                 val password = binding.password.text.toString()
                 signIn(email, password)
-
             }
         }
 
