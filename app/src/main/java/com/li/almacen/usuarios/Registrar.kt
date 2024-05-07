@@ -2,11 +2,15 @@ package com.li.almacen.usuarios
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.li.almacen.R
 import com.li.almacen.databinding.ActivityRegistrarBinding
 
 
@@ -30,7 +34,6 @@ class Registrar : AppCompatActivity() {
 
     private fun setup() {
         binding.regButton.setOnClickListener() {
-/*
             if (binding.regEmail.text.isNotEmpty() &&
                 binding.regPassword1.text.isNotEmpty() &&
                 binding.regPassword2.text.isNotEmpty() &&
@@ -42,6 +45,7 @@ class Registrar : AppCompatActivity() {
                         if (it.isSuccessful) {
                             Toast.makeText(this, "Usuario registrado correctamente.", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, RegValidar::class.java)
+                            intent.putExtra("email", binding.regEmail.text.toString())
                             startActivity(intent)
                             this@Registrar.finish()
                         } else {
@@ -50,11 +54,12 @@ class Registrar : AppCompatActivity() {
                     }
             } else {
                 Toast.makeText(this, "Error al registrar usuario, compruebe los datos esten correctos.", Toast.LENGTH_LONG).show()
-            }*/
-
+            }
+/*
             val intent = Intent(this, RegValidar::class.java)
             startActivity(intent)
-            this@Registrar.finish()
+            this@Registrar.finish()*/
+
 /*
             val builder = MaterialAlertDialogBuilder(this)
                 .setTitle("Título del diálogo")
@@ -72,4 +77,5 @@ class Registrar : AppCompatActivity() {
 */
         }
     }
+
 }

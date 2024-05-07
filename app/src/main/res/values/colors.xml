@@ -19,4 +19,6 @@
     <color name="colorAccent">#FF4081</color> <!-- Color de fondo normal -->
     <color name="colorAccentLight">#80FF4081</color> <!-- Color de fondo cuando se presiona -->
 
+    <color name="rojo">#FF0000</color>
+
 </resources>
