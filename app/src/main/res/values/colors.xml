@@ -16,9 +16,13 @@
     <color name="custom_verde2">#09ADB5</color>
     <color name="custom_verde3">#0DBFBA</color>
 
-    <color name="colorAccent">#FF4081</color> <!-- Color de fondo normal -->
+    <color name="colorAccent1">#FF4081</color> <!-- Color de fondo normal -->
     <color name="colorAccentLight">#80FF4081</color> <!-- Color de fondo cuando se presiona -->
 
     <color name="rojo">#FF0000</color>
+
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#ff79b0</color>
 
 </resources>

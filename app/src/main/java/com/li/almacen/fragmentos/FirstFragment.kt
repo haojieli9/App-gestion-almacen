@@ -61,6 +61,11 @@ class FirstFragment : Fragment() {
 
         val totalValue = listaArticulo.sumOf { it.precio.toDouble() }.toFloat()
         binding.tvMainValTot.text = totalValue.toString() + "€"
+
+        binding.cardview3.setOnClickListener() {
+            val intent = Intent(requireContext(), ActivityPruebas::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {
