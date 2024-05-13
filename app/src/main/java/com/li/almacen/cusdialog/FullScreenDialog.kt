@@ -45,7 +45,7 @@ class ExampleDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar!!.setNavigationOnClickListener { v: View? -> dismiss() }
-        toolbar!!.setTitle("Some Title")
+        toolbar!!.setTitle("Nuevo almacen")
         toolbar!!.inflateMenu(R.menu.example_dialog)
         toolbar!!.setOnMenuItemClickListener { item: MenuItem? ->
             dismiss()
