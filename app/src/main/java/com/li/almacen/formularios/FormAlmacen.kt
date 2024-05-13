@@ -23,6 +23,9 @@ class FormAlmacen : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
+        val code = intent.getIntExtra("scanResult", 0)
+        binding.naEdit1.setText(code.toString())
+
         /*binding.btGuardar.setOnClickListener {
             val tfNombre = binding.tfNombre
             val tfDir = binding.tfDir
