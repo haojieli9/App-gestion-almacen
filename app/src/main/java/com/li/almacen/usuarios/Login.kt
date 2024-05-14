@@ -22,16 +22,16 @@ class Login : AppCompatActivity() {
 
         // Configura el OnClickListener para el botón de inicio de sesión
         binding.loginButton.setOnClickListener {
-/*            if (binding.username.text.isEmpty() || binding.password.text.isEmpty()) {
+            if (binding.username.text.isEmpty() || binding.password.text.isEmpty()) {
                 Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 // Obtiene los datos de inicio de sesión
                 val email = binding.username.text.toString()
                 val password = binding.password.text.toString()
                 signIn(email, password)
-            }*/
-            val intent = Intent(this@Login, MainActivity::class.java)
-            startActivity(intent)
+            }
+/*            val intent = Intent(this@Login, MainActivity::class.java)
+            startActivity(intent)*/
         }
 
         binding.logTv3.setOnClickListener() {
