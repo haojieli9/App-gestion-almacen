@@ -1,6 +1,5 @@
-package com.li.almacen.fragmentos
+package com.li.almacen.ui.fragments.fragmentos
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.li.almacen.ActivityPruebas
-import com.li.almacen.apartamentos.ActivityAlmacen
+import com.li.almacen.test.ActivityPruebas
+import com.li.almacen.ui.almacen.ActivityAlmacen
 import com.li.almacen.databinding.FragmentFirstBinding
 import com.li.almacen.kt.CustomArticulo
 import com.li.almacen.kt.listaAlmacen

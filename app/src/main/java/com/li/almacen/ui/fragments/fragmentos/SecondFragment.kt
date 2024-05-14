@@ -1,4 +1,4 @@
-package com.li.almacen.fragmentos
+package com.li.almacen.ui.fragments.fragmentos
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

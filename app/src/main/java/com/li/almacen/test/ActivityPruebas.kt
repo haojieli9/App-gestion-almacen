@@ -1,11 +1,11 @@
-package com.li.almacen
+package com.li.almacen.test
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
-import com.li.almacen.cusdialog.ExampleDialog
+import com.li.almacen.ui.fragments.fullscreendialog.ExampleDialog
 import com.li.almacen.databinding.ActivityPruebasBinding
 import com.li.almacen.formularios.FormAlmacen
 

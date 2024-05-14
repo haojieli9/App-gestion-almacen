@@ -63,8 +63,15 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-firestore:25.0.0")
-
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+
+    // ViewModel and LiveData
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+
+    // Fragments and Acitivity
+    implementation("androidx.fragment:fragment-ktx:1.7.0")
+    implementation("androidx.activity:activity-ktx:1.9.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

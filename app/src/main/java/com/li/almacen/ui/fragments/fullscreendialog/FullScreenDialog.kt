@@ -1,4 +1,4 @@
-package com.li.almacen.cusdialog
+package com.li.almacen.ui.fragments.fullscreendialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

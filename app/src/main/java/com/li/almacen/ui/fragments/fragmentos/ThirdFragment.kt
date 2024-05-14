@@ -1,4 +1,4 @@
-package com.li.almacen.fragmentos
+package com.li.almacen.ui.fragments.fragmentos
 
 import android.content.Intent
 import android.net.Uri
@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
-import com.li.almacen.usuarios.Login
-import com.li.almacen.Politica_web
+import com.li.almacen.ui.login.Login
+import com.li.almacen.test.Politica_web
 import com.li.almacen.R
 
 

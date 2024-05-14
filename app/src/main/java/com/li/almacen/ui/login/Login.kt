@@ -1,4 +1,4 @@
-package com.li.almacen.usuarios
+package com.li.almacen.ui.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.li.almacen.MainActivity
 import com.li.almacen.databinding.ActivityLoginBinding
+import com.li.almacen.ui.register.Registrar
 
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -22,7 +23,7 @@ class Login : AppCompatActivity() {
 
         // Configura el OnClickListener para el botón de inicio de sesión
         binding.loginButton.setOnClickListener {
-            if (binding.username.text.isEmpty() || binding.password.text.isEmpty()) {
+            if (binding.username.text!!.isEmpty() || binding.password.text!!.isEmpty()) {
                 Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 // Obtiene los datos de inicio de sesión

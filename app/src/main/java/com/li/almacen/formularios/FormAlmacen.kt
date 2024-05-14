@@ -1,18 +1,8 @@
 package com.li.almacen.formularios
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
-import com.li.almacen.R
-import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.ActivityFormAlmacenBinding
-import com.li.almacen.kt.Almacenes
-import com.li.almacen.kt.CustomAdapter
-import com.li.almacen.kt.CustomArticulo
-import com.li.almacen.kt.listaAlmacen
 
 class FormAlmacen : AppCompatActivity() {
     private lateinit var binding: ActivityFormAlmacenBinding

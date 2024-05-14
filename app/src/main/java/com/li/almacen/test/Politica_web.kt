@@ -1,12 +1,10 @@
-package com.li.almacen
+package com.li.almacen.test
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebChromeClient
-import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.li.almacen.databinding.ActivityPoliticaWebBinding
-import com.li.almacen.databinding.FragmentFirstBinding
 
 class Politica_web : AppCompatActivity() {
     private lateinit var binding: ActivityPoliticaWebBinding

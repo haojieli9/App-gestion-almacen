@@ -34,7 +34,7 @@
                 android:contentDescription="@string/description_img"/>
 
             <TextView
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:id="@+id/loginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,128 +44,104 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_marginTop="40dp"
-                android:layout_width="wrap_content"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tilNickname"
+                style="@style/FormTextInputLayout"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:text="Nombre y apellido"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="50dp">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/reg_username"
-                android:inputType="text"
-                android:background="@drawable/custom_border"
-                android:drawablePadding="8dp"
-                android:hint="Rubén García"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="5dp"/>
-
-
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Correo electrónico"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/reg_email"
-                android:inputType="textEmailAddress"
-                android:background="@drawable/custom_border"
-                android:drawablePadding="8dp"
-                android:hint="example@gmail.com"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:textColorHighlight="@color/cardview_dark_background"
-                android:layout_marginTop="5dp"/>
-
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Contraseña"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/reg_password1"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/regUsername"
+                    style="@style/FormEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="0dp"
-                    android:background="@drawable/custom_border"
+                    android:layout_height="wrap_content"
+                    android:hint="Username"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textColorHighlight="@color/error_dark"
+                    android:textColorHint="@color/error_dark" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tilEmail"
+                style="@style/FormTextInputLayout"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/regEmail"
+                    style="@style/FormEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Correo electrónico"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:textColorHighlight="@color/error_dark"
+                    android:textColorHint="@color/error_dark" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tilPassword"
+                style="@style/FormTextInputLayout"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/regPassword1"
+                    style="@style/FormEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="Contraseña"
+                    android:imeOptions="actionNext"
                     android:inputType="textPassword"
-                    android:maxLength="15"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="@color/cardview_dark_background" />
+                    android:textColorHighlight="@color/error_dark"
+                    android:textColorHint="@color/error_dark" />
 
-                <ImageView
-                    android:id="@+id/pwdicon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:padding="10dp"
-                    android:src="@drawable/svg_visible"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tilRepeatPassword"
+                style="@style/FormTextInputLayout"
+                android:layout_width="340dp"
+                android:layout_height="wrap_content" >
 
-                <EditText
-                    android:id="@+id/reg_password2"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/regPassword2"
+                    style="@style/FormEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/custom_border"
-                    android:drawablePadding="8dp"
-                    android:hint="Confirmar contraseña"
+                    android:layout_height="wrap_content"
+                    android:hint="Repetir contraseña"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword"
-                    android:maxLength="15"
-                    android:padding="8dp"
-                    android:textColor="@color/black"
-                    android:textColorHighlight="@color/cardview_dark_background" />
+                    android:textColorHighlight="@color/error_dark"
+                    android:textColorHint="@color/error_dark" />
 
-                <ImageView
-                    android:id="@+id/pwdicon2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:padding="10dp"
-                    android:src="@drawable/svg_visible"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
+
+
+
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:id="@+id/regButton"
                 android:text="REGISTRAR"
                 android:textSize="17sp"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/custom_button"
-                app:cornerRadius="16dp"/>
+                app:cornerRadius="8dp"/>
 
 
             <LinearLayout

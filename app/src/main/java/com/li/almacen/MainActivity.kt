@@ -1,24 +1,13 @@
 package com.li.almacen
 
-import android.app.AlertDialog
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.li.almacen.apartamentos.ActivityAlmacen
 import com.li.almacen.databinding.ActivityMainBinding
-import com.li.almacen.databinding.ActivityPruebasBinding
-import com.li.almacen.fragmentos.FirstFragment
-import com.li.almacen.fragmentos.SecondFragment
-import com.li.almacen.fragmentos.ThirdFragment
-import com.li.almacen.kt.CustomAdapter
-import com.li.almacen.kt.CustomArticulo
-import com.li.almacen.kt.listaAlmacen
-import com.li.almacen.kt.listaArticulo
+import com.li.almacen.ui.fragments.fragmentos.FirstFragment
+import com.li.almacen.ui.fragments.fragmentos.SecondFragment
+import com.li.almacen.ui.fragments.fragmentos.ThirdFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

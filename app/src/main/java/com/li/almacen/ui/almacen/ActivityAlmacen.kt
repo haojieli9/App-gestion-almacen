@@ -1,6 +1,5 @@
-package com.li.almacen.apartamentos
+package com.li.almacen.ui.almacen
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -11,9 +10,8 @@ import com.li.almacen.R
 import com.li.almacen.kt.CustomAdapter
 import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.databinding.ActivityAlmacenBinding
-import com.li.almacen.formularios.FormAlmacen
 import com.li.almacen.kt.Almacenes
-import com.li.almacen.kt.BottomSheetFragment
+import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.kt.listaArticulo
 
 class ActivityAlmacen : AppCompatActivity() {

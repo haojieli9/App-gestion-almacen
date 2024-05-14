@@ -1,4 +1,4 @@
-package com.li.almacen.kt
+package com.li.almacen.ui.fragments.bottomsheetdialog
 
 import android.content.Intent
 import android.os.Bundle

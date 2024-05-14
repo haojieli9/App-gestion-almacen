@@ -1,4 +1,4 @@
-package com.li.almacen.usuarios
+package com.li.almacen.ui.register
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

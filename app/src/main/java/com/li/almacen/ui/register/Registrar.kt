@@ -1,4 +1,4 @@
-package com.li.almacen.usuarios
+package com.li.almacen.ui.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,11 +7,12 @@ import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.li.almacen.R
 import com.li.almacen.databinding.ActivityRegistrarBinding
+import com.li.almacen.ui.login.Login
 
 
 class Registrar : AppCompatActivity() {
@@ -30,14 +31,15 @@ class Registrar : AppCompatActivity() {
 
         // Inicio
         setup()
+        validateEditText()
     }
 
     private fun setup() {
         binding.regButton.setOnClickListener() {
-            if (binding.regEmail.text.isNotEmpty() &&
-                binding.regPassword1.text.isNotEmpty() &&
-                binding.regPassword2.text.isNotEmpty() &&
-                binding.regUsername.text.isNotEmpty() &&
+            if (binding.regEmail.text!!.isNotEmpty() &&
+                binding.regPassword1.text!!.isNotEmpty() &&
+                binding.regPassword2.text!!.isNotEmpty() &&
+                binding.regUsername.text!!.isNotEmpty() &&
                 binding.regPassword1.text.toString() == binding.regPassword2.text.toString()) {
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                         binding.regEmail.text.toString(), binding.regPassword1.text.toString()
@@ -55,27 +57,33 @@ class Registrar : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Error al registrar usuario, compruebe los datos esten correctos.", Toast.LENGTH_LONG).show()
             }
-/*
-            val intent = Intent(this, RegValidar::class.java)
-            startActivity(intent)
-            this@Registrar.finish()*/
-
-/*
-            val builder = MaterialAlertDialogBuilder(this)
-                .setTitle("Título del diálogo")
-                .setMessage("Mensaje del diálogo")
-                .setPositiveButton("Aceptar") { dialog, which ->
-                    // Manejar clic en el botón Aceptar
-                }
-                .setNegativeButton("Cancelar") { dialog, which ->
-                    // Manejar clic en el botón Cancelar
-                }
-
-            // Crear y mostrar el diálogo
-            val dialog = builder.create()
-            dialog.show()
-*/
         }
+    }
+
+    private fun validateEditText() {
+        val textInputLayout = findViewById<TextInputLayout>(R.id.tilPassword)
+        val editTextPassword = findViewById<TextInputEditText>(R.id.regPassword1)
+
+        editTextPassword.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // No se necesita implementación
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // No se necesita implementación
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                val password = s.toString()
+                if (password.length < 8) {
+                    textInputLayout.error = "La contraseña debe tener al menos 8 caracteres"
+                    textInputLayout.isErrorEnabled = true
+                } else {
+                    textInputLayout.error = null
+                    textInputLayout.isErrorEnabled = false
+                }
+            }
+        })
     }
 
 }
