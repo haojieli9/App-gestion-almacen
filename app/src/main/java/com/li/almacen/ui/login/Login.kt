@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.li.almacen.MainActivity
+import com.li.almacen.ui.MainActivity
 import com.li.almacen.databinding.ActivityLoginBinding
 import com.li.almacen.ui.register.Registrar
 
@@ -21,6 +21,11 @@ class Login : AppCompatActivity() {
         // Inicializa Firebase Auth
         auth = FirebaseAuth.getInstance()
 
+        // PRUEBAS
+        binding.username.setText("1@1.com")
+        binding.password.setText("123456")
+
+
         // Configura el OnClickListener para el botón de inicio de sesión
         binding.loginButton.setOnClickListener {
             if (binding.username.text!!.isEmpty() || binding.password.text!!.isEmpty()) {
@@ -31,8 +36,6 @@ class Login : AppCompatActivity() {
                 val password = binding.password.text.toString()
                 signIn(email, password)
             }
-/*            val intent = Intent(this@Login, MainActivity::class.java)
-            startActivity(intent)*/
         }
 
         binding.logTv3.setOnClickListener() {

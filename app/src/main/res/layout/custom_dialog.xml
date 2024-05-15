@@ -34,12 +34,12 @@
 
             <ImageView
                 android:layout_width="390dp"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 android:src="@drawable/png_file"
                 android:layout_gravity="center_horizontal"/>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -83,7 +83,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -128,7 +128,7 @@
 
 
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -138,7 +138,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/svg_formdescription"/>
+                    android:src="@drawable/svg_employee"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_marginStart="7dp"
@@ -227,9 +227,7 @@
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:hint="Ubicacion"
-                    app:helperText="Notas para almacen"
-                    app:helperTextTextColor="@color/black"
+                    android:hint="Direccion completa"
                     app:counterEnabled="true"
                     app:counterMaxLength="50"
                     app:endIconMode="clear_text"

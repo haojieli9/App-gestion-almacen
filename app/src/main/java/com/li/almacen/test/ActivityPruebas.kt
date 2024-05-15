@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
 import com.li.almacen.ui.fragments.fullscreendialog.ExampleDialog
 import com.li.almacen.databinding.ActivityPruebasBinding
-import com.li.almacen.formularios.FormAlmacen
 
 
 class ActivityPruebas : AppCompatActivity() {

@@ -1,9 +1,10 @@
-package com.li.almacen
+package com.li.almacen.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.fragment.app.Fragment
+import com.li.almacen.R
 import com.li.almacen.databinding.ActivityMainBinding
 import com.li.almacen.ui.fragments.fragmentos.FirstFragment
 import com.li.almacen.ui.fragments.fragmentos.SecondFragment

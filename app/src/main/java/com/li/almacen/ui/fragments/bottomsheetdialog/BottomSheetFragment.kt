@@ -9,7 +9,8 @@ import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.zxing.integration.android.IntentIntegrator
 import com.li.almacen.databinding.BottomsheetFragmentBinding
-import com.li.almacen.formularios.FormAlmacen
+import com.li.almacen.test.FormAlmacen
+import com.li.almacen.ui.fragments.fullscreendialog.ExampleDialog
 
 class BottomSheetFragment: BottomSheetDialogFragment() {
 
@@ -29,10 +30,7 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btsLayout
 
-        binding.btsBtn1.setOnClickListener {
-            val intent = Intent(context, FormAlmacen::class.java)
-            startActivity(intent)
-        }
+        binding.btsBtn1.setOnClickListener { v -> openDialog()}
 
         binding.btnScanner.setOnClickListener { initScanner() }
 
@@ -65,4 +63,8 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    private fun openDialog() {
+        val dialog = ExampleDialog()
+        dialog.show(childFragmentManager, "FORMALMACEN")    }
 }

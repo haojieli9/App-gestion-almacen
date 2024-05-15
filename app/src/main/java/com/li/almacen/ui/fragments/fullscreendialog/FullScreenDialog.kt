@@ -47,8 +47,6 @@ class ExampleDialog : DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         toolbar = binding.toolbar
-        val textInputLayout = binding.formEdit1
-        val editText = textInputLayout.editText
 
         super.onViewCreated(view, savedInstanceState)
         toolbar!!.setNavigationOnClickListener { _: View? -> dismiss() }
@@ -57,10 +55,18 @@ class ExampleDialog : DialogFragment() {
         toolbar!!.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menuSave -> {
-                    val nombre = editText!!.text.toString()
+                    val nombre = binding.formEdit1.editText?.text.toString()
+                    val descripcion = binding.formEdit3.editText?.text.toString()
+                    val empleado = binding.formEdit5.editText?.text.toString()
+                    val capacidad = binding.formEdit6.editText?.text.toString()
+                    val ubicacion = binding.formEdit2.editText?.text.toString()
 
                     val nuevoAlmacen = hashMapOf(
-                        "nombre" to nombre,
+                        "Nombre almacen" to nombre,
+                        "Descripcion" to descripcion,
+                        "Encargado" to empleado,
+                        "Capacidad" to capacidad,
+                        "Ubicacion" to ubicacion
                     )
 
                     // Obtenemos la referencia a la colección de almacenes del usuario actual
@@ -79,7 +85,7 @@ class ExampleDialog : DialogFragment() {
                             println("Error al agregar el almacén: $e")
                         }
 
-                    Toast.makeText(requireContext(), editText.text.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), nombre, Toast.LENGTH_SHORT).show()
                     dismiss()
                     true
                 }
@@ -92,7 +98,7 @@ class ExampleDialog : DialogFragment() {
     }
 
     companion object {
-        private const val TAG = "example_dialog"
+        private const val TAG = "FORMALMACEN"
         fun display(fragmentManager: FragmentManager?): ExampleDialog {
             val exampleDialog = ExampleDialog()
             exampleDialog.show(fragmentManager!!, TAG)

@@ -1,4 +1,4 @@
-package com.li.almacen.formularios
+package com.li.almacen.test
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

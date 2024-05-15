@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Proyecto Multimedia"
+rootProject.name = "InventFlow"
 include(":app")
  
