@@ -1,20 +1,17 @@
 package com.li.almacen.ui.register
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.li.almacen.R
 import com.li.almacen.databinding.ActivityRegValidarBinding
 
 class RegValidar : AppCompatActivity() {
     private lateinit var binding: ActivityRegValidarBinding
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,22 +29,22 @@ class RegValidar : AppCompatActivity() {
         binding.valTV1.text = email
 
         binding.buttonValidar.setOnClickListener {
-            // Este bloque se ejecutará solo si el correo electrónico no está verificado
-            Toast.makeText(this, "Por favor, verifique el correo de verificación antes de ser identificado.", Toast.LENGTH_LONG).show()
-        }
-
-        auth = FirebaseAuth.getInstance()
-        val currentUser: FirebaseUser? = auth.currentUser
-        val isEmailVerified: Boolean = currentUser?.isEmailVerified ?: false
-
-        // Habilita o deshabilita el botón según el estado del correo electrónico verificado
-        binding.buttonValidar.isEnabled = isEmailVerified
-
-        // Establece el OnClickListener para el botón cuando el correo electrónico está verificado
-        if (isEmailVerified) {
-            binding.buttonValidar.setOnClickListener {
-                this@RegValidar.finish()
-                Toast.makeText(this, "El correo de verificación ha sido verificado correctamente.", Toast.LENGTH_LONG).show()
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            if (currentUser != null) {
+                currentUser.reload().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        if (currentUser.isEmailVerified) {
+                            Toast.makeText(this, "El correo de verificación ha sido verificado correctamente", Toast.LENGTH_SHORT).show()
+                            this@RegValidar.finish()
+                        } else {
+                            Toast.makeText(this, "El correo de verificación no ha sido verificado. Por favor, revisa en el correo de verificación.", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Error al verificar el correo de verificación. Por favor, intenta de nuevo.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(this, "No hay usuario actualmente autenticado. Por favor, inicia sesión.", Toast.LENGTH_SHORT).show()
             }
         }
     }

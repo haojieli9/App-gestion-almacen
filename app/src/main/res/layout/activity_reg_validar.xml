@@ -15,7 +15,7 @@
         android:layout_height="57dp"
         android:background="@color/custom_button"
         android:backgroundTint="@color/custom_button"
-        android:text="VARIFICADO"
+        android:text="CONFIRMAR VERIFICACIÓN"
         android:textSize="18sp"
         app:cornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
