@@ -8,17 +8,18 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
-import com.li.almacen.databinding.CustomDialogBinding
+import com.li.almacen.databinding.FormAlmacenBinding
 
 
 class ExampleDialog : DialogFragment() {
     private var db = FirebaseFirestore.getInstance()
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
 
-    private lateinit var binding: CustomDialogBinding
+    private lateinit var binding: FormAlmacenBinding
     private var toolbar: Toolbar? = null
     override fun onStart() {
         super.onStart()
@@ -41,7 +42,7 @@ class ExampleDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = CustomDialogBinding.inflate(inflater, container, false)
+        binding = FormAlmacenBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -55,38 +56,8 @@ class ExampleDialog : DialogFragment() {
         toolbar!!.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menuSave -> {
-                    val nombre = binding.formEdit1.editText?.text.toString()
-                    val descripcion = binding.formEdit3.editText?.text.toString()
-                    val empleado = binding.formEdit5.editText?.text.toString()
-                    val capacidad = binding.formEdit6.editText?.text.toString()
-                    val ubicacion = binding.formEdit2.editText?.text.toString()
-
-                    val nuevoAlmacen = hashMapOf(
-                        "Nombre almacen" to nombre,
-                        "Descripcion" to descripcion,
-                        "Encargado" to empleado,
-                        "Capacidad" to capacidad,
-                        "Ubicacion" to ubicacion
-                    )
-
-                    // Obtenemos la referencia a la colección de almacenes del usuario actual
-                    val usuarioAlmacenesRef = db.collection("usuarios").document(userEmail!!).collection("almacenes")
-
-                    // Añadimos el nuevo almacén a la colección del usuario
-                    usuarioAlmacenesRef
-                        .add(nuevoAlmacen)
-                        .addOnSuccessListener { documentReference ->
-                            // Éxito al agregar el nuevo almacén
-                            val nuevoId = documentReference.id
-                            println("Almacén agregado con ID: $nuevoId")
-                        }
-                        .addOnFailureListener { e ->
-                            // Error al agregar el nuevo almacén
-                            println("Error al agregar el almacén: $e")
-                        }
-
-                    Toast.makeText(requireContext(), nombre, Toast.LENGTH_SHORT).show()
-                    dismiss()
+                    confirmDialogBuilder()
+                    //stockRegister()
                     true
                 }
                 else -> {
@@ -106,4 +77,51 @@ class ExampleDialog : DialogFragment() {
         }
     }
 
+    private fun stockRegister() {
+        val nombre = binding.formEdit1.editText?.text.toString()
+        val descripcion = binding.formEdit3.editText?.text.toString()
+        val empleado = binding.formEdit5.editText?.text.toString()
+        val capacidad = binding.formEdit6.editText?.text.toString()
+        val ubicacion = binding.formEdit2.editText?.text.toString()
+
+        val nuevoAlmacen = hashMapOf(
+            "Nombre almacen" to nombre,
+            "Descripcion" to descripcion,
+            "Encargado" to empleado,
+            "Capacidad" to capacidad,
+            "Ubicacion" to ubicacion
+        )
+
+        // Obtenemos la referencia a la colección de almacenes del usuario actual
+        val usuarioAlmacenesRef = db.collection("usuarios").document(userEmail!!).collection("almacenes")
+
+        // Añadimos el nuevo almacén a la colección del usuario
+        usuarioAlmacenesRef
+            .add(nuevoAlmacen)
+            .addOnSuccessListener { documentReference ->
+                // Éxito al agregar el nuevo almacén
+                val nuevoId = documentReference.id
+                println("Almacén agregado con ID: $nuevoId")
+            }
+            .addOnFailureListener { e ->
+                // Error al agregar el nuevo almacén
+                println("Error al agregar el almacén: $e")
+            }
+
+        Toast.makeText(requireContext(), nombre, Toast.LENGTH_SHORT).show()
+        dismiss()
+    }
+
+    private fun confirmDialogBuilder() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("GUARDAR ESTE ALMACÉN")
+            .setMessage("Deseas guardar este almacén?")
+            .setNeutralButton("Cancelar") { _, _ ->
+                Toast.makeText(requireContext(), "Cancelado", Toast.LENGTH_SHORT).show()
+            }
+            .setPositiveButton("Guardar") { _, _ ->
+                Toast.makeText(requireContext(), "Guardado", Toast.LENGTH_SHORT).show()
+            }
+            .show()
+    }
 }
