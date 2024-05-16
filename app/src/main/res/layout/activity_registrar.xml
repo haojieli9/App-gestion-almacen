@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="700dp"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:padding="24dp">
@@ -29,12 +29,12 @@
                 android:id="@+id/imageView2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                card_view:srcCompat="@drawable/svg_register"
+                card_view:srcCompat="@drawable/svg_reguser"
                 android:layout_gravity="center"
                 android:contentDescription="@string/description_img"/>
 
             <TextView
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/loginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +51,8 @@
                 style="@style/FormTextInputLayout"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp">
+                android:layout_marginTop="50dp"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/regUsername"
@@ -72,7 +73,9 @@
                 android:id="@+id/tilEmail"
                 style="@style/FormTextInputLayout"
                 android:layout_width="340dp"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/ic_email"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/regEmail"
@@ -81,9 +84,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Correo electrónico"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:textColorHighlight="@color/error_dark"
-                    android:textColorHint="@color/error_dark" />
+                    android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +94,9 @@
                 android:id="@+id/tilPassword"
                 style="@style/FormTextInputLayout"
                 android:layout_width="340dp"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/regPassword1"
@@ -102,9 +105,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Contraseña"
                     android:imeOptions="actionNext"
-                    android:inputType="textPassword"
-                    android:textColorHighlight="@color/error_dark"
-                    android:textColorHint="@color/error_dark" />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,18 +115,18 @@
                 android:id="@+id/tilRepeatPassword"
                 style="@style/FormTextInputLayout"
                 android:layout_width="340dp"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/ic_lock"
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/regPassword2"
                     style="@style/FormEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Repetir contraseña"
+                    android:hint="Confirmar contraseña"
                     android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:textColorHighlight="@color/error_dark"
-                    android:textColorHint="@color/error_dark" />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,9 +140,9 @@
                 android:id="@+id/regButton"
                 android:text="REGISTRAR"
                 android:textSize="17sp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:backgroundTint="@color/custom_button"
-                app:cornerRadius="8dp"/>
+                app:cornerRadius="3dp"/>
 
 
             <LinearLayout

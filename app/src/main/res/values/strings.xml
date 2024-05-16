@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Proyecto Multimedia</string>
+    <string name="app_name">InventFlow</string>
 
     <string name="desc_almacen">Detalles almacenes</string>
     <string name="desc_producto">Detalles productos</string>
@@ -9,10 +9,10 @@
 
     <!-- Activity login -->
     <string name="welcome_message">Bienvenido a InventFlow</string>
-    <string name="username_hint">Correo electrónico</string>
+    <string name="username_hint">  Correo electrónico</string>
     <string name="password_hint">Contraseña</string>
     <string name="login_legacy">Acepto condiciones legales</string>
-    <string name="login_button">Log in</string>
+    <string name="login_button">Iniciar sesión</string>
     <string name="ligin_password">Olvidaste tu contraseña?</string>
 
     <!-- Activity main -->

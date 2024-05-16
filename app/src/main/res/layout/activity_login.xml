@@ -48,37 +48,40 @@
                 style="@style/FormTextInputLayout"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp">
+                android:layout_marginTop="48dp"
+                android:hint="@string/username_hint"
+                app:startIconDrawable="@drawable/ic_email"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/username"
+                    android:id="@+id/email"
                     style="@style/FormEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/username_hint"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="15dp"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/tilPassword"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                style="@style/FormTextInputLayout">
+                style="@style/FormTextInputLayout"
+                app:endIconMode="password_toggle"
+                app:startIconDrawable="@drawable/ic_lock"
+                android:hint="@string/password_hint">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     style="@style/FormEditText"
                     android:layout_width="340dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/password_hint"
                     android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:textColorHighlight="@color/error_dark"
-                    android:textColorHint="@color/error_dark" />
+                    android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,7 +101,7 @@
                 android:backgroundTint="@color/custom_button"
                 android:text="@string/login_button"
                 android:textSize="18sp"
-                app:cornerRadius="8dp" />
+                app:cornerRadius="3dp" />
 
 
             <LinearLayout
