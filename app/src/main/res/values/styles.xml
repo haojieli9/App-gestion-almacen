@@ -19,6 +19,7 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="actionMenuTextColor">@color/black</item>
+
     </style>
 
     <style name="AppTheme.Slide">
@@ -68,6 +69,14 @@
         <item name="android:paddingRight">16dp</item>
         <item name="android:textColorHint">@color/black</item>
     </style>
+
+
+    <style name="CustomAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <!-- Cambia el color de fondo del contenedor del diálogo a blanco -->
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+
 
 
 
