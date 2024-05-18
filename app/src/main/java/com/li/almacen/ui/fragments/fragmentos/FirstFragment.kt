@@ -12,6 +12,7 @@ import com.li.almacen.test.ActivityPruebas
 import com.li.almacen.ui.almacen.ActivityAlmacen
 import com.li.almacen.databinding.FragmentFirstBinding
 import com.li.almacen.kt.CustomArticulo
+import com.li.almacen.data.AlmacenData
 import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.kt.listaArticulo
 

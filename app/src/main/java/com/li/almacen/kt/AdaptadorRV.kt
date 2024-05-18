@@ -8,18 +8,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.li.almacen.R
+import com.li.almacen.data.AlmacenData
 
-class CustomAdapter (private var listaAlmacen : List<Almacenes>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val tvID : TextView
         val tvNombre : TextView
         val tvUbicacion : TextView
-        val imgV : ImageView
         init {
             tvID = itemView.findViewById(R.id.tvID)
             tvNombre = itemView.findViewById(R.id.tvNombre)
             tvUbicacion = itemView.findViewById(R.id.tvUbicacion)
-            imgV = itemView.findViewById(R.id.imageView)
 
         }
     }
@@ -35,8 +34,8 @@ class CustomAdapter (private var listaAlmacen : List<Almacenes>) : RecyclerView.
         return ViewHolder(view)
     }
 
-    private var listener: (e: Almacenes, position: Int) -> Unit = { e, position ->  }
-    fun setOnClickListener(listener:(Almacenes, Int)->Unit){
+    private var listener: (e: AlmacenData, position: Int) -> Unit = { e, position ->  }
+    fun setOnClickListener(listener:(AlmacenData, Int)->Unit){
         this.listener = listener
     }
     override fun getItemCount(): Int = listaAlmacen.size
@@ -44,15 +43,8 @@ class CustomAdapter (private var listaAlmacen : List<Almacenes>) : RecyclerView.
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         //inicio recyclerview con la informacion
         holder.tvID.text = listaAlmacen[position].id
-        holder.tvNombre.text = listaAlmacen[position].nombre
+        holder.tvNombre.text = listaAlmacen[position].name
         holder.tvUbicacion.text = listaAlmacen[position].ubicacion
-
-        //libreria GLIDE para cargar imagenes
-/*
-        Glide.with(holder.itemView.context)
-            .load(listaAlmacen[position].cover)
-            .into(holder.imgV)
-*/
 
         //inicio accion clickable
         holder.itemView.setOnClickListener{
