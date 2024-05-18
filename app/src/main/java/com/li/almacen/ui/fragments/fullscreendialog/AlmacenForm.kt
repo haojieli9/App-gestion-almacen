@@ -13,21 +13,24 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat.getDrawable
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.databinding.FormAlmacenBinding
+import com.li.almacen.ui.almacen.AlmacenViewModel
 
 
 class ExampleDialog : DialogFragment() {
     private var db = FirebaseFirestore.getInstance()
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
-
-    private lateinit var binding: FormAlmacenBinding
     private var toolbar: Toolbar? = null
+
+    private lateinit var almacenViewModel: AlmacenViewModel
+    private lateinit var binding: FormAlmacenBinding
+
     override fun onStart() {
         super.onStart()
         val dialog = dialog
@@ -80,6 +83,8 @@ class ExampleDialog : DialogFragment() {
         validateEditText(R.id.formTil3, R.id.formEdit3)
         validateEditText(R.id.formTil4, R.id.formEdit4)
         validateEditText(R.id.formTil5, R.id.formEdit5)
+
+
     }
 
     companion object {
@@ -92,6 +97,7 @@ class ExampleDialog : DialogFragment() {
     }
 
     private fun stockRegister() {
+
         val nombre = binding.formEdit1.text.toString()
         val descripcion = binding.formEdit2.text.toString()
         val empleado = binding.formEdit3.text.toString()

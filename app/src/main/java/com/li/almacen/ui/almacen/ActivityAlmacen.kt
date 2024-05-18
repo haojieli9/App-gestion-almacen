@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,11 +22,12 @@ import com.li.almacen.kt.listaArticulo
 
 class ActivityAlmacen : AppCompatActivity() {
     private lateinit var binding: ActivityAlmacenBinding
-    private var almacenList: MutableList<AlmacenData> = mutableListOf()
     private lateinit var adaptador : CustomAdapter
 
+    private val almacenViewModel: AlmacenViewModel by viewModels()
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var db = FirebaseFirestore.getInstance()
+    private var almacenList: MutableList<AlmacenData> = mutableListOf()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +54,6 @@ class ActivityAlmacen : AppCompatActivity() {
         adaptador.setOnClickListener { _: AlmacenData, _: Int ->
             Toast.makeText(this@ActivityAlmacen, "Clicked", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun recyclerViewItem() {
