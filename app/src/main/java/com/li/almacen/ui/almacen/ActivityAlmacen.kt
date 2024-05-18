@@ -19,15 +19,17 @@ import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.kt.listaArticulo
+import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment1
 
 class ActivityAlmacen : AppCompatActivity() {
     private lateinit var binding: ActivityAlmacenBinding
     private lateinit var adaptador : CustomAdapter
 
-    private val almacenViewModel: AlmacenViewModel by viewModels()
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var db = FirebaseFirestore.getInstance()
     private var almacenList: MutableList<AlmacenData> = mutableListOf()
+    private val bottomSheetFragment = BottomSheetFragment()
+    private val almacenOptions = BottomSheetFragment1()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +37,7 @@ class ActivityAlmacen : AppCompatActivity() {
         binding = ActivityAlmacenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bottomSheetFragment = BottomSheetFragment()
+
 
         binding.floating1.setOnClickListener {
             bottomSheetFragment.show(supportFragmentManager, "BottomSheetDiaglog")
@@ -54,6 +56,13 @@ class ActivityAlmacen : AppCompatActivity() {
         adaptador.setOnClickListener { _: AlmacenData, _: Int ->
             Toast.makeText(this@ActivityAlmacen, "Clicked", Toast.LENGTH_SHORT).show()
         }
+
+        adaptador.setOptionClickListener { _: AlmacenData, _: Int ->
+            almacenOptions.show(supportFragmentManager, "BottomSheetDiaglog")
+
+        }
+
+
     }
 
     private fun recyclerViewItem() {

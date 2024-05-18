@@ -12,7 +12,7 @@ import com.li.almacen.databinding.BottomsheetFragmentBinding
 import com.li.almacen.test.FormAlmacen
 import com.li.almacen.ui.fragments.fullscreendialog.ExampleDialog
 
-class BottomSheetFragment: BottomSheetDialogFragment() {
+open class BottomSheetFragment: BottomSheetDialogFragment() {
 
     private var _binding: BottomsheetFragmentBinding? = null
     private val binding get() = _binding!!
@@ -66,5 +66,6 @@ class BottomSheetFragment: BottomSheetDialogFragment() {
 
     private fun openDialog() {
         val dialog = ExampleDialog()
-        dialog.show(childFragmentManager, "FORMALMACEN")    }
+        dialog.show(childFragmentManager, "FORMALMACEN")
+    }
 }

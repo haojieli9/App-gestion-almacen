@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btsLayout"
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/custom_radio">
+
+    <View
+        android:layout_marginTop="5dp"
+        android:layout_width="50dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/custom_separator"/>
+
+
+    <TextView
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="6dp"
+        android:id="@+id/bts_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="Optiones : "
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+
+    <com.google.android.material.button.MaterialButton
+
+        android:id="@+id/bts_btn1"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="start|center_vertical"
+        android:text=" Modificar"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/material_on_surface_stroke"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:icon="@drawable/svg_modifty"
+        app:iconGravity="start"
+        app:iconPadding="25dp"
+        app:iconSize="30dp"
+        app:iconTint="@color/white"
+        app:backgroundTint="#66d193"
+        android:letterSpacing="0"
+        android:textAllCaps="false"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/bts_btn2"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="start|center_vertical"
+        android:text="Borrar"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/material_on_surface_stroke"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:icon="@drawable/svg_delete"
+        app:iconGravity="start"
+        app:iconPadding="25dp"
+        app:iconSize="30dp"
+        app:iconTint="@color/white"
+        app:backgroundTint="#66d193"
+        android:letterSpacing="0"
+        android:textAllCaps="false"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_marginBottom="20dp"
+        android:id="@+id/bts_btn3"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:gravity="start|center_vertical"
+        android:text="Detalles"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/material_on_surface_stroke"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:icon="@drawable/svg_detail"
+        app:iconGravity="start"
+        app:iconPadding="25dp"
+        app:iconSize="30dp"
+        app:iconTint="@color/white"
+        app:backgroundTint="#66d193"
+        android:textAllCaps="false"
+        android:letterSpacing="0"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
