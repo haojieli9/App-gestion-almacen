@@ -15,6 +15,7 @@ import com.li.almacen.kt.CustomArticulo
 import com.li.almacen.data.AlmacenData
 import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.kt.listaArticulo
+import com.li.almacen.ui.almacen.ActivityProductos
 
 class FirstFragment : Fragment() {
     private var _binding: FragmentFirstBinding? = null
@@ -63,8 +64,10 @@ class FirstFragment : Fragment() {
         binding.tvMainValTot.text = totalValue.toString() + "€"
 
         binding.cardview3.setOnClickListener() {
-            val intent = Intent(requireContext(), ActivityPruebas::class.java)
-            startActivity(intent)
+/*            val intent = Intent(requireContext(), ActivityPruebas::class.java)
+            startActivity(intent)*/
+            val intent = Intent(requireContext(), ActivityProductos::class.java)
+            this@FirstFragment.startActivity(intent)
         }
     }
 

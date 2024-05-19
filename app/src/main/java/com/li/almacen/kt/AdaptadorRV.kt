@@ -10,14 +10,15 @@ import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
 
 class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val tvID : TextView
         val tvNombre : TextView
         val tvUbicacion : TextView
         val tvOption : ImageView
         init {
-            tvID = itemView.findViewById(R.id.tvID)
-            tvNombre = itemView.findViewById(R.id.tvNombre)
+            tvID = itemView.findViewById(R.id.idProducto)
+            tvNombre = itemView.findViewById(R.id.productName)
             tvUbicacion = itemView.findViewById(R.id.tvUbicacion)
             tvOption = itemView.findViewById(R.id.tvOption)
 

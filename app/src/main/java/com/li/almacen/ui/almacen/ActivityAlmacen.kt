@@ -1,14 +1,12 @@
 package com.li.almacen.ui.almacen
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,6 +17,7 @@ import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.kt.listaArticulo
+import com.li.almacen.ui.almacen.details.DetailsAlmacen
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment1
 
 class ActivityAlmacen : AppCompatActivity() {
@@ -37,24 +36,30 @@ class ActivityAlmacen : AppCompatActivity() {
         binding = ActivityAlmacenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         binding.floating1.setOnClickListener {
             bottomSheetFragment.show(supportFragmentManager, "BottomSheetDiaglog")
         }
 
         //inicio toolbar
         setSupportActionBar(binding.toolbar)
-        initCardView()
         recyclerViewItem()
+        initCardView()
 
         //inicio recyclerview
         adaptador = CustomAdapter(almacenList)
         binding.rvAlma.adapter = adaptador
         binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        adaptador.setOnClickListener { _: AlmacenData, _: Int ->
-            Toast.makeText(this@ActivityAlmacen, "Clicked", Toast.LENGTH_SHORT).show()
+        adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
+//            Toast.makeText(this@ActivityAlmacen, datos.id, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@ActivityAlmacen, DetailsAlmacen::class.java)
+            intent.putExtra("id", datos.id)
+            intent.putExtra("name", datos.name)
+            intent.putExtra("description", datos.notas)
+            intent.putExtra("encargado", datos.gerente)
+            intent.putExtra("capacidad", datos.capacidad)
+            intent.putExtra("ubicacion", datos.ubicacion)
+            startActivity(intent)
         }
 
         adaptador.setOptionClickListener { _: AlmacenData, _: Int ->
@@ -79,6 +84,10 @@ class ActivityAlmacen : AppCompatActivity() {
                 almacenList.addAll(lista)
 
                 }
+                Log.d("Lista cantidad: ", almacenList.size.toString())
+                val cantidadAlmacen = almacenList.size
+                binding.tvCantAlm.text = cantidadAlmacen.toString()
+
                 adaptador.notifyDataSetChanged()
             }
             .addOnFailureListener { e ->
@@ -88,8 +97,7 @@ class ActivityAlmacen : AppCompatActivity() {
 
     private fun initCardView() {
         //cardview informacion general
-        val cantidadAlmacen = listaAlmacen.size
-        binding.tvCantAlm.text = cantidadAlmacen.toString()
+
 
         val totalArticulo = listaArticulo.size
         binding.tvUnitArt.text = totalArticulo.toString() + " units"

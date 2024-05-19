@@ -2,21 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/png_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/png_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoMultimedia"
-        tools:targetApi="31"
-        android:hardwareAccelerated="true">
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.almacen.details.DetailsAlmacen"
+            android:exported="false" />
+        <activity
+            android:name=".ui.almacen.ActivityProductos"
+            android:exported="false" />
         <activity
             android:name=".ui.register.RegValidar"
             android:exported="false" />

@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/png_almacen"
+        app:srcCompat="@drawable/img_producto"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
 
@@ -36,13 +36,25 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <TextView
-        android:id="@+id/tvUbicacion"
+        android:id="@+id/productQuant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ubicacion"
+        android:text="quantity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/productName"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/tvUbicacion"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="localización"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/productName"
         app:layout_constraintVertical_bias="0.5" />
