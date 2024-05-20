@@ -22,7 +22,7 @@
             android:layout_height="700dp"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            android:padding="24dp">
+            android:padding="10dp">
 
             <ImageView
                 android:layout_marginTop="20dp"
@@ -49,7 +49,7 @@
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/tilNickname"
                 style="@style/FormTextInputLayout"
-                android:layout_width="340dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 app:endIconMode="clear_text">
@@ -72,7 +72,7 @@
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/tilEmail"
                 style="@style/FormTextInputLayout"
-                android:layout_width="340dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 app:startIconDrawable="@drawable/ic_email"
                 app:endIconMode="clear_text">
@@ -93,7 +93,7 @@
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/tilPassword"
                 style="@style/FormTextInputLayout"
-                android:layout_width="340dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 app:startIconDrawable="@drawable/ic_lock"
                 app:endIconMode="password_toggle">
@@ -114,7 +114,7 @@
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/tilRepeatPassword"
                 style="@style/FormTextInputLayout"
-                android:layout_width="340dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 app:startIconDrawable="@drawable/ic_lock"
                 app:endIconMode="password_toggle">
@@ -135,7 +135,8 @@
 
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:id="@+id/regButton"
                 android:text="REGISTRAR"

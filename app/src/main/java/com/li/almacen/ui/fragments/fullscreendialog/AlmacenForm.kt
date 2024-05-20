@@ -4,11 +4,14 @@ import android.app.Dialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat.getDrawable
 import androidx.fragment.app.DialogFragment
@@ -27,6 +30,15 @@ class ExampleDialog : DialogFragment() {
     private var db = FirebaseFirestore.getInstance()
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var toolbar: Toolbar? = null
+
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {uri ->
+        if (uri!=null) {
+            binding.imgPicker.setImageURI(uri)
+            Log.d("URI", uri.toString())
+        } else {
+            // no hay imagen
+        }
+    }
 
     private lateinit var almacenViewModel: AlmacenViewModel
     private lateinit var binding: FormAlmacenBinding
@@ -84,7 +96,9 @@ class ExampleDialog : DialogFragment() {
         validateEditText(R.id.formTil4, R.id.formEdit4)
         validateEditText(R.id.formTil5, R.id.formEdit5)
 
-
+        binding.imgPicker.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
     }
 
     companion object {
@@ -145,7 +159,8 @@ class ExampleDialog : DialogFragment() {
 
         cancel.setOnClickListener {
             Toast.makeText(requireContext(), "Operación cancelada.", Toast.LENGTH_LONG).show()
-
+            dialog.dismiss()
+            this@ExampleDialog.dismiss()
         }
 
         yes.setOnClickListener {
@@ -174,5 +189,9 @@ class ExampleDialog : DialogFragment() {
                 }
             }
         })
+    }
+
+    private fun mediaPicker() {
+
     }
 }

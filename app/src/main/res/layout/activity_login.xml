@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:background="@color/custom_blancoHueso">
 
     <androidx.cardview.widget.CardView
@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -46,7 +46,7 @@
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/tilEmail"
                 style="@style/FormTextInputLayout"
-                android:layout_width="340dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:hint="@string/username_hint"
@@ -56,6 +56,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
                     style="@style/FormEditText"
+                    android:layout_gravity="center_horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionNext"
@@ -68,7 +69,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/tilPassword"
-                android:layout_width="340dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 style="@style/FormTextInputLayout"
                 app:endIconMode="password_toggle"
@@ -78,7 +79,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     style="@style/FormEditText"
-                    android:layout_width="340dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword" />
@@ -95,7 +96,8 @@
 
             <Button
                 android:id="@+id/loginButton"
-                android:layout_width="match_parent"
+                android:layout_width="350dp"
+                android:layout_gravity="center"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="@color/custom_button"
@@ -105,6 +107,7 @@
 
 
             <LinearLayout
+                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

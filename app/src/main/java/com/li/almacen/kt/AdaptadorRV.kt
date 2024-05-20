@@ -62,7 +62,5 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
         holder.tvOption.setOnClickListener{
             optionClickListener(listaAlmacen[position], position)
         }
-
-
     }
 }
