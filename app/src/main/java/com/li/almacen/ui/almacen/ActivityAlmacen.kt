@@ -3,17 +3,18 @@ package com.li.almacen.ui.almacen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
 import com.li.almacen.kt.CustomAdapter
-import com.li.almacen.kt.listaAlmacen
 import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.kt.listaArticulo
@@ -37,13 +38,15 @@ class ActivityAlmacen : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.floating1.setOnClickListener {
-            bottomSheetFragment.show(supportFragmentManager, "BottomSheetDiaglog")
+            bottomSheetFragment.show(supportFragmentManager, "BottomSheetDialog")
         }
+
 
         //inicio toolbar
         setSupportActionBar(binding.toolbar)
         recyclerViewItem()
         initCardView()
+        swipe()
 
         //inicio recyclerview
         adaptador = CustomAdapter(almacenList)
@@ -64,10 +67,7 @@ class ActivityAlmacen : AppCompatActivity() {
 
         adaptador.setOptionClickListener { _: AlmacenData, _: Int ->
             almacenOptions.show(supportFragmentManager, "BottomSheetDiaglog")
-
         }
-
-
     }
 
     private fun recyclerViewItem() {
@@ -76,7 +76,6 @@ class ActivityAlmacen : AppCompatActivity() {
             .addOnSuccessListener { resultados ->
             for (document in resultados) {
                 Log.d("Datos documentos: ",  "${document.id} ${document.data}")
-                val almacen = document.toObject(AlmacenData::class.java)
                 val lista: MutableList<AlmacenData> = mutableListOf(
                     AlmacenData(document.id, document.data["Nombre almacen"].toString(), document.data["Descripcion"].toString(), document.data["Encargado"].toString(), document.data["Capacidad"].toString(), document.data["Ubicacion"].toString()),
                 )
@@ -97,8 +96,6 @@ class ActivityAlmacen : AppCompatActivity() {
 
     private fun initCardView() {
         //cardview informacion general
-
-
         val totalArticulo = listaArticulo.size
         binding.tvUnitArt.text = totalArticulo.toString() + " units"
 
@@ -119,6 +116,15 @@ class ActivityAlmacen : AppCompatActivity() {
                 true
             }
             else -> { true }
+        }
+    }
+
+    private fun swipe() {
+        binding.swipe.setOnRefreshListener {
+            Log.i("swipe", "swipe refresh")
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding.swipe.isRefreshing = false
+            }, 1000)
         }
     }
 }

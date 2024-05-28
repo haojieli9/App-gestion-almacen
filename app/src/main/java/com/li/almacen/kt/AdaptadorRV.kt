@@ -5,11 +5,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
 
+
 class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+
+    inner class EstanteriaDiffCallback(val oldList: MutableList<AlmacenData>, val newList: MutableList<AlmacenData>) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].id == newList[newItemPosition].id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
+    }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val tvID : TextView
@@ -62,5 +77,12 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
         holder.tvOption.setOnClickListener{
             optionClickListener(listaAlmacen[position], position)
         }
+    }
+
+    fun updateList(newList: MutableList<AlmacenData>) {
+        var estanteriaDiff = EstanteriaDiffCallback(listaAlmacen,newList)
+        var result = DiffUtil.calculateDiff(estanteriaDiff)
+        listaAlmacen = newList
+        result.dispatchUpdatesTo(this)
     }
 }

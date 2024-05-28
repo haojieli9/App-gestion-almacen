@@ -17,7 +17,7 @@
         android:background="@color/transparent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp">
@@ -45,8 +45,8 @@
                     android:layout_gravity="center"
                     android:layout_marginEnd="10dp"
                     android:text="CANCELAR"
-                    android:textSize="16sp"
-                    android:textColor="@color/custom_button" />
+                    android:textColor="@color/custom_button"
+                    android:textSize="16sp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/testButton2"
@@ -54,10 +54,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@drawable/custom_boxdialog"
                     android:text="GUARDAR"
-                    android:textSize="16sp"
                     android:textColor="@color/custom_button"
-                    android:background="@drawable/custom_boxdialog"/>
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

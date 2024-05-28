@@ -1,7 +1,7 @@
 package com.li.almacen.data
 
 data class AlmacenData(
-    val id:String = "",
+    var id:String = "",
     val name:String = "",
     val notas:String = "",
     val gerente:String = "",

@@ -1,5 +1,6 @@
 package com.li.almacen.ui.fragments.bottomsheetdialog
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,14 +13,13 @@ import com.li.almacen.databinding.BottomsheetFragmentBinding
 import com.li.almacen.test.FormAlmacen
 import com.li.almacen.ui.fragments.fullscreendialog.ExampleDialog
 
-open class BottomSheetFragment: BottomSheetDialogFragment() {
+class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private var _binding: BottomsheetFragmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = BottomsheetFragmentBinding.inflate(inflater, container, false)
@@ -28,9 +28,8 @@ open class BottomSheetFragment: BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btsLayout
 
-        binding.btsBtn1.setOnClickListener { v -> openDialog()}
+        binding.btsBtn1.setOnClickListener { openDialog() }
 
         binding.btnScanner.setOnClickListener { initScanner() }
 
@@ -38,6 +37,7 @@ open class BottomSheetFragment: BottomSheetDialogFragment() {
             Toast.makeText(requireContext(), "Funcionalidad no disponible", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun initScanner() {
         val integrator = IntentIntegrator.forSupportFragment(this)
