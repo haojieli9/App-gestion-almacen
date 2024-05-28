@@ -16,23 +16,25 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.ResourcesCompat.getDrawable
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
+import com.li.almacen.data.AlmacenData
 import com.li.almacen.databinding.FormAlmacenBinding
 import com.li.almacen.ui.almacen.AlmacenViewModel
 
-
 class ExampleDialog : DialogFragment() {
-    private var db = FirebaseFirestore.getInstance()
-    private var userEmail = FirebaseAuth.getInstance().currentUser?.email
+    private val db = FirebaseFirestore.getInstance()
+    private val userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var toolbar: Toolbar? = null
+    private val almacenViewModel: AlmacenViewModel by activityViewModels()
+    private lateinit var binding: FormAlmacenBinding
 
-    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {uri ->
-        if (uri!=null) {
+    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null) {
             binding.imgPicker.setImageURI(uri)
             Log.d("URI", uri.toString())
         } else {
@@ -40,17 +42,13 @@ class ExampleDialog : DialogFragment() {
         }
     }
 
-    private lateinit var almacenViewModel: AlmacenViewModel
-    private lateinit var binding: FormAlmacenBinding
-
     override fun onStart() {
         super.onStart()
-        val dialog = dialog
-        if (dialog != null) {
+        dialog?.let {
             val width = ViewGroup.LayoutParams.MATCH_PARENT
             val height = ViewGroup.LayoutParams.MATCH_PARENT
-            dialog.window!!.setLayout(width, height)
-            dialog.window!!.setWindowAnimations(R.style.AppTheme_Slide)
+            it.window?.setLayout(width, height)
+            it.window?.setWindowAnimations(R.style.AppTheme_Slide)
         }
     }
 
@@ -69,17 +67,16 @@ class ExampleDialog : DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         toolbar = binding.toolbar
 
-        super.onViewCreated(view, savedInstanceState)
-        toolbar!!.setNavigationOnClickListener { _: View? -> dismiss() }
-        toolbar!!.setTitle("Nuevo almacen")
-        toolbar!!.inflateMenu(R.menu.example_dialog)
-        toolbar!!.setOnMenuItemClickListener { menuItem ->
+        toolbar?.setNavigationOnClickListener { dismiss() }
+        toolbar?.title = "Nuevo almacen"
+        toolbar?.inflateMenu(R.menu.example_dialog)
+        toolbar?.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menuSave -> {
                     confirmDialogBuilder()
-                    //stockRegister()
                     true
                 }
                 else -> {
@@ -90,11 +87,11 @@ class ExampleDialog : DialogFragment() {
         }
 
         // Component validation
-        validateEditText(R.id.formTil1, R.id.formEdit1)
-        validateEditText(R.id.formTil2, R.id.formEdit2)
-        validateEditText(R.id.formTil3, R.id.formEdit3)
-        validateEditText(R.id.formTil4, R.id.formEdit4)
-        validateEditText(R.id.formTil5, R.id.formEdit5)
+        validateEditText(binding.formTil1, binding.formEdit1)
+        validateEditText(binding.formTil2, binding.formEdit2)
+        validateEditText(binding.formTil3, binding.formEdit3)
+        validateEditText(binding.formTil4, binding.formEdit4)
+        validateEditText(binding.formTil5, binding.formEdit5)
 
         binding.imgPicker.setOnClickListener {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -111,6 +108,31 @@ class ExampleDialog : DialogFragment() {
     }
 
     private fun stockRegister() {
+        if (!isAdded) return
+
+        val nombre = binding.formEdit1.text.toString()
+        val descripcion = binding.formEdit2.text.toString()
+        val empleado = binding.formEdit3.text.toString()
+        val capacidad = binding.formEdit4.text.toString()
+        val ubicacion = binding.formEdit5.text.toString()
+
+        val nuevoAlmacen = AlmacenData(null, nombre, descripcion, empleado, capacidad, ubicacion)
+
+        db.collection("usuarios").document(userEmail!!).collection("almacenes")
+            .add(nuevoAlmacen)
+            .addOnSuccessListener { documentReference ->
+                nuevoAlmacen.id = documentReference.id
+                almacenViewModel.addAlmacen(nuevoAlmacen)
+                Toast.makeText(requireContext(), "Almacén registrado correctamente.", Toast.LENGTH_LONG).show()
+                dismiss()
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Error al agregar almacén", e)
+                Toast.makeText(requireContext(), "Error al registrar almacén.", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun stockRegister2() {
 
         val nombre = binding.formEdit1.text.toString()
         val descripcion = binding.formEdit2.text.toString()
@@ -149,49 +171,35 @@ class ExampleDialog : DialogFragment() {
     private fun confirmDialogBuilder() {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.confirm_dialog)
-        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.window!!.setBackgroundDrawable(getDrawable(resources, R.color.transparent, null))
+        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.setCancelable(false)
         dialog.show()
 
-        val cancel = dialog.findViewById<Button>(R.id.testButton1)
-        val yes = dialog.findViewById<Button>(R.id.testButton2)
-
-        cancel.setOnClickListener {
+        dialog.findViewById<Button>(R.id.testButton1).setOnClickListener {
             Toast.makeText(requireContext(), "Operación cancelada.", Toast.LENGTH_LONG).show()
             dialog.dismiss()
-            this@ExampleDialog.dismiss()
+            dismiss()
         }
 
-        yes.setOnClickListener {
+        dialog.findViewById<Button>(R.id.testButton2).setOnClickListener {
             stockRegister()
-            Toast.makeText(requireContext(), "Almacen registrado correctamente.", Toast.LENGTH_LONG).show()
             dialog.dismiss()
-            this@ExampleDialog.dismiss()
         }
     }
 
-    private fun validateEditText(layout: Int, edit: Int) {
-        val lay = requireView().findViewById<TextInputLayout>(layout)
-        val editt = requireView().findViewById<TextInputEditText>(edit)
-
-        editt.addTextChangedListener(object : TextWatcher {
+    private fun validateEditText(layout: TextInputLayout, edit: TextInputEditText) {
+        edit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
                 val text = s.toString()
-                when {
-                    text.isEmpty() -> lay.error = "Este campo es obligatorio."
-//                    text.length < 8 -> lay.error = "El nombre debe tener al menos 8 caracteres."
-                    else -> lay.error = null
+                layout.error = when {
+                    text.isEmpty() -> "Este campo es obligatorio."
+                    else -> null
                 }
             }
         })
-    }
-
-    private fun mediaPicker() {
-
     }
 }

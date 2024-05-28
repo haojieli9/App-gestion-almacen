@@ -18,7 +18,7 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
         override fun getNewListSize(): Int = newList.size
 
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition].id == newList[newItemPosition].id
+            return oldList[oldItemPosition].name == newList[newItemPosition].name
         }
 
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -24,6 +25,8 @@ import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment1
 class ActivityAlmacen : AppCompatActivity() {
     private lateinit var binding: ActivityAlmacenBinding
     private lateinit var adaptador : CustomAdapter
+    private val almacenViewModel: AlmacenViewModel by viewModels()
+
 
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var db = FirebaseFirestore.getInstance()
@@ -53,6 +56,12 @@ class ActivityAlmacen : AppCompatActivity() {
         binding.rvAlma.adapter = adaptador
         binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
+        almacenViewModel.almacenList.observe(this, Observer { almacenList ->
+            adaptador.updateList(almacenList)
+            binding.tvCantAlm.text = almacenList.size.toString()
+        })
+
+
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
 //            Toast.makeText(this@ActivityAlmacen, datos.id, Toast.LENGTH_SHORT).show()
             val intent = Intent(this@ActivityAlmacen, DetailsAlmacen::class.java)
@@ -74,20 +83,10 @@ class ActivityAlmacen : AppCompatActivity() {
         db.collection("usuarios").document(userEmail!!).collection("almacenes")
             .get()
             .addOnSuccessListener { resultados ->
-            for (document in resultados) {
-                Log.d("Datos documentos: ",  "${document.id} ${document.data}")
-                val lista: MutableList<AlmacenData> = mutableListOf(
-                    AlmacenData(document.id, document.data["Nombre almacen"].toString(), document.data["Descripcion"].toString(), document.data["Encargado"].toString(), document.data["Capacidad"].toString(), document.data["Ubicacion"].toString()),
-                )
-                Log.d("Lista: ", lista.toString())
-                almacenList.addAll(lista)
-
-                }
-                Log.d("Lista cantidad: ", almacenList.size.toString())
-                val cantidadAlmacen = almacenList.size
-                binding.tvCantAlm.text = cantidadAlmacen.toString()
-
-                adaptador.notifyDataSetChanged()
+                val lista = resultados.map { document ->
+                    AlmacenData(document.id, document.data["name"].toString(), document.data["notas"].toString(), document.data["gerente"].toString(), document.data["capacidad"].toString(), document.data["ubicacion"].toString())
+                }.toMutableList()
+                almacenViewModel.setAlmacenList(lista)
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Error al obtener datos:", e)
@@ -122,9 +121,8 @@ class ActivityAlmacen : AppCompatActivity() {
     private fun swipe() {
         binding.swipe.setOnRefreshListener {
             Log.i("swipe", "swipe refresh")
-            Handler(Looper.getMainLooper()).postDelayed({
-                binding.swipe.isRefreshing = false
-            }, 1000)
+            recyclerViewItem()
+            binding.swipe.isRefreshing = false
         }
     }
 }
