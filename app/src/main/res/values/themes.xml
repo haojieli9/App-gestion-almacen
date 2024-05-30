@@ -5,7 +5,9 @@
         <item name="colorPrimary">@color/custom_button</item>
     </style>
 
-    <style name="Theme.ProyectoMultimedia" parent="Base.Theme.ProyectoMultimedia" />
+    <style name="Theme.ProyectoMultimedia" parent="Base.Theme.ProyectoMultimedia" >
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->

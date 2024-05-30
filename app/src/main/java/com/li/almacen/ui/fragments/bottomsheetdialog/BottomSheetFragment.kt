@@ -12,6 +12,7 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.li.almacen.databinding.BottomsheetFragmentBinding
 import com.li.almacen.test.FormAlmacen
 import com.li.almacen.ui.fragments.fullscreendialog.ExampleDialog
+import com.li.almacen.ui.fragments.fullscreendialog.ProductForm
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -31,11 +32,10 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.btsBtn1.setOnClickListener { openDialog() }
 
+
         binding.btnScanner.setOnClickListener { initScanner() }
 
-        binding.btsBtn2.setOnClickListener {
-            Toast.makeText(requireContext(), "Funcionalidad no disponible", Toast.LENGTH_SHORT).show()
-        }
+        binding.btsBtn2.setOnClickListener { openDialogProduct() }
     }
 
 
@@ -67,5 +67,10 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     private fun openDialog() {
         val dialog = ExampleDialog()
         dialog.show(childFragmentManager, "FORMALMACEN")
+    }
+
+    private fun openDialogProduct() {
+        val dialog = ProductForm()
+        dialog.show(childFragmentManager, "FORMPRODUCTO")
     }
 }

@@ -51,6 +51,11 @@ class ActivityAlmacen : AppCompatActivity() {
         initCardView()
         swipe()
 
+        binding.swipe.setOnRefreshListener {
+            recyclerViewItem()
+            binding.swipe.isRefreshing = false
+        }
+
         //inicio recyclerview
         adaptador = CustomAdapter(almacenList)
         binding.rvAlma.adapter = adaptador
@@ -119,10 +124,6 @@ class ActivityAlmacen : AppCompatActivity() {
     }
 
     private fun swipe() {
-        binding.swipe.setOnRefreshListener {
-            Log.i("swipe", "swipe refresh")
-            recyclerViewItem()
-            binding.swipe.isRefreshing = false
-        }
+
     }
 }

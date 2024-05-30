@@ -18,8 +18,6 @@ class DetailsAlmacen : AppCompatActivity() {
 
         initData()
 
-
-
     }
 
     private fun initData() {

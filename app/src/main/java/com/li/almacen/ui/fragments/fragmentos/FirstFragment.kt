@@ -69,6 +69,11 @@ class FirstFragment : Fragment() {
             val intent = Intent(requireContext(), ActivityProductos::class.java)
             this@FirstFragment.startActivity(intent)
         }
+
+        binding.cardview5.setOnClickListener {
+            val intent = Intent(requireContext(), ActivityPruebas::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

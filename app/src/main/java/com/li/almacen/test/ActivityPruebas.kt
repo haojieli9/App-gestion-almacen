@@ -21,7 +21,10 @@ class ActivityPruebas : AppCompatActivity() {
         binding.testButton2.setOnClickListener {
             initScanner()
         }
+
     }
+
+
 
     private fun openDialog() {
         ExampleDialog.display(supportFragmentManager)
