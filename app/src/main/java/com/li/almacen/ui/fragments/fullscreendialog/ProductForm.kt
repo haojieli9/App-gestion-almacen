@@ -29,6 +29,8 @@ class ProductForm : DialogFragment() {
     private val db = FirebaseFirestore.getInstance()
     private val userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var toolbar: Toolbar? = null
+    private var almacenid = mutableListOf<String?>()
+    private var selectedAlmacenId: String? = ""
     private lateinit var binding: FormProductBinding
 
 
@@ -94,6 +96,11 @@ class ProductForm : DialogFragment() {
 
         loadAlmacenes()
 
+        binding.formEdit2.setOnItemClickListener { parent, view, position, id ->
+            selectedAlmacenId = almacenid[position]
+            Log.d("Selected Almacen", "ID: $selectedAlmacenId")
+        }
+
     }
 
     companion object {
@@ -149,6 +156,8 @@ class ProductForm : DialogFragment() {
                     AlmacenData(document.id, document.getString("name") ?: "")
                 }
                 val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
+                almacenid = almacenes.map { it.id }.toMutableList()
+
                 binding.formEdit2.setAdapter(adapter)
                 binding.formEdit2.setDropDownBackgroundResource(android.R.color.white)
             }
@@ -160,7 +169,6 @@ class ProductForm : DialogFragment() {
 
     private fun saveProduct() {
         val name = binding.formEdit1.text.toString()
-        val almacenName = binding.formEdit2.text.toString()
         val price = binding.formEdit3.text.toString()
         val stock = binding.formEdit4.text.toString()
 
@@ -174,7 +182,7 @@ class ProductForm : DialogFragment() {
                     .addOnSuccessListener {
                         db.collection("usuarios").document(userEmail)
                             .collection("productos_almacenes")
-                            .add(mapOf("productoId" to nuevoProducto.id, "almacenId" to almacenName))
+                            .add(mapOf("productoId" to nuevoProducto.id, "almacenId" to selectedAlmacenId))
                             .addOnSuccessListener {
                                 Toast.makeText(requireContext(), "Producto registrado correctamente.", Toast.LENGTH_LONG).show()
                                 this@ProductForm.dismiss()

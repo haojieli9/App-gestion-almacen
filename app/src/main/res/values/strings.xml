@@ -60,6 +60,10 @@
 
     <!-- Descripciones imagen -->
     <string name="description_img">Es una imagen</string>
+    <string name="articulos_options">Articulos options</string>
+    <string name="product_name">Name</string>
+    <string name="product_image">Product image</string>
+    <string name="product_id">AAABBBCCCDDD</string>
 
 
 </resources>

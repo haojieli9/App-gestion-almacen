@@ -1,4 +1,4 @@
-package com.li.almacen.ui.almacen
+package com.li.almacen.ui.productos
 
 import android.os.Bundle
 import android.view.Menu

@@ -19,6 +19,7 @@ import com.li.almacen.kt.CustomAdapter
 import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.kt.listaArticulo
+import com.li.almacen.ui.almacen.details.DetailStock
 import com.li.almacen.ui.almacen.details.DetailsAlmacen
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment1
 
@@ -68,14 +69,16 @@ class ActivityAlmacen : AppCompatActivity() {
 
 
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
-//            Toast.makeText(this@ActivityAlmacen, datos.id, Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@ActivityAlmacen, DetailsAlmacen::class.java)
+//            val intent = Intent(this@ActivityAlmacen, DetailsAlmacen::class.java)
+//            intent.putExtra("id", datos.id)
+//            intent.putExtra("name", datos.name)
+//            intent.putExtra("description", datos.notas)
+//            intent.putExtra("encargado", datos.gerente)
+//            intent.putExtra("capacidad", datos.capacidad)
+//            intent.putExtra("ubicacion", datos.ubicacion)
+//            startActivity(intent)
+            val intent = Intent(this@ActivityAlmacen, DetailStock::class.java)
             intent.putExtra("id", datos.id)
-            intent.putExtra("name", datos.name)
-            intent.putExtra("description", datos.notas)
-            intent.putExtra("encargado", datos.gerente)
-            intent.putExtra("capacidad", datos.capacidad)
-            intent.putExtra("ubicacion", datos.ubicacion)
             startActivity(intent)
         }
 

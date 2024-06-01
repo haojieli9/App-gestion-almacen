@@ -18,10 +18,13 @@
         android:theme="@style/Theme.ProyectoMultimedia"
         tools:targetApi="31">
         <activity
+            android:name=".ui.almacen.details.DetailStock"
+            android:exported="false" />
+        <activity
             android:name=".ui.almacen.details.DetailsAlmacen"
             android:exported="false" />
         <activity
-            android:name=".ui.almacen.ActivityProductos"
+            android:name=".ui.productos.ActivityProductos"
             android:exported="false" />
         <activity
             android:name=".ui.register.RegValidar"

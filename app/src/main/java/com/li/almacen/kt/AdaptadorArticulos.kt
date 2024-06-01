@@ -6,22 +6,23 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.li.almacen.R
+import com.li.almacen.data.ProductData
 
-class CustomArticulo(private var listaArticulos: List<Articulos>) : RecyclerView.Adapter<CustomArticulo.ViewHolderArticulo>() {
+class CustomArticulo(private var listaArticulos: MutableList<ProductData>) : RecyclerView.Adapter<CustomArticulo.ViewHolderArticulo>() {
 
     class ViewHolderArticulo(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvArID: TextView
         val tvArName: TextView
 
         init {
-            tvArID = itemView.findViewById(R.id.tvArID)
-            tvArName = itemView.findViewById(R.id.tvArName)
+            tvArID = itemView.findViewById(R.id.tvProductId)
+            tvArName = itemView.findViewById(R.id.tvNameArticulo)
         }
     }
 
-    private var listener: (e: Articulos, position: Int) -> Unit = { e, position ->  }
+    private var listener: (e: ProductData, position: Int) -> Unit = { e, position ->  }
 
-    fun setOnClickListener(listener: (Articulos, Int) -> Unit) {
+    fun setOnClickListener(listener: (ProductData, Int) -> Unit) {
         this.listener = listener
     }
 
@@ -40,6 +41,6 @@ class CustomArticulo(private var listaArticulos: List<Articulos>) : RecyclerView
 
     override fun onBindViewHolder(holder: CustomArticulo.ViewHolderArticulo, position: Int) {
         holder.tvArID.text = listaArticulos[position].id
-        holder.tvArName.text = listaArticulos[position].nombre
+        holder.tvArName.text = listaArticulos[position].name
     }
 }
