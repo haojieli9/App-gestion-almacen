@@ -182,7 +182,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginTop="20dp"
-                    app:startIconDrawable="@drawable/svg_formname"
+                    app:startIconDrawable="@drawable/svg_barcode"
 
                     android:id="@+id/formTil5"
                     android:layout_width="match_parent"
@@ -192,7 +192,8 @@
                     app:helperTextTextColor="@color/black"
                     app:counterEnabled="true"
                     app:counterMaxLength="20"
-                    app:endIconMode="clear_text"
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@drawable/svg_scanner"
                     app:boxBackgroundColor="@color/colorPrimary"
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"

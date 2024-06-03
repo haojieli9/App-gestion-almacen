@@ -17,40 +17,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-/*
-        setSupportActionBar(binding.toolbar)
-
-        binding.rvArt.adapter = CustomArticulo(listaArticulo)
-        binding.rvArt.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        binding.cardview2.setOnClickListener {
-            val intent = Intent(this@MainActivity, ActivityAlmacen::class.java)
-            startActivity(intent)
-        }
-
-        binding.cardviewArticulo.setOnClickListener {
-            val intent = Intent(this@MainActivity, ActivityPruebas::class.java)
-            startActivity(intent)
-        }
-
-        binding.imgMain2.setOnClickListener {
-            val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setMessage("Información general de almacenes disponibles")
-            //builder.setPositiveButton("ACEPTAR") { dialog, _ -> dialog.dismiss() }
-            val alertDialog = builder.create()
-            alertDialog.show()
-            //Toast.makeText(this, "Información general de almacenes disponibles", Toast.LENGTH_SHORT).show()
-        }
-
-        val cantidadAlmacen = listaAlmacen.size
-        binding.tvMainAlmDisp.text = cantidadAlmacen.toString()
-
-        val totalArticulo = listaArticulo.size
-        binding.tvMainArtTot.text = totalArticulo.toString() + " units"
-
-        val totalValue = listaArticulo.sumOf { it.precio.toDouble() }.toFloat()
-        binding.tvMainValTot.text = totalValue.toString() + "€"
-*/
         val firstFragment = FirstFragment()
         val secondFragment = SecondFragment()
         val thirdFragment = ThirdFragment()

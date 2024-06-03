@@ -1,6 +1,5 @@
 package com.li.almacen.ui.fragments.bottomsheetdialog
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +10,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.zxing.integration.android.IntentIntegrator
 import com.li.almacen.databinding.BottomsheetFragmentBinding
 import com.li.almacen.test.FormAlmacen
-import com.li.almacen.ui.fragments.fullscreendialog.ExampleDialog
+import com.li.almacen.ui.fragments.fullscreendialog.AlmacenForm
 import com.li.almacen.ui.fragments.fullscreendialog.ProductForm
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
@@ -65,7 +64,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun openDialog() {
-        val dialog = ExampleDialog()
+        val dialog = AlmacenForm()
         dialog.show(childFragmentManager, "FORMALMACEN")
     }
 

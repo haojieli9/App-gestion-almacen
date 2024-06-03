@@ -1,11 +1,13 @@
 package com.li.almacen.ui.almacen.details
 
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.li.almacen.R
 import com.li.almacen.databinding.ActivityDetailsAlmacenBinding
 
@@ -27,6 +29,7 @@ class DetailsAlmacen : AppCompatActivity() {
         val encargado = intent.getStringExtra("encargado") ?: ""
         val capacidad = intent.getStringExtra("capacidad") ?: ""
         val detailsUbi = intent.getStringExtra("ubicacion") ?: ""
+        val uri = intent.getStringExtra("uri")
 
         val editableId = Editable.Factory.getInstance().newEditable(id)
         val editableNombre = Editable.Factory.getInstance().newEditable(nombre)
@@ -42,5 +45,6 @@ class DetailsAlmacen : AppCompatActivity() {
         binding.detailData.text = editableCapacidad
         binding.detailsUbi.text = editableDetailsUbi
 
+        Glide.with(this).load(uri).into(binding.detailImage)
     }
 }

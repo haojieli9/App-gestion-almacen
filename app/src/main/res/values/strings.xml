@@ -64,6 +64,8 @@
     <string name="product_name">Name</string>
     <string name="product_image">Product image</string>
     <string name="product_id">AAABBBCCCDDD</string>
+    <string name="dropdownmenu_edit">Editar</string>
+    <string name="dropdownmenu_delete">Eliminar</string>
 
 
 </resources>

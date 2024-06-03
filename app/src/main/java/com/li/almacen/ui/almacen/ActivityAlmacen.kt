@@ -3,8 +3,6 @@ package com.li.almacen.ui.almacen
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -20,7 +18,6 @@ import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.kt.listaArticulo
 import com.li.almacen.ui.almacen.details.DetailStock
-import com.li.almacen.ui.almacen.details.DetailsAlmacen
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment1
 
 class ActivityAlmacen : AppCompatActivity() {
@@ -69,21 +66,12 @@ class ActivityAlmacen : AppCompatActivity() {
 
 
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
-//            val intent = Intent(this@ActivityAlmacen, DetailsAlmacen::class.java)
-//            intent.putExtra("id", datos.id)
-//            intent.putExtra("name", datos.name)
-//            intent.putExtra("description", datos.notas)
-//            intent.putExtra("encargado", datos.gerente)
-//            intent.putExtra("capacidad", datos.capacidad)
-//            intent.putExtra("ubicacion", datos.ubicacion)
-//            startActivity(intent)
             val intent = Intent(this@ActivityAlmacen, DetailStock::class.java)
             intent.putExtra("id", datos.id)
             startActivity(intent)
         }
 
         adaptador.setOptionClickListener { _: AlmacenData, _: Int ->
-            almacenOptions.show(supportFragmentManager, "BottomSheetDiaglog")
         }
     }
 
@@ -92,7 +80,7 @@ class ActivityAlmacen : AppCompatActivity() {
             .get()
             .addOnSuccessListener { resultados ->
                 val lista = resultados.map { document ->
-                    AlmacenData(document.id, document.data["name"].toString(), document.data["notas"].toString(), document.data["gerente"].toString(), document.data["capacidad"].toString(), document.data["ubicacion"].toString())
+                    AlmacenData(document.data["uri"], document.id, document.data["name"].toString(), document.data["notas"].toString(), document.data["gerente"].toString(), document.data["capacidad"].toString(), document.data["ubicacion"].toString())
                 }.toMutableList()
                 almacenViewModel.setAlmacenList(lista)
             }

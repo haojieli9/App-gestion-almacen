@@ -1,6 +1,7 @@
 package com.li.almacen.ui.fragments.fullscreendialog
 
 import android.app.Dialog
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,7 +14,6 @@ import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.res.ResourcesCompat.getDrawable
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
@@ -26,16 +26,18 @@ import com.li.almacen.data.AlmacenData
 import com.li.almacen.databinding.FormAlmacenBinding
 import com.li.almacen.ui.almacen.AlmacenViewModel
 
-class ExampleDialog : DialogFragment() {
+class AlmacenForm : DialogFragment() {
     private val db = FirebaseFirestore.getInstance()
     private val userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var toolbar: Toolbar? = null
     private val almacenViewModel: AlmacenViewModel by activityViewModels()
+    var uri : Uri? = null
     private lateinit var binding: FormAlmacenBinding
 
-    val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null) {
-            binding.imgPicker.setImageURI(uri)
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
+        if (ur != null) {
+            binding.imgPicker.setImageURI(ur)
+            uri = ur
             Log.d("URI", uri.toString())
         } else {
             // no hay imagen
@@ -100,10 +102,10 @@ class ExampleDialog : DialogFragment() {
 
     companion object {
         private const val TAG = "FORMALMACEN"
-        fun display(fragmentManager: FragmentManager?): ExampleDialog {
-            val exampleDialog = ExampleDialog()
-            exampleDialog.show(fragmentManager!!, TAG)
-            return exampleDialog
+        fun display(fragmentManager: FragmentManager?): AlmacenForm {
+            val almacenForm = AlmacenForm()
+            almacenForm.show(fragmentManager!!, TAG)
+            return almacenForm
         }
     }
 
@@ -116,7 +118,8 @@ class ExampleDialog : DialogFragment() {
         val capacidad = binding.formEdit4.text.toString()
         val ubicacion = binding.formEdit5.text.toString()
 
-        val nuevoAlmacen = AlmacenData(null, nombre, descripcion, empleado, capacidad, ubicacion)
+
+        val nuevoAlmacen = AlmacenData(uri,null, nombre, descripcion, empleado, capacidad, ubicacion)
 
         db.collection("usuarios").document(userEmail!!).collection("almacenes")
             .add(nuevoAlmacen)
@@ -145,9 +148,7 @@ class ExampleDialog : DialogFragment() {
         dialog.show()
 
         dialog.findViewById<Button>(R.id.testButton1).setOnClickListener {
-            Toast.makeText(requireContext(), "Operación cancelada.", Toast.LENGTH_LONG).show()
             dialog.dismiss()
-            dismiss()
         }
 
         dialog.findViewById<Button>(R.id.testButton2).setOnClickListener {

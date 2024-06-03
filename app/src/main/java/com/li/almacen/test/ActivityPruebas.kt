@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.zxing.integration.android.IntentIntegrator
-import com.li.almacen.ui.fragments.fullscreendialog.ExampleDialog
+import com.li.almacen.ui.fragments.fullscreendialog.AlmacenForm
 import com.li.almacen.databinding.ActivityPruebasBinding
 
 
@@ -27,7 +27,7 @@ class ActivityPruebas : AppCompatActivity() {
 
 
     private fun openDialog() {
-        ExampleDialog.display(supportFragmentManager)
+        AlmacenForm.display(supportFragmentManager)
 
     }
 

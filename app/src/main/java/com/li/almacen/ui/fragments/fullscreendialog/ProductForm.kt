@@ -1,6 +1,7 @@
 package com.li.almacen.ui.fragments.fullscreendialog
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,10 +21,12 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.zxing.integration.android.IntentIntegrator
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
 import com.li.almacen.data.ProductData
 import com.li.almacen.databinding.FormProductBinding
+import com.li.almacen.test.FormAlmacen
 
 class ProductForm : DialogFragment() {
     private val db = FirebaseFirestore.getInstance()
@@ -70,6 +73,7 @@ class ProductForm : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar = binding.toolbar
+        initActions()
 
         toolbar?.setNavigationOnClickListener { dismiss() }
         toolbar?.title = "Nuevo producto"
@@ -193,5 +197,36 @@ class ProductForm : DialogFragment() {
                 Log.e("Firestore", "Error al agregar producto", e)
                 Toast.makeText(requireContext(), "Error al registrar producto.", Toast.LENGTH_LONG).show()
             }
+    }
+
+    private fun initActions() {
+        binding.formTil5.setEndIconOnClickListener {
+            initScanner()
+        }
+    }
+
+    private fun initScanner() {
+        val integrator = IntentIntegrator(requireActivity())
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
+        integrator.setPrompt("BARCODE SCANNER")
+        integrator.setTorchEnabled(true)
+        integrator.setBeepEnabled(true)
+        integrator.initiateScan()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        if (result != null) {
+            if (result.contents == null) {
+                Toast.makeText(requireContext(), "Cancelado", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "El valor escaneado es: " + result.contents, Toast.LENGTH_LONG).show()
+                val intent = Intent(requireContext(), FormAlmacen::class.java)
+                intent.putExtra("scanResult", result.contents)
+                startActivity(intent)
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 }
