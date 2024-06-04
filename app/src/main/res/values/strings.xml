@@ -66,6 +66,8 @@
     <string name="product_id">AAABBBCCCDDD</string>
     <string name="dropdownmenu_edit">Editar</string>
     <string name="dropdownmenu_delete">Eliminar</string>
+    <string name="datos_almacen_textview">Datos almacén</string>
+    <string name="img_description">ImageFile</string>
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.li.almacen.ui.fragments.fullscreendialog
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
@@ -25,6 +26,9 @@ import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
 import com.li.almacen.databinding.FormAlmacenBinding
 import com.li.almacen.ui.almacen.AlmacenViewModel
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.Date
 
 class AlmacenForm : DialogFragment() {
     private val db = FirebaseFirestore.getInstance()
@@ -92,7 +96,6 @@ class AlmacenForm : DialogFragment() {
         validateEditText(binding.formTil1, binding.formEdit1)
         validateEditText(binding.formTil2, binding.formEdit2)
         validateEditText(binding.formTil3, binding.formEdit3)
-        validateEditText(binding.formTil4, binding.formEdit4)
         validateEditText(binding.formTil5, binding.formEdit5)
 
         binding.imgPicker.setOnClickListener {
@@ -115,11 +118,9 @@ class AlmacenForm : DialogFragment() {
         val nombre = binding.formEdit1.text.toString()
         val descripcion = binding.formEdit2.text.toString()
         val empleado = binding.formEdit3.text.toString()
-        val capacidad = binding.formEdit4.text.toString()
         val ubicacion = binding.formEdit5.text.toString()
 
-
-        val nuevoAlmacen = AlmacenData(uri,null, nombre, descripcion, empleado, capacidad, ubicacion)
+        val nuevoAlmacen = AlmacenData(null, nombre, descripcion, empleado, ubicacion, uri, Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))
 
         db.collection("usuarios").document(userEmail!!).collection("almacenes")
             .add(nuevoAlmacen)
@@ -134,27 +135,25 @@ class AlmacenForm : DialogFragment() {
                     }
             }
             .addOnFailureListener { e ->
-                Log.e("Firestore", "Error al agregar almacén", e)
+                Log.e("Firestore", "Error al agregar almacén - AlmacenForm 137", e)
                 Toast.makeText(requireContext(), "Error al registrar almacén.", Toast.LENGTH_LONG).show()
             }
     }
 
 
     private fun confirmDialogBuilder() {
-        val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.confirm_dialog)
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.setCancelable(false)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("Deseas guardar este almacén?")
+            .setTitle("Guardar cambios")
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton("Confirmar") { dialog, _ ->
+                stockRegister()
+                dialog.dismiss()
+            }
+        val dialog: AlertDialog = builder.create()
         dialog.show()
-
-        dialog.findViewById<Button>(R.id.testButton1).setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.findViewById<Button>(R.id.testButton2).setOnClickListener {
-            stockRegister()
-            dialog.dismiss()
-        }
     }
 
     private fun validateEditText(layout: TextInputLayout, edit: TextInputEditText) {
@@ -173,3 +172,4 @@ class AlmacenForm : DialogFragment() {
         })
     }
 }
+

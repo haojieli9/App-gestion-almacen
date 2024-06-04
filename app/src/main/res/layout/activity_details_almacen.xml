@@ -1,240 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.productos.ActivityProductos"
-    android:background="@color/white">
+    android:layout_height="match_parent">
+
+<com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/custom_button"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="Información detallada"
+            app:titleTextColor="@color/custom_blancoHueso" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/custom_button"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:title="Detalles del Almacén"
-                app:titleTextColor="@color/custom_blancoHueso" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_marginTop="15dp"
                 android:id="@+id/detailImage"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/png_file"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/png_file" />
+                android:contentDescription="@string/img_description" />
 
             <TextView
-                android:id="@+id/detailDescriptionTitle"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/datos_almacen_textview"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:startIconDrawable="@drawable/svg_formname"
+
+                android:id="@+id/formTilId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="ID"
-                android:textColor="@color/gray"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:hint="ID"
+                app:helperTextTextColor="@color/black"
+                app:endIconMode="clear_text"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeWidth="2dp"
+                app:errorTextAppearance="@style/HintTextAppearance">
 
-            <EditText
-                android:id="@+id/detailID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
-
-            <TextView
-                android:id="@+id/detailNameTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="Nombre"
-                android:textColor="@color/gray"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/detailName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/detailsManagerTitle"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Gerente"
-                    android:textColor="@color/gray"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/detailsDateTitle"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/formEditId"
+                    android:maxLength="21"
+                    android:maxLines="1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Fecha alta"
-                    android:textColor="@color/gray"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:startIconDrawable="@drawable/svg_formname"
+
+                android:id="@+id/formTil1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp">
+                android:layout_gravity="center_horizontal"
+                android:hint="Nombre"
+                app:helperTextTextColor="@color/black"
+                app:endIconMode="clear_text"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeWidth="2dp"
+                app:errorTextAppearance="@style/HintTextAppearance">
 
-                <EditText
-                    android:id="@+id/detailManager"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content" />
-
-                <EditText
-
-                    android:id="@+id/detailData"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/formEdit1"
+                    android:maxLength="21"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/detailsNoteTitle"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
+
+                android:id="@+id/formTil2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:hint="Notas"
+                app:helperTextTextColor="@color/black"
+                app:counterMaxLength="50"
+                app:endIconMode="clear_text"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeWidth="2dp"
+                app:errorTextAppearance="@style/HintTextAppearance"
+                app:startIconDrawable="@drawable/svg_descripcion">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/formEdit2"
+                    android:maxLength="51"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="Notas"
-                android:textColor="@color/gray"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="20dp"
 
-            <EditText
-                android:id="@+id/detailNote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
-
-            <TextView
-                android:id="@+id/detailsUbiTitle"
+                android:id="@+id/formTil3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="Localización"
-                android:textColor="@color/gray"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:hint="Responsable"
+                app:helperTextTextColor="@color/black"
+                app:endIconMode="clear_text"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeWidth="2dp"
+                app:errorTextAppearance="@style/HintTextAppearance"
+                app:startIconDrawable="@drawable/svg_empleado">
 
-            <EditText
-                android:id="@+id/detailsUbi"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/formEdit3"
+                    android:maxLength="51"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
+
+                android:id="@+id/formTilDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="Fecha de creación"
+                app:helperTextTextColor="@color/black"
+                app:endIconMode="clear_text"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeWidth="2dp"
+                app:errorTextAppearance="@style/HintTextAppearance"
+                app:startIconDrawable="@drawable/svg_calendar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/formEditDate"
+                    android:maxLength="51"
+                    android:enabled="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_marginTop="30dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ubicación"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="20dp"
+
+                android:id="@+id/formTil5"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:hint="Direccion completa"
+                app:endIconMode="clear_text"
+                app:boxBackgroundColor="@color/colorPrimary"
+                app:boxCornerRadiusBottomEnd="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxStrokeWidth="2dp"
+                app:errorTextAppearance="@style/HintTextAppearance"
+                app:startIconDrawable="@drawable/svg_location">
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floating1"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/formEdit5"
+                    android:maxLength="51"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="50dp"
-                    android:backgroundTint="#CAC7C7"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.954"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvAlma"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"
-                    app:srcCompat="@drawable/svg_move" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floating2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="50dp"
-                    android:backgroundTint="#CAC7C7"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.954"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvAlma"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"
-                    app:srcCompat="@drawable/svg_delete1" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floating3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:backgroundTint="#CAC7C7"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.954"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvAlma"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"
-                    app:srcCompat="@drawable/svg_collect" />
-
-
-            </LinearLayout>
+                    android:textColor="@android:color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
     </ScrollView>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

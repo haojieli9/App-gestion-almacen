@@ -25,12 +25,10 @@ class ActivityAlmacen : AppCompatActivity() {
     private lateinit var adaptador : CustomAdapter
     private val almacenViewModel: AlmacenViewModel by viewModels()
 
-
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var db = FirebaseFirestore.getInstance()
     private var almacenList: MutableList<AlmacenData> = mutableListOf()
     private val bottomSheetFragment = BottomSheetFragment()
-    private val almacenOptions = BottomSheetFragment1()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +39,6 @@ class ActivityAlmacen : AppCompatActivity() {
         binding.floating1.setOnClickListener {
             bottomSheetFragment.show(supportFragmentManager, "BottomSheetDialog")
         }
-
 
         //inicio toolbar
         setSupportActionBar(binding.toolbar)
@@ -64,14 +61,14 @@ class ActivityAlmacen : AppCompatActivity() {
             binding.tvCantAlm.text = almacenList.size.toString()
         })
 
-
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
             val intent = Intent(this@ActivityAlmacen, DetailStock::class.java)
             intent.putExtra("id", datos.id)
             startActivity(intent)
         }
 
-        adaptador.setOptionClickListener { _: AlmacenData, _: Int ->
+        adaptador.setOptionClickListener { datos: AlmacenData, _: Int ->
+
         }
     }
 
@@ -80,7 +77,7 @@ class ActivityAlmacen : AppCompatActivity() {
             .get()
             .addOnSuccessListener { resultados ->
                 val lista = resultados.map { document ->
-                    AlmacenData(document.data["uri"], document.id, document.data["name"].toString(), document.data["notas"].toString(), document.data["gerente"].toString(), document.data["capacidad"].toString(), document.data["ubicacion"].toString())
+                    AlmacenData(document.id, document.data["name"].toString(), document.data["notas"].toString(), document.data["gerente"].toString(), document.data["ubicacion"].toString(), document.data["uri"])
                 }.toMutableList()
                 almacenViewModel.setAlmacenList(lista)
             }

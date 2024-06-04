@@ -1,8 +1,11 @@
 package com.li.almacen.kt
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.MenuInflater
@@ -12,14 +15,21 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
+import com.li.almacen.ui.almacen.AlmacenViewModel
 import com.li.almacen.ui.almacen.details.DetailsAlmacen
 
 
 class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+    private var userEmail = FirebaseAuth.getInstance().currentUser?.email
+    private var db = FirebaseFirestore.getInstance()
+
 
     inner class EstanteriaDiffCallback(val oldList: MutableList<AlmacenData>, val newList: MutableList<AlmacenData>) : DiffUtil.Callback() {
         override fun getOldListSize(): Int = oldList.size
@@ -59,7 +69,7 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
         return ViewHolder(view)
     }
 
-    private var listener: (e: AlmacenData, position: Int) -> Unit = { e, position ->  }
+    private var listener: (e: AlmacenData, position: Int) -> Unit = { _, _ ->  }
     fun setOnClickListener(listener:(AlmacenData, Int)->Unit){
         this.listener = listener
     }
@@ -68,6 +78,7 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
     fun setOptionClickListener(listener: (AlmacenData, Int) -> Unit) {
         this.optionClickListener = listener
     }
+
 
     override fun getItemCount(): Int = listaAlmacen.size
 
@@ -94,6 +105,7 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
         result.dispatchUpdatesTo(this)
     }
 
+
     private fun showPopupMenu(view: View, context: Context, position: Int) {
         val wrapper = ContextThemeWrapper(context, R.style.PopupMenuStyle)
         val popup = PopupMenu(wrapper, view)
@@ -107,16 +119,47 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
                     intent.putExtra("name", listaAlmacen[position].name)
                     intent.putExtra("description", listaAlmacen[position].notas)
                     intent.putExtra("encargado", listaAlmacen[position].gerente)
-                    intent.putExtra("capacidad", listaAlmacen[position].capacidad)
                     intent.putExtra("ubicacion", listaAlmacen[position].ubicacion)
                     intent.putExtra("uri", listaAlmacen[position].uri.toString())
+                    intent.putExtra("fecha", listaAlmacen[position].fechaCreacion.toString())
 
 
                     startActivity(context, intent, null)
                     true
                 }
                 R.id.action_delete -> {
-                    // Handle delete action
+                    db.collection("usuarios").document(userEmail!!)
+                        .collection("productos_almacenes")
+                        .whereEqualTo("almacenId", listaAlmacen[position].id)
+                        .get()
+                        .addOnSuccessListener { result ->
+                            if (result != null && !result.isEmpty) {
+                                val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+                                builder.setMessage("El almacén seleccionado ya contiene productos. No se ha completado esta operación.")
+                                    .setTitle("Error")
+                                    .setPositiveButton("OK") { dialog, which ->
+                                        dialog.dismiss()
+                                    }
+                                val dialog: AlertDialog = builder.create()
+                                dialog.show()
+                                Log.e("Firestore", "Error al obtener datos. AdaptadorRV - 145")
+                            } else {
+                                db.collection("usuarios").document(userEmail!!).collection("almacenes")
+                                    .document(listaAlmacen[position].id!!)
+                                    .delete()
+                                    .addOnSuccessListener {
+                                        listaAlmacen.removeAt(position)
+                                        notifyItemRemoved(position)
+                                        notifyItemRangeChanged(position, listaAlmacen.size)
+                                    }
+                                    .addOnFailureListener {
+                                        Log.e("Firestore", "Error al borrar datos. AdaptadorRV - 157")
+                                    }
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("Firestore", "Error al obtener datos:", e)
+                        }
                     true
                 }
                 else -> false

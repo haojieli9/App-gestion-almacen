@@ -29,7 +29,7 @@
 
 
     <style name="HintTextAppearance" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="android:textSize">16sp</item> <!-- Tamaño del texto del hint -->
+<!--        <item name="android:textSize">16sp</item> &lt;!&ndash; Tamaño del texto del hint &ndash;&gt;-->
     </style>
 
     <style name="MyEditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

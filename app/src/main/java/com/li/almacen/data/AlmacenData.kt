@@ -1,12 +1,15 @@
 package com.li.almacen.data
 
+import java.util.Date
+
 data class AlmacenData(
-    val uri : Any? = null,
     var id :String? = "",
     val name :String = "",
     val notas :String = "",
     val gerente :String = "",
-    val capacidad :String = "",
-    val ubicacion :String = ""
+    val ubicacion :String = "",
+    val uri : Any? = null,
+    val fechaCreacion: Date = Date()
+
 )
 

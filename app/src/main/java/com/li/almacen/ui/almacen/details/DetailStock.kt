@@ -36,7 +36,7 @@ open class DetailStock : AppCompatActivity() {
         val almacenId = intent.getStringExtra("id")
 
         if (almacenId == null) {
-            Log.e("Firestore", "Error: almacenId is null")
+            Log.e("Firestore", "Error: almacenId is null DetailStock - 39")
             return
         }
 
@@ -53,12 +53,12 @@ open class DetailStock : AppCompatActivity() {
 
                 val productIds = relationResults.mapNotNull { document ->
                     val productId = document.data["productoId"]
-                    Log.d("Firestore product almacen: ", "Document data: ${document.id } ${document.data["productoId"] }")
+                    Log.d("Firestore product almacen: ", "Document data: ${document.id } ${document.data["productoId"] } DetailStock - 56")
                     productId
                 }
 
                 if (productIds.isEmpty()) {
-                    Log.e("Firestore", "No productIds found for almacenId: $almacenId")
+                    Log.e("Firestore", "No productIds found for almacenId: $almacenId DetailStock - 61")
                     return@addOnSuccessListener
                 }
 
