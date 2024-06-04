@@ -10,21 +10,48 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isEmpty
+import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
+import com.li.almacen.data.AlmacenData
 import com.li.almacen.databinding.ActivityDetailsAlmacenBinding
+import com.li.almacen.ui.almacen.AlmacenViewModel
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.Date
 
 class DetailsAlmacen : AppCompatActivity() {
     private lateinit var binding : ActivityDetailsAlmacenBinding
     private var toolbar: Toolbar? = null
+    private val db = FirebaseFirestore.getInstance()
+    private val userEmail = FirebaseAuth.getInstance().currentUser?.email
+    private val almacenViewModel: AlmacenViewModel by viewModels()
+    var uri : Uri? = null
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
+        if (ur != null) {
+            binding.detailImage.setImageURI(ur)
+            uri = ur
+            Log.d("URI", uri.toString())
+        } else {
+            // no hay imagen
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +59,22 @@ class DetailsAlmacen : AppCompatActivity() {
         setContentView(binding.root)
         initToolbar()
         initData()
+        componentValidation()
 
+    }
+
+    private fun componentValidation() {
+        // Component validation
+        validateEditText(binding.formTilId, binding.formEditId)
+        validateEditText(binding.formTil1, binding.formEdit1)
+        validateEditText(binding.formTil2, binding.formEdit2)
+        validateEditText(binding.formTil3, binding.formEdit3)
+        validateEditText(binding.formTil5, binding.formEdit5)
+        validateEditText(binding.formTilDate, binding.formEditDate)
+
+        binding.detailImage.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
     }
 
     private fun initData() {
@@ -41,7 +83,6 @@ class DetailsAlmacen : AppCompatActivity() {
         val descripcion = intent.getStringExtra("description") ?: ""
         val encargado = intent.getStringExtra("encargado") ?: ""
         val detailsUbi = intent.getStringExtra("ubicacion") ?: ""
-//        val uri = intent.getStringExtra("uri")
         val fecha = intent.getStringExtra("fecha")
 
         val editableId = Editable.Factory.getInstance().newEditable(id)
@@ -117,10 +158,98 @@ class DetailsAlmacen : AppCompatActivity() {
                 dialog.dismiss()
             }
             .setPositiveButton("Confirmar") { dialog, _ ->
-                dialog.dismiss()
+                val formEditIdText = binding.formEditId.text.toString()
+                val formEdit1Text = binding.formEdit1.text.toString()
+                val formEdit2Text = binding.formEdit2.text.toString()
+                val formEdit3Text = binding.formEdit3.text.toString()
+                val formEdit5Text = binding.formEdit5.text.toString()
+                val formEditDateText = binding.formEditDate.text.toString()
+
+                when {
+                    formEditIdText.isEmpty() -> {
+                        binding.formTilId.error = "Este campo es obligatorio."
+                        Toast.makeText(this,"El ID es obligatorio.", Toast.LENGTH_SHORT).show()
+                    }
+                    formEdit1Text.isEmpty() -> {
+                        binding.formTil1.error = "Este campo es obligatorio."
+                        Toast.makeText(this,"El nombre es obligatorio.", Toast.LENGTH_SHORT).show()
+                    }
+                    formEdit2Text.isEmpty() -> {
+                        binding.formTil2.error = "Este campo es obligatorio."
+                        Toast.makeText(this,"La descripción es obligatoria.", Toast.LENGTH_SHORT).show()
+                    }
+                    formEdit3Text.isEmpty() -> {
+                        binding.formTil3.error = "Este campo es obligatorio."
+                        Toast.makeText(this,"El encargado es obligatorio.", Toast.LENGTH_SHORT).show()
+                    }
+                    formEdit5Text.isEmpty() -> {
+                        binding.formTil5.error = "Este campo es obligatorio."
+                        Toast.makeText(this,"La ubicación es obligatoria.", Toast.LENGTH_SHORT).show()
+                    }
+                    formEditDateText.isEmpty() -> {
+                        binding.formTilDate.error = "Este campo es obligatorio."
+                        Toast.makeText(this,"La fecha es obligatoria.", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        dialog.dismiss()
+                        guardarCambios()
+                    }
+                }
             }
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+    private fun guardarCambios() {
+        val id = intent.getStringExtra("id")
+        val nombre = binding.formEdit1.text.toString()
+        val descripcion = binding.formEdit2.text.toString()
+        val empleado = binding.formEdit3.text.toString()
+        val fecha = intent.getStringExtra("fecha")
+        val ubicacion = binding.formEdit5.text.toString()
+
+        // Llamar a la función updateAlmacen del ViewModel pasando los nuevos datos
+        updateAlmacen(id, nombre, descripcion, empleado, fecha!!, ubicacion)
+    }
+
+
+    private fun updateAlmacen(id: String?, nombre: String, descripcion: String, empleado: String, fecha: String, ubicacion: String) {
+        // Verifica si el ID no es nulo
+        id?.let { almacenId ->
+            // Crea un nuevo objeto AlmacenData con los datos actualizados
+            val almacenActualizado = AlmacenData(
+                id,
+                nombre,
+                descripcion,
+                empleado,
+                ubicacion,
+                uri,
+                Date.from(
+                    LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()
+                )
+            )
+
+            // Actualiza los datos en Firestore
+            db.collection("usuarios").document(userEmail!!).collection("almacenes")
+                .document(almacenId)
+                .set(almacenActualizado)
+                .addOnSuccessListener {
+                    almacenViewModel.updateAlmacen(almacenActualizado) // Suponiendo que tengas un método para actualizar en el ViewModel
+                    Toast.makeText(
+                        this@DetailsAlmacen,
+                        "Almacén actualizado correctamente.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                .addOnFailureListener { e ->
+                    Log.e("Firestore", "Error al actualizar almacén - AlmacenForm", e)
+                    Toast.makeText(
+                        this@DetailsAlmacen,
+                        "Error al actualizar almacén.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+        }
     }
 
 }

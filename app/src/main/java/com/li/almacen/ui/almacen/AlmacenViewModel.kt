@@ -21,4 +21,17 @@ class AlmacenViewModel : ViewModel() {
     fun setAlmacenList(list: MutableList<AlmacenData>) {
         _almacenList.value = list
     }
+
+    fun updateAlmacen(almacenActualizado: AlmacenData) {
+        val listaAlmacenes = _almacenList.value
+        listaAlmacenes?.let { almacenes ->
+            // Busca el índice del almacén a actualizar en la lista
+            val index = almacenes.indexOfFirst { it.id == almacenActualizado.id }
+            if (index != -1) {
+                // Reemplaza el almacén existente con el almacén actualizado
+                almacenes[index] = almacenActualizado
+                _almacenList.value = almacenes // Esto activará los observadores
+            }
+        }
+    }
 }

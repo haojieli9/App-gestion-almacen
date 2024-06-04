@@ -105,7 +105,6 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
         result.dispatchUpdatesTo(this)
     }
 
-
     private fun showPopupMenu(view: View, context: Context, position: Int) {
         val wrapper = ContextThemeWrapper(context, R.style.PopupMenuStyle)
         val popup = PopupMenu(wrapper, view)
@@ -122,8 +121,6 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
                     intent.putExtra("ubicacion", listaAlmacen[position].ubicacion)
                     intent.putExtra("uri", listaAlmacen[position].uri.toString())
                     intent.putExtra("fecha", listaAlmacen[position].fechaCreacion.toString())
-
-
                     startActivity(context, intent, null)
                     true
                 }
@@ -144,17 +141,27 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
                                 dialog.show()
                                 Log.e("Firestore", "Error al obtener datos. AdaptadorRV - 145")
                             } else {
-                                db.collection("usuarios").document(userEmail!!).collection("almacenes")
-                                    .document(listaAlmacen[position].id!!)
-                                    .delete()
-                                    .addOnSuccessListener {
-                                        listaAlmacen.removeAt(position)
-                                        notifyItemRemoved(position)
-                                        notifyItemRangeChanged(position, listaAlmacen.size)
+                                val confirmBuilder : AlertDialog.Builder = AlertDialog.Builder(context)
+                                confirmBuilder.setMessage("Seguro quieres eliminar este almacén?")
+                                    .setTitle("Confirmar")
+                                    .setPositiveButton("Eliminar") { dialog, which ->
+                                        db.collection("usuarios").document(userEmail!!).collection("almacenes")
+                                            .document(listaAlmacen[position].id!!)
+                                            .delete()
+                                            .addOnSuccessListener {
+                                                listaAlmacen.removeAt(position)
+                                                notifyItemRemoved(position)
+                                                notifyItemRangeChanged(position, listaAlmacen.size)
+                                            }
+                                            .addOnFailureListener {
+                                                Log.e("Firestore", "Error al borrar datos. AdaptadorRV - 157")
+                                            }
                                     }
-                                    .addOnFailureListener {
-                                        Log.e("Firestore", "Error al borrar datos. AdaptadorRV - 157")
+                                    .setNegativeButton("Cancelar") { dialog, which ->
+                                        dialog.dismiss()
                                     }
+                                val confirmDialog: AlertDialog = confirmBuilder.create()
+                                confirmDialog.show()
                             }
                         }
                         .addOnFailureListener { e ->

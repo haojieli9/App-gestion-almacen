@@ -68,6 +68,12 @@
     <string name="dropdownmenu_delete">Eliminar</string>
     <string name="datos_almacen_textview">Datos almacén</string>
     <string name="img_description">ImageFile</string>
+    <string name="last_modification">Última modificación</string>
+    <string name="responsable">Responsable</string>
+    <string name="description">Notas</string>
+    <string name="name">Nombre</string>
+    <string name="id">ID</string>
+    <string name="full_direction">Direccion completa</string>
 
 
 </resources>
