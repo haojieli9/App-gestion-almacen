@@ -6,15 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.li.almacen.test.ActivityPruebas
 import com.li.almacen.ui.almacen.ActivityAlmacen
 import com.li.almacen.databinding.FragmentFirstBinding
-import com.li.almacen.kt.CustomArticulo
-import com.li.almacen.kt.listaAlmacen
-import com.li.almacen.kt.listaArticulo
-import com.li.almacen.ui.almacen.details.DetailStock
 import com.li.almacen.ui.productos.ActivityProductos
 
 class FirstFragment : Fragment() {
@@ -66,13 +61,6 @@ class FirstFragment : Fragment() {
         }
 
         // init detail data
-        val cantidadAlmacen = listaAlmacen.size
-        binding.tvMainAlmDisp.text = cantidadAlmacen.toString()
 
-        val totalArticulo = listaArticulo.size
-        binding.tvMainArtTot.text = totalArticulo.toString() + " units"
-
-        val totalValue = listaArticulo.sumOf { it.precio.toDouble() }.toFloat()
-        binding.tvMainValTot.text = totalValue.toString() + "€"
     }
 }

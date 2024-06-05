@@ -7,11 +7,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
-import com.li.almacen.data.AlmacenData
 import com.li.almacen.data.ProductData
 import com.li.almacen.databinding.ActivityDetailStockBinding
-import com.li.almacen.kt.CustomArticulo
-import com.li.almacen.kt.listaArticulo
+import com.li.almacen.adapter.CustomArticulo
 
 open class DetailStock : AppCompatActivity() {
     private lateinit var binding : ActivityDetailStockBinding

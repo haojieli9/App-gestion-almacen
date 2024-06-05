@@ -1,4 +1,4 @@
-package com.li.almacen.kt
+package com.li.almacen.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.li.almacen.R
+import com.li.almacen.data.ProductData
 
 
-class ProductAdapter(private var listaArticulos: MutableList<Articulos>) : RecyclerView.Adapter<ProductAdapter.ViewHolderProducto>() {
+class ProductAdapter(private var listaArticulos: MutableList<ProductData>) : RecyclerView.Adapter<ProductAdapter.ViewHolderProducto>() {
 
     class ViewHolderProducto(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvArID: TextView
@@ -20,9 +21,9 @@ class ProductAdapter(private var listaArticulos: MutableList<Articulos>) : Recyc
         }
     }
 
-    private var listener: (e: Articulos, position: Int) -> Unit = { e, position ->  }
+    private var listener: (e: ProductData, position: Int) -> Unit = { e, position ->  }
 
-    fun setOnClickListener(listener: (Articulos, Int) -> Unit) {
+    fun setOnClickListener(listener: (ProductData, Int) -> Unit) {
         this.listener = listener
     }
 
@@ -41,6 +42,6 @@ class ProductAdapter(private var listaArticulos: MutableList<Articulos>) : Recyc
 
     override fun onBindViewHolder(holder: ProductAdapter.ViewHolderProducto, position: Int) {
         holder.tvArID.text = listaArticulos[position].id
-        holder.tvArName.text = listaArticulos[position].nombre
+        holder.tvArName.text = listaArticulos[position].name
     }
 }

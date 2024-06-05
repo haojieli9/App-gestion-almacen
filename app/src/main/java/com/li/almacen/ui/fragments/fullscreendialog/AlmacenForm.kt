@@ -86,7 +86,7 @@ class AlmacenForm : DialogFragment() {
                     true
                 }
                 else -> {
-                    dismiss()
+                    this@AlmacenForm.dismiss()
                     false
                 }
             }
@@ -149,12 +149,38 @@ class AlmacenForm : DialogFragment() {
                 dialog.dismiss()
             }
             .setPositiveButton("Confirmar") { dialog, _ ->
-                stockRegister()
-                dialog.dismiss()
+
+                val formEdit1Text = binding.formEdit1.text.toString()
+                val formEdit2Text = binding.formEdit2.text.toString()
+                val formEdit3Text = binding.formEdit3.text.toString()
+                val formEdit5Text = binding.formEdit5.text.toString()
+                when {
+                    formEdit1Text.isEmpty() -> {
+                        binding.formTil1.error = "Este campo es obligatorio."
+                        Toast.makeText(requireContext(),"El nombre es obligatorio.", Toast.LENGTH_SHORT).show()
+                    }
+                    formEdit2Text.isEmpty() -> {
+                        binding.formTil2.error = "Este campo es obligatorio."
+                        Toast.makeText(requireContext(),"La descripción es obligatoria.", Toast.LENGTH_SHORT).show()
+                    }
+                    formEdit3Text.isEmpty() -> {
+                        binding.formTil3.error = "Este campo es obligatorio."
+                        Toast.makeText(requireContext(),"El encargado es obligatorio.", Toast.LENGTH_SHORT).show()
+                    }
+                    formEdit5Text.isEmpty() -> {
+                        binding.formTil5.error = "Este campo es obligatorio."
+                        Toast.makeText(requireContext(),"La ubicación es obligatoria.", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        stockRegister()
+                        dialog.dismiss()
+                        this@AlmacenForm.dismiss()
+                    }
+                }
             }
-        val dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }
 
     private fun validateEditText(layout: TextInputLayout, edit: TextInputEditText) {
         edit.addTextChangedListener(object : TextWatcher {

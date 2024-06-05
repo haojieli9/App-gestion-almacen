@@ -42,10 +42,12 @@ class DetailsAlmacen : AppCompatActivity() {
     private val userEmail = FirebaseAuth.getInstance().currentUser?.email
     private val almacenViewModel: AlmacenViewModel by viewModels()
     var uri : Uri? = null
+    var newUri : Uri? = null
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
         if (ur != null) {
             binding.detailImage.setImageURI(ur)
             uri = ur
+            newUri = ur
             Log.d("URI", uri.toString())
         } else {
             // no hay imagen
@@ -191,6 +193,7 @@ class DetailsAlmacen : AppCompatActivity() {
                         Toast.makeText(this,"La fecha es obligatoria.", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
+                        this@DetailsAlmacen.finish()
                         dialog.dismiss()
                         guardarCambios()
                     }
@@ -223,7 +226,7 @@ class DetailsAlmacen : AppCompatActivity() {
                 descripcion,
                 empleado,
                 ubicacion,
-                uri,
+                newUri,
                 Date.from(
                     LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()
                 )

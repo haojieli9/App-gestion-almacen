@@ -13,12 +13,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
-import com.li.almacen.kt.CustomAdapter
+import com.li.almacen.adapter.CustomAdapter
 import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
-import com.li.almacen.kt.listaArticulo
 import com.li.almacen.ui.almacen.details.DetailStock
-import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment1
 
 class ActivityAlmacen : AppCompatActivity() {
     private lateinit var binding: ActivityAlmacenBinding
@@ -87,12 +85,6 @@ class ActivityAlmacen : AppCompatActivity() {
     }
 
     private fun initCardView() {
-        //cardview informacion general
-        val totalArticulo = listaArticulo.size
-        binding.tvUnitArt.text = totalArticulo.toString() + " units"
-
-        val totalValue = listaArticulo.sumOf { it.precio.toDouble() }.toFloat()
-        binding.tvValor.text = totalValue.toString() + "€"
 
     }
 
