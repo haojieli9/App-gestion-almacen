@@ -20,8 +20,6 @@
         app:title="Detalles del Almacén"
         app:titleTextColor="@color/custom_blancoHueso" />
 
-
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
