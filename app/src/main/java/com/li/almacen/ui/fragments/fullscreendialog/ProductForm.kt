@@ -2,6 +2,7 @@ package com.li.almacen.ui.fragments.fullscreendialog
 
 import android.app.Dialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -23,10 +24,16 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.zxing.integration.android.IntentIntegrator
 import com.li.almacen.R
+import com.li.almacen.adapter.DataPickerFragment
 import com.li.almacen.data.AlmacenData
+import com.li.almacen.data.CategoryData
 import com.li.almacen.data.ProductData
+import com.li.almacen.data.ProveedorData
 import com.li.almacen.databinding.FormProductBinding
 import com.li.almacen.test.FormAlmacen
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.Date
 
 class ProductForm : DialogFragment() {
     private val db = FirebaseFirestore.getInstance()
@@ -35,14 +42,11 @@ class ProductForm : DialogFragment() {
     private var almacenid = mutableListOf<String?>()
     private var selectedAlmacenId: String? = ""
     private lateinit var binding: FormProductBinding
-
-
-    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null) {
-            binding.imgPicker.setImageURI(uri)
-            Log.d("URI", uri.toString())
-        } else {
-            // no hay imagen
+    var uri : Uri? = null
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
+        if (ur != null) {
+            binding.imgPicker.setImageURI(ur)
+            uri = ur
         }
     }
 
@@ -92,15 +96,18 @@ class ProductForm : DialogFragment() {
         }
 
         // Component validation
-        validateEditText(binding.formTil1, binding.formEdit1)
+        validateEditText(binding.tilName, binding.editName)
+        validateEditTextBarcode(binding.tilBarcode, binding.editBarcode)
 
         binding.imgPicker.setOnClickListener {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
         loadAlmacenes()
+        loadProveedores()
+        loadCategorias()
 
-        binding.formEdit2.setOnItemClickListener { parent, view, position, id ->
+        binding.editAlmacen.setOnItemClickListener { parent, view, position, id ->
             selectedAlmacenId = almacenid[position]
             Log.d("Selected Almacen", "ID: $selectedAlmacenId")
         }
@@ -136,22 +143,6 @@ class ProductForm : DialogFragment() {
         }
     }
 
-    private fun validateEditText(layout: TextInputLayout, edit: TextInputEditText) {
-        edit.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-
-            override fun afterTextChanged(s: Editable?) {
-                val text = s.toString()
-                layout.error = when {
-                    text.isEmpty() -> "Este campo es obligatorio."
-                    else -> null
-                }
-            }
-        })
-    }
-
     private fun loadAlmacenes() {
         db.collection("usuarios").document(userEmail!!).collection("almacenes")
             .get()
@@ -162,8 +153,46 @@ class ProductForm : DialogFragment() {
                 val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
                 almacenid = almacenes.map { it.id }.toMutableList()
 
-                binding.formEdit2.setAdapter(adapter)
-                binding.formEdit2.setDropDownBackgroundResource(android.R.color.white)
+                binding.editAlmacen.setAdapter(adapter)
+                binding.editAlmacen.setDropDownBackgroundResource(android.R.color.white)
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Error al cargar almacenes", e)
+                Toast.makeText(requireContext(), "Error al cargar almacenes.", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun loadProveedores() {
+        db.collection("usuarios").document(userEmail!!).collection("proveedores")
+            .get()
+            .addOnSuccessListener { documents ->
+                val almacenes = documents.map { document ->
+                    ProveedorData(document.id, document.getString("nombre") ?: "")
+                }
+                val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
+                almacenid = almacenes.map { it.id }.toMutableList()
+
+                binding.editProveedor.setAdapter(adapter)
+                binding.editProveedor.setDropDownBackgroundResource(android.R.color.white)
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Error al cargar almacenes", e)
+                Toast.makeText(requireContext(), "Error al cargar almacenes.", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun loadCategorias() {
+        db.collection("usuarios").document(userEmail!!).collection("categorias")
+            .get()
+            .addOnSuccessListener { documents ->
+                val almacenes = documents.map { document ->
+                    CategoryData(document.id, document.getString("name") ?: "")
+                }
+                val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
+                almacenid = almacenes.map { it.id }.toMutableList()
+
+                binding.editCategoria.setAdapter(adapter)
+                binding.editCategoria.setDropDownBackgroundResource(android.R.color.white)
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Error al cargar almacenes", e)
@@ -172,11 +201,18 @@ class ProductForm : DialogFragment() {
     }
 
     private fun saveProduct() {
-        val name = binding.formEdit1.text.toString()
-        val price = binding.formEdit3.text.toString()
-        val stock = binding.formEdit4.text.toString()
+        val name = binding.editName.text.toString()
+        val barcode = binding.editBarcode.text.toString()
+        val almacen = binding.editAlmacen.text.toString()
+        val categoria = binding.editCategoria.text.toString()
+        val proveedor = binding.editProveedor.text.toString()
+        val cantidad = binding.editCantidad.text.toString()
+        val coste = binding.editCoste.text.toString()
+        val venta = binding.editVenta.text.toString()
+        val descripcion = binding.editDescription.text.toString()
+        val fecha = binding.editFecha.text.toString()
 
-        val nuevoProducto = ProductData(null, name, stock, price)
+        val nuevoProducto = ProductData(null, name, barcode, almacen, categoria, proveedor, cantidad, coste, venta, descripcion, fecha, uri, Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))
 
         db.collection("usuarios").document(userEmail!!).collection("productos")
             .add(nuevoProducto)
@@ -200,13 +236,21 @@ class ProductForm : DialogFragment() {
     }
 
     private fun initActions() {
-        binding.formTil5.setEndIconOnClickListener {
+        binding.tilBarcode.setEndIconOnClickListener {
             initScanner()
+        }
+
+        binding.editFecha.setOnClickListener {
+            showDatePickerDialog()
+        }
+
+        binding.tilFecha.setEndIconOnClickListener {
+            showDatePickerDialog()
         }
     }
 
     private fun initScanner() {
-        val integrator = IntentIntegrator(requireActivity())
+        val integrator = IntentIntegrator.forSupportFragment(this)
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
         integrator.setPrompt("BARCODE SCANNER")
         integrator.setTorchEnabled(true)
@@ -221,12 +265,85 @@ class ProductForm : DialogFragment() {
                 Toast.makeText(requireContext(), "Cancelado", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(requireContext(), "El valor escaneado es: " + result.contents, Toast.LENGTH_LONG).show()
-                val intent = Intent(requireContext(), FormAlmacen::class.java)
-                intent.putExtra("scanResult", result.contents)
-                startActivity(intent)
+                binding.editBarcode.setText(result.contents)
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DataPickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(requireActivity().supportFragmentManager, "datePicker")
+    }
+
+    fun onDateSelected(day: Int, month: Int, year: Int) {
+        val selectedDate = "$day/$month/$year"
+        binding.editFecha.setText(selectedDate)
+    }
+
+    private fun validateEditText(layout: TextInputLayout, edit: TextInputEditText) {
+        edit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                val text = s.toString()
+                layout.error = when {
+                    text.isEmpty() -> "Este campo es obligatorio."
+                    else -> null
+                }
+            }
+        })
+    }
+
+    private fun validateEditTextBarcode(layout: TextInputLayout, edit: TextInputEditText) {
+        val errorMessage = "Este campo debe ser un código de barras válido de 13 dígitos."
+
+        fun validate(): Boolean {
+            val text = edit.text.toString()
+            return when {
+                text.isEmpty() -> {
+                    layout.error = "Este campo es obligatorio."
+                    false
+                }
+                text.length != 13 -> {
+                    layout.error = errorMessage
+                    false
+                }
+                !text.all { it.isDigit() } -> {
+                    layout.error = errorMessage
+                    false
+                }
+                else -> {
+                    layout.error = null
+                    true
+                }
+            }
+        }
+
+        edit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                validate()
+            }
+        })
+
+        edit.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                validate()
+            }
+        }
+    }
+
+    // Llama a esta función antes de intentar guardar los datos para validar el campo
+    private fun isValidBarcode(edit: TextInputEditText): Boolean {
+        val text = edit.text.toString()
+        return text.isNotEmpty() && text.length == 13 && text.all { it.isDigit() }
+    }
+
 }

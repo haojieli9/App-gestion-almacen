@@ -1,25 +1,19 @@
 package com.li.almacen.data
 
-import java.math.BigDecimal
-import java.time.LocalDateTime
-/*
-data class ProductData(
-    var id: String? = null,
-    val name: String? = null,
-    val description: String? = null,
-    val sku: String? = null,
-    val barcode: String? = null,
-    val categoryId: Int? = null,
-    val price: BigDecimal? = null,
-    val cost: BigDecimal? = null,
-    val active: Boolean = true,
-    val createdAt: LocalDateTime? = null,
-    val updatedAt: LocalDateTime? = null
-)*/
+import java.util.Date
 
 data class ProductData(
     var id: String? = null,
     val name: String? = null,
+    val barcode: String? = null,
+    val almacenDestino: String? = null,
+    val categoria: String? = null,
+    val proveedor: String? = null,
     val cantidad: String? = null,
-    val price: String? = null,
+    val coste: String? = null,
+    val venta:String? = null,
+    val descriptor: String? = null,
+    val fechaVencimiento: String? = null,
+    val uri : Any? = null,
+    val fechaCreacion: Date = Date()
 )
