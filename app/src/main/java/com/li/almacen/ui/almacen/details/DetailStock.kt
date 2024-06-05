@@ -28,6 +28,13 @@ open class DetailStock : AppCompatActivity() {
 
         // initData
         recyclerViewItem()
+        swipe()
+
+
+        binding.swipe.setOnRefreshListener {
+            recyclerViewItem()
+            binding.swipe.isRefreshing = false
+        }
 
     }
 
@@ -77,7 +84,7 @@ open class DetailStock : AppCompatActivity() {
                             )
                         }.toMutableList()
 
-                        Log.d("Firestore", "Datos: $productList")
+                        Log.d("Firestore", "Datos para detailstock: $productList")
                         adaptador = CustomArticulo(productList)
                         val gridLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                         binding.recyclerView.layoutManager = gridLayoutManager
@@ -90,5 +97,9 @@ open class DetailStock : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Error al obtener relaciones productos_almacenes:", e)
             }
+    }
+
+    private fun swipe() {
+
     }
 }

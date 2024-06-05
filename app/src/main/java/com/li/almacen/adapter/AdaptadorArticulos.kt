@@ -4,11 +4,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.li.almacen.R
+import com.li.almacen.data.AlmacenData
 import com.li.almacen.data.ProductData
 
 class CustomArticulo(private var listaArticulos: MutableList<ProductData>) : RecyclerView.Adapter<CustomArticulo.ViewHolderArticulo>() {
+
+
+    inner class ArticuloDiffCallback(val oldList: MutableList<ProductData>, val newList: MutableList<ProductData>) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].name == newList[newItemPosition].name
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
+    }
 
     class ViewHolderArticulo(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvArID: TextView
@@ -42,5 +58,12 @@ class CustomArticulo(private var listaArticulos: MutableList<ProductData>) : Rec
     override fun onBindViewHolder(holder: CustomArticulo.ViewHolderArticulo, position: Int) {
         holder.tvArID.text = listaArticulos[position].id
         holder.tvArName.text = listaArticulos[position].name
+    }
+
+    fun updateList(newList: MutableList<ProductData>) {
+        val estanteriaDiff = ArticuloDiffCallback(listaArticulos,newList)
+        val result = DiffUtil.calculateDiff(estanteriaDiff)
+        listaArticulos = newList
+        result.dispatchUpdatesTo(this)
     }
 }

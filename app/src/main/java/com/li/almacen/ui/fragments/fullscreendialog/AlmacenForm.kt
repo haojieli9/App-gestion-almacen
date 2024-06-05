@@ -1,7 +1,6 @@
 package com.li.almacen.ui.fragments.fullscreendialog
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -10,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -35,7 +33,7 @@ class AlmacenForm : DialogFragment() {
     private val userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var toolbar: Toolbar? = null
     private val almacenViewModel: AlmacenViewModel by activityViewModels()
-    var uri : Uri? = null
+    var uri: Uri? = null
     private lateinit var binding: FormAlmacenBinding
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
@@ -113,6 +111,7 @@ class AlmacenForm : DialogFragment() {
     }
 
     private fun stockRegister() {
+        // Verificar si el fragmento está añadido antes de proceder
         if (!isAdded) return
 
         val nombre = binding.formEdit1.text.toString()
@@ -120,7 +119,10 @@ class AlmacenForm : DialogFragment() {
         val empleado = binding.formEdit3.text.toString()
         val ubicacion = binding.formEdit5.text.toString()
 
-        val nuevoAlmacen = AlmacenData(null, nombre, descripcion, empleado, ubicacion, uri, Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()))
+        val nuevoAlmacen = AlmacenData(
+            null, nombre, descripcion, empleado, ubicacion, uri,
+            Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())
+        )
 
         db.collection("usuarios").document(userEmail!!).collection("almacenes")
             .add(nuevoAlmacen)
@@ -129,17 +131,20 @@ class AlmacenForm : DialogFragment() {
 
                 documentReference.update("id", nuevoAlmacen.id)
                     .addOnSuccessListener {
-                        almacenViewModel.addAlmacen(nuevoAlmacen)
-                        Toast.makeText(requireContext(), "Almacén registrado correctamente.", Toast.LENGTH_LONG).show()
-                        dismiss()
+                        if (isAdded) {
+                            almacenViewModel.addAlmacen(nuevoAlmacen)
+                            Toast.makeText(requireContext(), "Almacén registrado correctamente.", Toast.LENGTH_LONG).show()
+                            dismiss()
+                        }
                     }
             }
             .addOnFailureListener { e ->
                 Log.e("Firestore", "Error al agregar almacén - AlmacenForm 137", e)
-                Toast.makeText(requireContext(), "Error al registrar almacén.", Toast.LENGTH_LONG).show()
+                if (isAdded) {
+                    Toast.makeText(requireContext(), "Error al registrar almacén.", Toast.LENGTH_LONG).show()
+                }
             }
     }
-
 
     private fun confirmDialogBuilder() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
@@ -157,19 +162,19 @@ class AlmacenForm : DialogFragment() {
                 when {
                     formEdit1Text.isEmpty() -> {
                         binding.formTil1.error = "Este campo es obligatorio."
-                        Toast.makeText(requireContext(),"El nombre es obligatorio.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "El nombre es obligatorio.", Toast.LENGTH_SHORT).show()
                     }
                     formEdit2Text.isEmpty() -> {
                         binding.formTil2.error = "Este campo es obligatorio."
-                        Toast.makeText(requireContext(),"La descripción es obligatoria.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "La descripción es obligatoria.", Toast.LENGTH_SHORT).show()
                     }
                     formEdit3Text.isEmpty() -> {
                         binding.formTil3.error = "Este campo es obligatorio."
-                        Toast.makeText(requireContext(),"El encargado es obligatorio.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "El encargado es obligatorio.", Toast.LENGTH_SHORT).show()
                     }
                     formEdit5Text.isEmpty() -> {
                         binding.formTil5.error = "Este campo es obligatorio."
-                        Toast.makeText(requireContext(),"La ubicación es obligatoria.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "La ubicación es obligatoria.", Toast.LENGTH_SHORT).show()
                     }
                     else -> {
                         stockRegister()
@@ -178,9 +183,9 @@ class AlmacenForm : DialogFragment() {
                     }
                 }
             }
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
-        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
 
     private fun validateEditText(layout: TextInputLayout, edit: TextInputEditText) {
         edit.addTextChangedListener(object : TextWatcher {
@@ -198,4 +203,3 @@ class AlmacenForm : DialogFragment() {
         })
     }
 }
-

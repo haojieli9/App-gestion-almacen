@@ -15,9 +15,11 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +33,7 @@ import com.li.almacen.data.ProductData
 import com.li.almacen.data.ProveedorData
 import com.li.almacen.databinding.FormProductBinding
 import com.li.almacen.test.FormAlmacen
+import com.li.almacen.ui.productos.ProductViewModel
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.Date
@@ -41,6 +44,7 @@ class ProductForm : DialogFragment() {
     private var toolbar: Toolbar? = null
     private var almacenid = mutableListOf<String?>()
     private var selectedAlmacenId: String? = ""
+    private val productViewModel: ProductViewModel by viewModels()
     private lateinit var binding: FormProductBinding
     var uri : Uri? = null
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
@@ -108,10 +112,9 @@ class ProductForm : DialogFragment() {
         loadCategorias()
 
         binding.editAlmacen.setOnItemClickListener { parent, view, position, id ->
-            selectedAlmacenId = almacenid[position]
-            Log.d("Selected Almacen", "ID: $selectedAlmacenId")
+                selectedAlmacenId = almacenid[position]
+                Log.d("Selected Almacen", "ID: $selectedAlmacenId")
         }
-
     }
 
     companion object {
@@ -122,7 +125,6 @@ class ProductForm : DialogFragment() {
             return productdialog
         }
     }
-
 
     private fun confirmDialogBuilder() {
         val dialog = Dialog(requireContext())
@@ -170,7 +172,6 @@ class ProductForm : DialogFragment() {
                     ProveedorData(document.id, document.getString("nombre") ?: "")
                 }
                 val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
-                almacenid = almacenes.map { it.id }.toMutableList()
 
                 binding.editProveedor.setAdapter(adapter)
                 binding.editProveedor.setDropDownBackgroundResource(android.R.color.white)
@@ -189,7 +190,6 @@ class ProductForm : DialogFragment() {
                     CategoryData(document.id, document.getString("name") ?: "")
                 }
                 val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
-                almacenid = almacenes.map { it.id }.toMutableList()
 
                 binding.editCategoria.setAdapter(adapter)
                 binding.editCategoria.setDropDownBackgroundResource(android.R.color.white)
@@ -224,6 +224,7 @@ class ProductForm : DialogFragment() {
                             .collection("productos_almacenes")
                             .add(mapOf("productoId" to nuevoProducto.id, "almacenId" to selectedAlmacenId))
                             .addOnSuccessListener {
+                                productViewModel.addProduct(nuevoProducto)
                                 Toast.makeText(requireContext(), "Producto registrado correctamente.", Toast.LENGTH_LONG).show()
                                 this@ProductForm.dismiss()
                             }
