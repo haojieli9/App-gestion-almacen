@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,7 +35,7 @@ open class DetailStock : AppCompatActivity() {
         val almacenId = intent.getStringExtra("id")
 
         if (almacenId == null) {
-            Log.e("Firestore", "Error: almacenId is null DetailStock - 39")
+            Log.e("Firestore", "Error: almacenId is null DetailStock - 37")
             return
         }
 
@@ -56,7 +57,7 @@ open class DetailStock : AppCompatActivity() {
                 }
 
                 if (productIds.isEmpty()) {
-                    Log.e("Firestore", "No productIds found for almacenId: $almacenId DetailStock - 61")
+                    Log.e("Firestore", "No productIds found for almacenId: $almacenId DetailStock - 59")
                     return@addOnSuccessListener
                 }
 
@@ -78,7 +79,7 @@ open class DetailStock : AppCompatActivity() {
 
                         Log.d("Firestore", "Datos: $productList")
                         adaptador = CustomArticulo(productList)
-                        val gridLayoutManager = GridLayoutManager(this, 3)
+                        val gridLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
                         binding.recyclerView.layoutManager = gridLayoutManager
                         binding.recyclerView.adapter = adaptador
                     }

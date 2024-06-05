@@ -61,7 +61,7 @@
     <!-- Descripciones imagen -->
     <string name="description_img">Es una imagen</string>
     <string name="articulos_options">Articulos options</string>
-    <string name="product_name">Name</string>
+    <string name="product_name">NAME OF PRODUCTS CHAIR HAHAHEHE</string>
     <string name="product_image">Product image</string>
     <string name="product_id">AAABBBCCCDDD</string>
     <string name="dropdownmenu_edit">Detalles</string>
@@ -74,6 +74,8 @@
     <string name="name">Nombre</string>
     <string name="id">ID</string>
     <string name="full_direction">Direccion completa</string>
+    <string name="product_categoria">Categoría</string>
+    <string name="product_proveedor">Proveedor</string>
 
 
 </resources>
