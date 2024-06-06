@@ -3,7 +3,6 @@ package com.li.almacen.ui.almacen.details
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldPath
@@ -78,10 +77,17 @@ open class DetailStock : AppCompatActivity() {
                         val productList = productResults.map { document ->
                             ProductData(
                                 document.id,
-                                document.getString("cantidad") ?: "",
                                 document.getString("name") ?: "",
-                                document.getString("price") ?: ""
-                            )
+                                document.getString("barcode") ?: "",
+                                document.getString("almacenDestino") ?: "",
+                                document.getString("categoria") ?: "",
+                                document.getString("proveedor") ?: "",
+                                document.getString("cantidad") ?: "",
+                                document.getString("coste") ?: "",
+                                document.getString("venta") ?: "",
+                                document.getString("descriptor") ?: "",
+                                document.getString("fechaVencimiento") ?: "",
+                                document.getString("uri") ?: "")
                         }.toMutableList()
 
                         Log.d("Firestore", "Datos para detailstock: $productList")

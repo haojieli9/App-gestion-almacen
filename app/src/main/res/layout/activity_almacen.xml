@@ -19,6 +19,7 @@
         app:title="InventFlow"
         app:titleTextColor="@color/custom_blancoHueso" />
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -124,7 +125,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="520dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">

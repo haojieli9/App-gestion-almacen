@@ -67,8 +67,7 @@
                     android:layout_gravity="center_horizontal"
                     android:hint="Nombre"
                     app:helperTextTextColor="@color/black"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="20"
+                    app:counterMaxLength="50"
                     app:endIconMode="clear_text"
                     app:boxBackgroundColor="@color/colorPrimary"
                     app:boxCornerRadiusBottomEnd="8dp"
@@ -80,7 +79,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editName"
-                        android:maxLength="21"
+                        android:maxLength="50"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"

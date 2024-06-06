@@ -28,7 +28,6 @@ class ActivityAlmacen : AppCompatActivity() {
     private var almacenList: MutableList<AlmacenData> = mutableListOf()
     private val bottomSheetFragment = BottomSheetFragment()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAlmacenBinding.inflate(layoutInflater)
@@ -62,6 +61,7 @@ class ActivityAlmacen : AppCompatActivity() {
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
             val intent = Intent(this@ActivityAlmacen, DetailStock::class.java)
             intent.putExtra("id", datos.id)
+            intent.putExtra("nameAlmacen", datos.name)
             startActivity(intent)
         }
 

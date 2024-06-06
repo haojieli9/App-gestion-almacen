@@ -1,5 +1,6 @@
 package com.li.almacen.ui.fragments.fullscreendialog
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -82,6 +84,7 @@ class ProductForm : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         toolbar = binding.toolbar
         initActions()
+        nextTextField()
 
         toolbar?.setNavigationOnClickListener { dismiss() }
         toolbar?.title = "Nuevo producto"
@@ -102,6 +105,9 @@ class ProductForm : DialogFragment() {
         // Component validation
         validateEditText(binding.tilName, binding.editName)
         validateEditTextBarcode(binding.tilBarcode, binding.editBarcode)
+        validateNumericEditText(binding.tilCantidad, binding.editCantidad)
+        validatePriceEditText(binding.tilCoste, binding.editCoste)
+        validatePriceEditText(binding.tilVenta, binding.editVenta)
 
         binding.imgPicker.setOnClickListener {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
@@ -127,22 +133,57 @@ class ProductForm : DialogFragment() {
     }
 
     private fun confirmDialogBuilder() {
-        val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.confirm_dialog)
-        dialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        dialog.setCancelable(false)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("Deseas guardar este producto?")
+            .setTitle("Guardar cambios")
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setPositiveButton("Confirmar") { dialog, _ ->
+
+                val name = binding.editName.text.toString()
+                val almacen = binding.editAlmacen.text.toString()
+                val categoria = binding.editCategoria.text.toString()
+                val proveedor = binding.editProveedor.text.toString()
+                val cantidad = binding.editCantidad.text.toString()
+                val coste = binding.editCoste.text.toString()
+                val venta = binding.editVenta.text.toString()
+                val description = binding.editDescription.text.toString()
+
+                when {
+                    name.isEmpty() -> {
+                        binding.tilName.error = "Este campo es obligatorio."
+                    }
+                    almacen.isEmpty() -> {
+                        binding.tilBarcode.error = "Este campo es obligatorio."
+                    }
+                    categoria.isEmpty() -> {
+                        binding.tilCategoria.error = "Este campo es obligatorio."
+                    }
+                    proveedor.isEmpty() -> {
+                        binding.tilProveedor.error = "Este campo es obligatorio."
+                    }
+                    cantidad.isEmpty() -> {
+                        binding.tilCantidad.error = "Este campo es obligatorio."
+                    }
+                    coste.isEmpty() -> {
+                        binding.tilCoste.error = "Este campo es obligatorio."
+                    }
+                    venta.isEmpty() -> {
+                        binding.tilVenta.error = "Este campo es obligatorio."
+                    }
+                    description.isEmpty() -> {
+                        binding.tilDescription.error = "Este campo es obligatorio."
+                    }
+                    else -> {
+                        saveProduct()
+                        dialog.dismiss()
+                        this@ProductForm.dismiss()
+                    }
+                }
+            }
+        val dialog: AlertDialog = builder.create()
         dialog.show()
-
-        dialog.findViewById<Button>(R.id.testButton1).setOnClickListener {
-            Toast.makeText(requireContext(), "Operación cancelada.", Toast.LENGTH_LONG).show()
-            dialog.dismiss()
-            dismiss()
-        }
-
-        dialog.findViewById<Button>(R.id.testButton2).setOnClickListener {
-            saveProduct()
-            dialog.dismiss()
-        }
     }
 
     private fun loadAlmacenes() {
@@ -201,6 +242,8 @@ class ProductForm : DialogFragment() {
     }
 
     private fun saveProduct() {
+        if (!isAdded) return
+
         val name = binding.editName.text.toString()
         val barcode = binding.editBarcode.text.toString()
         val almacen = binding.editAlmacen.text.toString()
@@ -224,9 +267,11 @@ class ProductForm : DialogFragment() {
                             .collection("productos_almacenes")
                             .add(mapOf("productoId" to nuevoProducto.id, "almacenId" to selectedAlmacenId))
                             .addOnSuccessListener {
-                                productViewModel.addProduct(nuevoProducto)
-                                Toast.makeText(requireContext(), "Producto registrado correctamente.", Toast.LENGTH_LONG).show()
-                                this@ProductForm.dismiss()
+                                if (isAdded) {
+                                    productViewModel.addProduct(nuevoProducto)
+                                    Toast.makeText(requireContext(), "Producto registrado correctamente.", Toast.LENGTH_LONG).show()
+                                    this@ProductForm.dismiss()
+                                }
                             }
                     }
             }
@@ -238,6 +283,14 @@ class ProductForm : DialogFragment() {
 
     private fun initActions() {
         binding.tilBarcode.setEndIconOnClickListener {
+            initScanner()
+        }
+
+        binding.tilBarcode.setOnClickListener {
+            initScanner()
+        }
+
+        binding.editBarcode.setOnClickListener {
             initScanner()
         }
 
@@ -299,6 +352,42 @@ class ProductForm : DialogFragment() {
         })
     }
 
+    private fun validateNumericEditText(layout: TextInputLayout, edit: TextInputEditText) {
+        edit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                val text = s.toString()
+                layout.error = when {
+                    text.isEmpty() -> "Este campo es obligatorio."
+                    !text.matches(Regex("\\d+")) -> "Solo se permiten números."
+                    else -> null
+                }
+            }
+        })
+    }
+
+    private fun validatePriceEditText(layout: TextInputLayout, edit: TextInputEditText) {
+        edit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                val text = s.toString()
+                layout.error = when {
+                    text.isEmpty() -> "Este campo es obligatorio."
+                    !text.matches(Regex("\\d+(\\.\\d{1,2})?")) -> "Formato inválido. Solo se permiten números y hasta dos decimales."
+                    else -> null
+                }
+            }
+        })
+    }
+
+
+
     private fun validateEditTextBarcode(layout: TextInputLayout, edit: TextInputEditText) {
         val errorMessage = "Este campo debe ser un código de barras válido de 13 dígitos."
 
@@ -347,4 +436,23 @@ class ProductForm : DialogFragment() {
         return text.isNotEmpty() && text.length == 13 && text.all { it.isDigit() }
     }
 
+    private fun setUpNextField(edit: TextInputEditText, nextEdit: TextInputEditText?) {
+        edit.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                nextEdit?.requestFocus()
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    private fun nextTextField() {
+        setUpNextField(binding.editName, binding.editBarcode)
+        setUpNextField(binding.editBarcode, binding.editCantidad)
+        setUpNextField(binding.editCantidad, binding.editCoste)
+        setUpNextField(binding.editCoste, binding.editVenta)
+        setUpNextField(binding.editVenta, binding.editFecha)
+        setUpNextField(binding.editFecha, null)
+    }
 }

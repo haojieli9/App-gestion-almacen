@@ -17,19 +17,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="Detalles del Almacén"
+        app:title="Todos productos"
         app:titleTextColor="@color/custom_blancoHueso" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/swipe"
-        android:layout_marginTop="80dp"
-        app:layout_constraintTop_toTopOf="@id/toolbar">
+        android:layout_width="match_parent"
+        android:layout_height="700dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <ScrollView
+            android:id="@+id/scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +39,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,14 +51,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:layout_editor_absoluteX="-6dp"
-                    tools:layout_editor_absoluteY="243dp"
-                    tools:listitem="@layout/viewholder_articulos" />
+                    tools:layout_editor_absoluteY="243dp" />
 
             </LinearLayout>
         </ScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:backgroundTint="@color/custom_button"
+        android:clickable="true"
+        android:contentDescription="@string/description_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/swipe"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"
+        app:srcCompat="@drawable/ic_button_add" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
