@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.data.ProductData
 import com.li.almacen.databinding.ActivityDetailStockBinding
 import com.li.almacen.adapter.CustomArticulo
+import com.li.almacen.ui.fragments.fullscreendialog.ProductForm
 
 open class DetailStock : AppCompatActivity() {
     private lateinit var binding : ActivityDetailStockBinding
@@ -27,6 +28,7 @@ open class DetailStock : AppCompatActivity() {
 
         // initData
         recyclerViewItem()
+        actionsStart()
         swipe()
 
 
@@ -107,5 +109,16 @@ open class DetailStock : AppCompatActivity() {
 
     private fun swipe() {
 
+    }
+
+    private fun actionsStart() {
+        binding.floatingButton.setOnClickListener {
+            openDialogProduct()
+        }
+    }
+
+    private fun openDialogProduct() {
+        val dialog = ProductForm()
+        dialog.show(supportFragmentManager, "FORMPRODUCTO")
     }
 }

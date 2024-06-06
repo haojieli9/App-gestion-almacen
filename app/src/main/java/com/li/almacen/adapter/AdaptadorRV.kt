@@ -3,6 +3,7 @@ package com.li.almacen.adapter
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
@@ -45,11 +47,13 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
         val tvNombre : TextView
         val tvUbicacion : TextView
         val tvPopupMenu : ImageView
+        val image: ImageView
         init {
             tvID = itemView.findViewById(R.id.idProducto)
             tvNombre = itemView.findViewById(R.id.productName)
             tvUbicacion = itemView.findViewById(R.id.tvUbicacion)
             tvPopupMenu = itemView.findViewById(R.id.tvPopupMenu)
+            image = itemView.findViewById(R.id.imageView)
 
         }
     }
@@ -79,10 +83,23 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
     override fun getItemCount(): Int = listaAlmacen.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val articulo = listaAlmacen[position]
         //inicio recyclerview con la informacion
         holder.tvID.text = listaAlmacen[position].id
         holder.tvNombre.text = listaAlmacen[position].name
         holder.tvUbicacion.text = listaAlmacen[position].ubicacion
+        val uriString = articulo.uri as String?
+        if (!uriString.isNullOrEmpty()) {
+            Log.d("DetailsAlmacen", "Loading image from URI: $uriString")
+            val uri = Uri.parse(uriString)
+            Glide.with(holder.itemView.context)
+                .load(uri)
+                .error(R.drawable.png_almacen) // Imagen en caso de error
+                .into(holder.image)
+        } else {
+            Log.d("DetailsAlmacen", "URI is null or empty, using default image.")
+            holder.image.setImageResource(R.drawable.png_almacen) // Imagen por defecto
+        }
 
         //inicio accion clickable
         holder.itemView.setOnClickListener{

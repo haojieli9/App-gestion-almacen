@@ -31,7 +31,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.btsBtn1.setOnClickListener { openDialog() }
 
-
         binding.btnScanner.setOnClickListener { initScanner() }
 
         binding.btsBtn2.setOnClickListener { openDialogProduct() }

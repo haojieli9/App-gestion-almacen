@@ -61,10 +61,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:hint="Nombre"
-                    app:helperText="Requerido*"
                     app:helperTextTextColor="@color/black"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="40"
+                    app:counterMaxLength="50"
                     app:endIconMode="clear_text"
                     app:boxBackgroundColor="@color/colorPrimary"
                     app:boxCornerRadiusBottomEnd="8dp"
@@ -95,9 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:hint="Responsable"
-                app:helperText="Responsable del almacén*"
                 app:helperTextTextColor="@color/black"
-                app:counterEnabled="true"
                 app:counterMaxLength="60"
                 app:endIconMode="clear_text"
                 app:boxBackgroundColor="@color/colorPrimary"
@@ -132,7 +128,7 @@
                 app:helperText="Notas del almacén*"
                 app:helperTextTextColor="@color/black"
                 app:counterEnabled="true"
-                app:counterMaxLength="100"
+                app:counterMaxLength="200"
                 app:endIconMode="clear_text"
                 app:boxBackgroundColor="@color/colorPrimary"
                 app:boxCornerRadiusBottomEnd="8dp"
@@ -144,7 +140,7 @@
                 app:startIconDrawable="@drawable/svg_descripcion">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:maxLines="3"
+                    android:maxLines="4"
                     android:id="@+id/formEdit2"
                     android:maxLength="51"
                     android:layout_width="match_parent"
@@ -172,8 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:hint="Direccion completa"
-                    app:counterEnabled="true"
-                    app:counterMaxLength="50"
+                    app:counterMaxLength="100"
                     app:endIconMode="clear_text"
                     app:boxBackgroundColor="@color/colorPrimary"
                     app:boxCornerRadiusBottomEnd="8dp"
@@ -187,7 +182,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/formEdit5"
                         android:maxLength="51"
-                        android:maxLines="3"
+                        android:maxLines="2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"/>

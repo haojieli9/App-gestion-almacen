@@ -86,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/almacen_disponible"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/gray" />
 
                 <TextView
@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:text="@string/almacen_totalart"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textColor="@color/gray" />
 
                 <TextView
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:text="@string/almacen_valor"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textAlignment="center"
                     android:textColor="@color/gray" />
 

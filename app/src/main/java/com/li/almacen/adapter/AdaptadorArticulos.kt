@@ -68,7 +68,7 @@ class CustomArticulo(private var listaArticulos: MutableList<ProductData>) : Rec
     override fun onBindViewHolder(holder: ViewHolderArticulo, position: Int) {
         val articulo = listaArticulos[position]
 
-        holder.tvArID.text = listaArticulos[position].id
+        holder.tvArID.text = listaArticulos[position].barcode
         holder.tvArName.text = listaArticulos[position].name
         holder.tvProCant.text = listaArticulos[position].cantidad
         holder.tvPrecio.text = listaArticulos[position].venta

@@ -48,6 +48,8 @@ class ProductForm : DialogFragment() {
     private var selectedAlmacenId: String? = ""
     private val productViewModel: ProductViewModel by viewModels()
     private lateinit var binding: FormProductBinding
+    private var isFormModified = false
+
     var uri : Uri? = null
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
         if (ur != null) {
@@ -86,7 +88,7 @@ class ProductForm : DialogFragment() {
         initActions()
         nextTextField()
 
-        toolbar?.setNavigationOnClickListener { dismiss() }
+        toolbar?.setNavigationOnClickListener { formModified() }
         toolbar?.title = "Nuevo producto"
         toolbar?.inflateMenu(R.menu.example_dialog)
         toolbar?.setOnMenuItemClickListener { menuItem ->
@@ -96,7 +98,19 @@ class ProductForm : DialogFragment() {
                     true
                 }
                 else -> {
-                    dismiss()
+                    if (isFormModified) {
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Atención")
+                            .setMessage("Deseas  salir sin guardar los cambios?")
+                            .setNegativeButton("Cancelar") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .setPositiveButton("Confirmar") { dialog, _ ->
+                                dialog.dismiss()
+                                this@ProductForm.dismiss()
+                            }
+                            .show()
+                    }
                     false
                 }
             }
@@ -340,7 +354,7 @@ class ProductForm : DialogFragment() {
         edit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { isFormModified = true }
 
             override fun afterTextChanged(s: Editable?) {
                 val text = s.toString()
@@ -356,7 +370,7 @@ class ProductForm : DialogFragment() {
         edit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { isFormModified = true }
 
             override fun afterTextChanged(s: Editable?) {
                 val text = s.toString()
@@ -373,7 +387,7 @@ class ProductForm : DialogFragment() {
         edit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { isFormModified = true }
 
             override fun afterTextChanged(s: Editable?) {
                 val text = s.toString()
@@ -416,7 +430,7 @@ class ProductForm : DialogFragment() {
         edit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { isFormModified = true }
 
             override fun afterTextChanged(s: Editable?) {
                 validate()
@@ -454,5 +468,23 @@ class ProductForm : DialogFragment() {
         setUpNextField(binding.editCoste, binding.editVenta)
         setUpNextField(binding.editVenta, binding.editFecha)
         setUpNextField(binding.editFecha, null)
+    }
+
+    private fun formModified() {
+        if (isFormModified) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Atención")
+                .setMessage("Deseas  salir sin guardar los cambios?")
+                .setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton("Confirmar") { dialog, _ ->
+                    dialog.dismiss()
+                    this@ProductForm.dismiss()
+                }
+                .show()
+        } else {
+            this@ProductForm.dismiss()
+        }
     }
 }

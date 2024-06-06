@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,8 @@ class AlmacenForm : DialogFragment() {
     private val almacenViewModel: AlmacenViewModel by activityViewModels()
     var uri: Uri? = null
     private lateinit var binding: FormAlmacenBinding
+    private var isFormModified = false
+
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
         if (ur != null) {
@@ -73,8 +76,9 @@ class AlmacenForm : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         toolbar = binding.toolbar
+        nextTextField()
 
-        toolbar?.setNavigationOnClickListener { dismiss() }
+        toolbar?.setNavigationOnClickListener { formModified() }
         toolbar?.title = "Nuevo almacen"
         toolbar?.inflateMenu(R.menu.example_dialog)
         toolbar?.setOnMenuItemClickListener { menuItem ->
@@ -191,7 +195,7 @@ class AlmacenForm : DialogFragment() {
         edit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { isFormModified = true }
 
             override fun afterTextChanged(s: Editable?) {
                 val text = s.toString()
@@ -201,5 +205,45 @@ class AlmacenForm : DialogFragment() {
                 }
             }
         })
+    }
+
+    private fun formModified() {
+        if (isFormModified) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Atención")
+                .setMessage("Deseas  salir sin guardar los cambios?")
+                .setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton("Confirmar") { dialog, _ ->
+                    dialog.dismiss()
+                    this@AlmacenForm.dismiss()
+                }
+                .show()
+        } else {
+            this@AlmacenForm.dismiss()
+        }
+    }
+
+    // Llama a esta función antes de intentar guardar los datos para validar el campo
+    private fun isValidBarcode(edit: TextInputEditText): Boolean {
+        val text = edit.text.toString()
+        return text.isNotEmpty() && text.length == 13 && text.all { it.isDigit() }
+    }
+
+    private fun setUpNextField(edit: TextInputEditText, nextEdit: TextInputEditText?) {
+        edit.setOnKeyListener { _, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                nextEdit?.requestFocus()
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    private fun nextTextField() {
+        setUpNextField(binding.formEdit1, binding.formEdit3)
+        setUpNextField(binding.formEdit2, binding.formEdit5)
     }
 }
