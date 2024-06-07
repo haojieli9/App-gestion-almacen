@@ -3,20 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="140dp">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@drawable/cardview_selector"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="6dp"
-        app:cardElevation="4dp"
+        app:cardElevation="0dp"
         app:cardPreventCornerOverlap="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +39,7 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/tvOption"
+            android:id="@+id/imgOption"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginStart="335dp"
@@ -82,14 +77,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="255dp"
             android:layout_marginTop="85dp"
-            android:text="Precio:"
+            android:text="Precio/Uni:"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvPrecio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="303dp"
+            android:layout_marginStart="330dp"
             android:layout_marginTop="85dp"
             android:text="0,99999€" />
     </androidx.cardview.widget.CardView>

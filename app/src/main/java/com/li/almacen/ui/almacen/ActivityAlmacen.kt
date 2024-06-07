@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -49,9 +50,11 @@ class ActivityAlmacen : AppCompatActivity() {
         }
 
         //inicio recyclerview
+        val decorator = DividerItemDecoration(this@ActivityAlmacen, DividerItemDecoration.VERTICAL)
         adaptador = CustomAdapter(almacenList)
         binding.rvAlma.adapter = adaptador
         binding.rvAlma.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvAlma.addItemDecoration(decorator)
 
         almacenViewModel.almacenList.observe(this, Observer { almacenList ->
             adaptador.updateList(almacenList)
@@ -61,6 +64,7 @@ class ActivityAlmacen : AppCompatActivity() {
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
             val intent = Intent(this@ActivityAlmacen, DetailStock::class.java)
             intent.putExtra("id", datos.id)
+            intent.putExtra("idAlmacen", datos.id)
             intent.putExtra("nameAlmacen", datos.name)
             startActivity(intent)
         }

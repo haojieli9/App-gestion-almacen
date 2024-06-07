@@ -2,6 +2,7 @@ package com.li.almacen.ui.fragments.fullscreendialog
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -49,6 +50,8 @@ class ProductForm : DialogFragment() {
     private val productViewModel: ProductViewModel by viewModels()
     private lateinit var binding: FormProductBinding
     private var isFormModified = false
+    private var almacenName: String? = null
+    private var idAlmacen: String? = null
 
     var uri : Uri? = null
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
@@ -71,6 +74,9 @@ class ProductForm : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStyle(STYLE_NORMAL, R.style.AppTheme_FullScreenDialog)
+        almacenName = arguments?.getString(ARG_ALMACEN_NAME)
+        idAlmacen = arguments?.getString(ARG_ALMACEN_ID)
+
     }
 
     override fun onCreateView(
@@ -132,17 +138,34 @@ class ProductForm : DialogFragment() {
         loadCategorias()
 
         binding.editAlmacen.setOnItemClickListener { parent, view, position, id ->
+            if (!almacenName.isNullOrEmpty()) {
+                selectedAlmacenId = idAlmacen
+
+            } else {
                 selectedAlmacenId = almacenid[position]
                 Log.d("Selected Almacen", "ID: $selectedAlmacenId")
+            }
         }
     }
 
     companion object {
-        private const val TAG = "FORMALMACEN"
-        fun display(fragmentManager: FragmentManager?): ProductForm {
-            val productdialog = ProductForm()
-            productdialog.show(fragmentManager!!, TAG)
-            return productdialog
+        private const val TAG = "FORMPRODUCT"
+        private const val ARG_ALMACEN_NAME = "nameAlmacen"
+        private const val ARG_ALMACEN_ID = "idAlmacen"
+
+        fun display(fragmentManager: FragmentManager, almacenName: String?, almacenId: String?): ProductForm {
+            val productDialog = newInstance(almacenName, almacenId)
+            productDialog.show(fragmentManager, TAG)
+            return productDialog
+        }
+
+        fun newInstance(almacenName: String?, almacenId: String?): ProductForm {
+            val args = Bundle()
+            args.putString(ARG_ALMACEN_NAME, almacenName)
+            args.putString(ARG_ALMACEN_ID, almacenId)
+            val fragment = ProductForm()
+            fragment.arguments = args
+            return fragment
         }
     }
 
@@ -201,22 +224,29 @@ class ProductForm : DialogFragment() {
     }
 
     private fun loadAlmacenes() {
-        db.collection("usuarios").document(userEmail!!).collection("almacenes")
-            .get()
-            .addOnSuccessListener { documents ->
-                val almacenes = documents.map { document ->
-                    AlmacenData(document.id, document.getString("name") ?: "")
-                }
-                val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
-                almacenid = almacenes.map { it.id }.toMutableList()
+        if (!almacenName.isNullOrEmpty()) {
+            val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, listOf(almacenName!!))
+            binding.editAlmacen.setAdapter(adapter)
+            binding.editAlmacen.setDropDownBackgroundResource(android.R.color.white)
 
-                binding.editAlmacen.setAdapter(adapter)
-                binding.editAlmacen.setDropDownBackgroundResource(android.R.color.white)
-            }
-            .addOnFailureListener { e ->
-                Log.e("Firestore", "Error al cargar almacenes", e)
-                Toast.makeText(requireContext(), "Error al cargar almacenes.", Toast.LENGTH_LONG).show()
-            }
+        } else {
+            db.collection("usuarios").document(userEmail!!).collection("almacenes")
+                .get()
+                .addOnSuccessListener { documents ->
+                    val almacenes = documents.map { document ->
+                        AlmacenData(document.id, document.getString("name") ?: "")
+                    }
+                    val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
+                    almacenid = almacenes.map { it.id }.toMutableList()
+
+                    binding.editAlmacen.setAdapter(adapter)
+                    binding.editAlmacen.setDropDownBackgroundResource(android.R.color.white)
+                }
+                .addOnFailureListener { e ->
+                    Log.e("Firestore", "Error al cargar almacenes", e)
+                    Toast.makeText(requireContext(), "Error al cargar almacenes.", Toast.LENGTH_LONG).show()
+                }
+        }
     }
 
     private fun loadProveedores() {
@@ -345,7 +375,7 @@ class ProductForm : DialogFragment() {
         datePicker.show(requireActivity().supportFragmentManager, "datePicker")
     }
 
-    fun onDateSelected(day: Int, month: Int, year: Int) {
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
         val selectedDate = "$day/$month/$year"
         binding.editFecha.setText(selectedDate)
     }
@@ -376,6 +406,7 @@ class ProductForm : DialogFragment() {
                 val text = s.toString()
                 layout.error = when {
                     text.isEmpty() -> "Este campo es obligatorio."
+                    text.toInt() <= 0 -> "No se permiten números inferior a 0."
                     !text.matches(Regex("\\d+")) -> "Solo se permiten números."
                     else -> null
                 }
@@ -394,12 +425,12 @@ class ProductForm : DialogFragment() {
                 layout.error = when {
                     text.isEmpty() -> "Este campo es obligatorio."
                     !text.matches(Regex("\\d+(\\.\\d{1,2})?")) -> "Formato inválido. Solo se permiten números y hasta dos decimales."
+                    text.toDoubleOrNull()?.let { it <= 0 } == true -> "No se permiten números inferior a 0."
                     else -> null
                 }
             }
         })
     }
-
 
 
     private fun validateEditTextBarcode(layout: TextInputLayout, edit: TextInputEditText) {
@@ -442,12 +473,6 @@ class ProductForm : DialogFragment() {
                 validate()
             }
         }
-    }
-
-    // Llama a esta función antes de intentar guardar los datos para validar el campo
-    private fun isValidBarcode(edit: TextInputEditText): Boolean {
-        val text = edit.text.toString()
-        return text.isNotEmpty() && text.length == 13 && text.all { it.isDigit() }
     }
 
     private fun setUpNextField(edit: TextInputEditText, nextEdit: TextInputEditText?) {

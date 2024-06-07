@@ -49,11 +49,8 @@ class DetailsAlmacen : AppCompatActivity() {
             uri = ur
             newUri = ur
             Log.d("URI", uri.toString())
-        } else {
-            // no hay imagen
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -254,5 +251,4 @@ class DetailsAlmacen : AppCompatActivity() {
                 }
         }
     }
-
 }

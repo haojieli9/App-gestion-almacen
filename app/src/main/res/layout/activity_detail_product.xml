@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/custom_button"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="Detalle producto"
+            app:titleTextColor="@color/custom_blancoHueso" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/imgPicker"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:src="@drawable/png_file"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Datos productos"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:startIconDrawable="@drawable/svg_formname"
+
+                    android:id="@+id/tilName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Nombre"
+                    app:helperTextTextColor="@color/black"
+                    app:counterMaxLength="50"
+                    app:endIconMode="clear_text"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeWidth="2dp"
+                    app:errorTextAppearance="@style/HintTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editName"
+                        android:maxLength="50"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:maxLines="1"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="10dp"
+                    app:startIconDrawable="@drawable/svg_barcode"
+
+                    android:id="@+id/tilBarcode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Codigo barra"
+                    app:helperTextTextColor="@color/black"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="13"
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@drawable/svg_scanner"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeWidth="2dp"
+                    app:errorTextAppearance="@style/HintTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editBarcode"
+                        android:maxLength="13"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:maxLines="1"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:startIconDrawable="@drawable/svg_formname"
+
+                    android:id="@+id/tilAlmacen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Almacen destino"
+                    app:helperTextTextColor="@color/black"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeWidth="2dp"
+                    app:errorTextAppearance="@style/HintTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editAlmacen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:startIconDrawable="@drawable/svg_category"
+
+                    android:id="@+id/tilCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="@string/product_categoria"
+                    app:helperTextTextColor="@color/black"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeWidth="2dp"
+                    app:errorTextAppearance="@style/HintTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editCategoria"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:startIconDrawable="@drawable/img_proveedor"
+
+                    android:id="@+id/tilProveedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="@string/product_proveedor"
+                    app:helperTextTextColor="@color/black"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeWidth="2dp"
+                    app:errorTextAppearance="@style/HintTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editProveedor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:id="@+id/tilCantidad"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="Cantidad"
+                        app:helperTextTextColor="@color/black"
+                        app:endIconMode="custom"
+                        app:boxBackgroundColor="@color/colorPrimary"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeWidth="2dp"
+                        app:errorTextAppearance="@style/HintTextAppearance"
+                        app:suffixText="Unit">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editCantidad"
+                            android:maxLength="15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:maxLines="1"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_marginStart="10dp"
+
+                        android:id="@+id/tilCoste"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:hint="Coste"
+                        app:helperTextTextColor="@color/black"
+                        app:endIconMode="custom"
+                        app:boxBackgroundColor="@color/colorPrimary"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeWidth="2dp"
+                        app:errorTextAppearance="@style/HintTextAppearance"
+                        app:suffixText="€">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editCoste"
+                            android:maxLength="15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@android:color/black"
+                            android:maxLines="1"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="10dp"
+                    android:id="@+id/tilVenta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Precio venta"
+                    app:startIconDrawable="@drawable/svg_price"
+                    app:helperTextTextColor="@color/black"
+                    app:endIconMode="custom"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeWidth="2dp"
+                    app:errorTextAppearance="@style/HintTextAppearance"
+                    app:suffixText="€">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editVenta"
+                        android:maxLength="15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:maxLines="1"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_margin="10dp"
+                    app:startIconDrawable="@drawable/svg_formname"
+
+                    android:id="@+id/tilDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Descripcion"
+                    app:helperTextTextColor="@color/black"
+                    app:counterMaxLength="100"
+                    app:endIconMode="clear_text"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeWidth="2dp"
+                    app:errorTextAppearance="@style/HintTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editDescription"
+                        android:maxLength="21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:maxLines="3"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="40dp"
+                    app:startIconDrawable="@drawable/svg_calendar"
+
+                    android:id="@+id/tilFecha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:hint="Fecha venticimiento"
+                    app:helperTextTextColor="@color/black"
+                    app:counterMaxLength="100"
+                    app:endIconMode="clear_text"
+                    app:helperText="Opcional*"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeWidth="2dp"
+                    app:errorTextAppearance="@style/HintTextAppearance">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editFecha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

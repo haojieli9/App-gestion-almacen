@@ -124,7 +124,7 @@
 
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
 />
 
                 <TextView
@@ -135,7 +135,7 @@
                     android:text="0 unit"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
 />
 
                 <TextView
@@ -146,7 +146,7 @@
                     android:text="2401€"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
 
 
             </LinearLayout>
