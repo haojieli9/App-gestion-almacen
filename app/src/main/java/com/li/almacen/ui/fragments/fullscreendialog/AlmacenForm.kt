@@ -10,6 +10,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -23,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
+import com.li.almacen.data.EmpleadoData
+import com.li.almacen.data.ProveedorData
 import com.li.almacen.databinding.FormAlmacenBinding
 import com.li.almacen.ui.almacen.AlmacenViewModel
 import java.time.LocalDate
@@ -77,6 +80,7 @@ class AlmacenForm : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         toolbar = binding.toolbar
         nextTextField()
+        loadProveedores()
 
         toolbar?.setNavigationOnClickListener { formModified() }
         toolbar?.title = "Nuevo almacen"
@@ -97,7 +101,6 @@ class AlmacenForm : DialogFragment() {
         // Component validation
         validateEditText(binding.formTil1, binding.formEdit1)
         validateEditText(binding.formTil2, binding.formEdit2)
-        validateEditText(binding.formTil3, binding.formEdit3)
         validateEditText(binding.formTil5, binding.formEdit5)
 
         binding.imgPicker.setOnClickListener {
@@ -243,7 +246,26 @@ class AlmacenForm : DialogFragment() {
     }
 
     private fun nextTextField() {
-        setUpNextField(binding.formEdit1, binding.formEdit3)
+        setUpNextField(binding.formEdit1, binding.formEdit2)
         setUpNextField(binding.formEdit2, binding.formEdit5)
+        setUpNextField(binding.formEdit5, null)
     }
+
+    private fun loadProveedores() {
+        db.collection("usuarios").document(userEmail!!).collection("empleados")
+            .get()
+            .addOnSuccessListener { documents ->
+                val almacenes = documents.map { document ->
+                    EmpleadoData(document.id, document.getString("nombre") ?: "")
+                }
+                val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item1, almacenes.map { it.name })
+                binding.formEdit3.setAdapter(adapter)
+                binding.formEdit3.setDropDownBackgroundResource(android.R.color.white)
+            }
+            .addOnFailureListener { e ->
+                Log.e("Firestore", "Error al cargar almacenes", e)
+                Toast.makeText(requireContext(), "Error al cargar almacenes.", Toast.LENGTH_LONG).show()
+            }
+    }
+
 }

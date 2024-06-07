@@ -87,6 +87,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginTop="10dp"
+                style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
 
                 android:id="@+id/formTil3"
                 android:layout_width="match_parent"
@@ -94,8 +95,6 @@
                 android:layout_gravity="center_horizontal"
                 android:hint="Responsable"
                 app:helperTextTextColor="@color/black"
-                app:counterMaxLength="60"
-                app:endIconMode="clear_text"
                 app:boxBackgroundColor="@color/colorPrimary"
                 app:boxCornerRadiusBottomEnd="8dp"
                 app:boxCornerRadiusBottomStart="8dp"
@@ -105,7 +104,7 @@
                 app:errorTextAppearance="@style/HintTextAppearance"
                 app:startIconDrawable="@drawable/svg_empleado">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/formEdit3"
                     android:maxLength="51"
                     android:layout_width="match_parent"
@@ -147,7 +146,6 @@
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
             <TextView
