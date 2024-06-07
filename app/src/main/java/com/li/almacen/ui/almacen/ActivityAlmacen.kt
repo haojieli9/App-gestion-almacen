@@ -18,11 +18,14 @@ import com.li.almacen.adapter.CustomAdapter
 import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.ui.almacen.details.DetailStock
+import com.li.almacen.ui.productos.ProductViewModel
 
 class ActivityAlmacen : AppCompatActivity() {
     private lateinit var binding: ActivityAlmacenBinding
     private lateinit var adaptador : CustomAdapter
     private val almacenViewModel: AlmacenViewModel by viewModels()
+    private val productViewModel : ProductViewModel by viewModels()
+
 
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var db = FirebaseFirestore.getInstance()
@@ -58,7 +61,12 @@ class ActivityAlmacen : AppCompatActivity() {
 
         almacenViewModel.almacenList.observe(this, Observer { almacenList ->
             adaptador.updateList(almacenList)
-            binding.tvCantAlm.text = almacenList.size.toString()
+            binding.tvAlm.text = almacenList.size.toString()
+        })
+
+        productViewModel.productList.observe(this, Observer { productList ->
+            binding.tvArt.text = productList.size.toString()
+            binding.tvValor.text = productList.sumOf { it.venta?.toDouble() ?: 0.0 }.toString()
         })
 
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
@@ -72,6 +80,14 @@ class ActivityAlmacen : AppCompatActivity() {
         adaptador.setOptionClickListener { datos: AlmacenData, _: Int ->
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        productViewModel.productList.observe(this, Observer { productList ->
+            binding.tvArt.text = productList.size.toString()
+            binding.tvValor.text = productList.sumOf { it.venta?.toDouble() ?: 0.0 }.toString()
+        })
     }
 
     private fun recyclerViewItem() {

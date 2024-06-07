@@ -1,8 +1,6 @@
 package com.li.almacen.ui.fragments.fullscreendialog
 
 import android.app.AlertDialog
-import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,11 +12,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
@@ -35,7 +31,6 @@ import com.li.almacen.data.CategoryData
 import com.li.almacen.data.ProductData
 import com.li.almacen.data.ProveedorData
 import com.li.almacen.databinding.FormProductBinding
-import com.li.almacen.test.FormAlmacen
 import com.li.almacen.ui.productos.ProductViewModel
 import java.time.LocalDate
 import java.time.ZoneId
@@ -406,13 +401,14 @@ class ProductForm : DialogFragment() {
                 val text = s.toString()
                 layout.error = when {
                     text.isEmpty() -> "Este campo es obligatorio."
-                    text.toInt() <= 0 -> "No se permiten números inferior a 0."
                     !text.matches(Regex("\\d+")) -> "Solo se permiten números."
+                    text.toIntOrNull() == null || text.toInt() <= 0 -> "No se permiten números inferior a 0."
                     else -> null
                 }
             }
         })
     }
+
 
     private fun validatePriceEditText(layout: TextInputLayout, edit: TextInputEditText) {
         edit.addTextChangedListener(object : TextWatcher {

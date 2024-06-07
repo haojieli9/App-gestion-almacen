@@ -1,10 +1,13 @@
 package com.li.almacen.ui.almacen.details
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -15,6 +18,7 @@ import com.li.almacen.databinding.ActivityDetailStockBinding
 import com.li.almacen.adapter.CustomArticulo
 import com.li.almacen.ui.fragments.fullscreendialog.ProductForm
 import com.li.almacen.ui.productos.ProductViewModel
+import com.li.almacen.ui.productos.details.DetailProduct
 
 open class DetailStock : AppCompatActivity() {
     private lateinit var binding : ActivityDetailStockBinding
@@ -29,7 +33,13 @@ open class DetailStock : AppCompatActivity() {
         binding = ActivityDetailStockBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // initData
+        adaptador = CustomArticulo(productViewModel, productList)
+        val decorator = DividerItemDecoration(this@DetailStock, DividerItemDecoration.VERTICAL)
+        val gridLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerView.layoutManager = gridLayoutManager
+        binding.recyclerView.adapter = adaptador
+        binding.recyclerView.addItemDecoration(decorator)
+
         recyclerViewItem()
         actionsStart()
         swipe()
@@ -38,6 +48,30 @@ open class DetailStock : AppCompatActivity() {
         binding.swipe.setOnRefreshListener {
             recyclerViewItem()
             binding.swipe.isRefreshing = false
+        }
+
+        productViewModel.productList.observe(this, Observer { productList ->
+            adaptador.updateList(productList)
+            binding.tvCantProductos.text = productList.size.toString()
+            binding.tvTotalCoste.text = productList.sumOf { it.cantidad?.toInt() ?: 0 }.toString()
+            binding.tvValor.text = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
+        })
+
+        adaptador.setOnClickListener { datos: ProductData, position: Int ->
+            val intent = Intent(this@DetailStock, DetailProduct::class.java)
+            intent.putExtra("idProd", datos.id)
+            intent.putExtra("nameProd", datos.name)
+            intent.putExtra("barcodeProd", datos.barcode)
+            intent.putExtra("almacenProd", datos.almacenDestino)
+            intent.putExtra("categoriaProd", datos.categoria)
+            intent.putExtra("proveedorProd", datos.proveedor)
+            intent.putExtra("cantidadProd", datos.cantidad)
+            intent.putExtra("costeProd", datos.coste)
+            intent.putExtra("ventaProd", datos.venta)
+            intent.putExtra("descripProd", datos.descriptor)
+            intent.putExtra("fechaVencimientoProd", datos.fechaVencimiento)
+            intent.putExtra("uriProd", datos.uri as String)
+            ContextCompat.startActivity(this@DetailStock, intent, null)
         }
     }
 
@@ -95,18 +129,8 @@ open class DetailStock : AppCompatActivity() {
                                 document.getString("fechaVencimiento") ?: "",
                                 document.getString("uri") ?: "")
                         }.toMutableList()
-                        productList.addAll(list)
+                        productViewModel.setProductList(list)
                         Log.d("Firestore", "Datos para detailstock: $productList")
-                        adaptador = CustomArticulo(productList)
-                        val decorator = DividerItemDecoration(this@DetailStock, DividerItemDecoration.VERTICAL)
-                        val gridLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                        binding.recyclerView.layoutManager = gridLayoutManager
-                        binding.recyclerView.adapter = adaptador
-                        binding.recyclerView.addItemDecoration(decorator)
-
-                        binding.tvCantProductos.text = productList.size.toString()
-                        binding.tvTotalCoste.text = productList.sumOf { it.cantidad?.toInt() ?: 0 }.toString()
-                        binding.tvValor.text = productList.sumOf { it.venta?.toDouble() ?: 0.0 }.toString()
                     }
                     .addOnFailureListener { e ->
                         Log.e("Firestore", "Error al obtener datos:", e)
@@ -128,5 +152,4 @@ open class DetailStock : AppCompatActivity() {
             }
         }
     }
-
 }

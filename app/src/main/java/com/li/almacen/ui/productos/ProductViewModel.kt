@@ -21,4 +21,18 @@ class ProductViewModel : ViewModel() {
     fun setProductList(list: MutableList<ProductData>) {
         _productList.value = list
     }
+
+    fun updateProducto(productoActualizado: ProductData) {
+        val listaProductos = _productList.value
+        listaProductos?.let { productos ->
+            // Busca el índice del producto a actualizar en la lista
+            val index = productos.indexOfFirst { it.id == productoActualizado.id }
+            if (index != -1) {
+                // Reemplaza el producto existente con el producto actualizado
+                productos[index] = productoActualizado
+                _productList.value = productos // Esto activará los observadores
+            }
+        }
+    }
+
 }

@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -23,14 +22,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.data.ProductData
-import com.li.almacen.ui.almacen.details.DetailsAlmacen
 import com.li.almacen.ui.productos.ProductViewModel
 import com.li.almacen.ui.productos.details.DetailProduct
 
 class CustomArticulo(private val productViewModel: ProductViewModel, private var listaArticulos: MutableList<ProductData>) : RecyclerView.Adapter<CustomArticulo.ViewHolderArticulo>() {
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var db = FirebaseFirestore.getInstance()
-
 
     inner class ArticuloDiffCallback(private val oldList: MutableList<ProductData>, private val newList: MutableList<ProductData>) : DiffUtil.Callback() {
         override fun getOldListSize(): Int = oldList.size
@@ -91,7 +88,6 @@ class CustomArticulo(private val productViewModel: ProductViewModel, private var
 
         holder.menuoption.setOnClickListener { view ->
             showPopupMenu(view, holder.itemView.context, position)
-            Toast.makeText(holder.itemView.context, "Option clicked", Toast.LENGTH_SHORT).show()
         }
 
         val uriString = articulo.uri as String?
@@ -117,6 +113,7 @@ class CustomArticulo(private val productViewModel: ProductViewModel, private var
             when (item.itemId) {
                 R.id.action_edit -> {
                     val intent = Intent(context, DetailProduct::class.java)
+                    intent.putExtra("idProd", listaArticulos[position].id)
                     intent.putExtra("nameProd", listaArticulos[position].name)
                     intent.putExtra("barcodeProd", listaArticulos[position].barcode)
                     intent.putExtra("almacenProd", listaArticulos[position].almacenDestino)
@@ -150,6 +147,7 @@ class CustomArticulo(private val productViewModel: ProductViewModel, private var
                                             listaArticulos.removeAt(position)
                                             notifyItemRemoved(position)
                                             notifyItemRangeChanged(position, listaArticulos.size)
+                                            productViewModel.setProductList(listaArticulos)
                                         }
                                         .addOnFailureListener { e ->
                                             Log.e("Firestore", "Error al borrar datos. AdaptadorArticulos - 150", e)

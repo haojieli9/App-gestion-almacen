@@ -42,25 +42,13 @@ class FirstFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.cardviewArticulo.setOnClickListener {
-
-        }
-
         binding.imgMain2.setOnClickListener {
             Snackbar.make(binding.root, "Información general de almacenes disponibles", Snackbar.LENGTH_SHORT).show()
         }
 
-        binding.cardview3.setOnClickListener() {
+        binding.cardview3.setOnClickListener {
             val intent = Intent(requireContext(), ActivityProductos::class.java)
             this@FirstFragment.startActivity(intent)
         }
-
-        binding.cardview5.setOnClickListener {
-            val intent = Intent(requireContext(), ActivityPruebas::class.java)
-            startActivity(intent)
-        }
-
-        // init detail data
-
     }
 }

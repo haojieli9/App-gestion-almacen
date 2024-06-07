@@ -125,6 +125,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     app:startIconDrawable="@drawable/svg_formname"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
 
                     android:id="@+id/tilAlmacen"
                     android:layout_width="match_parent"
@@ -140,7 +142,7 @@
                     app:boxStrokeWidth="2dp"
                     app:errorTextAppearance="@style/HintTextAppearance">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
                         android:id="@+id/editAlmacen"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -152,6 +154,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     app:startIconDrawable="@drawable/svg_category"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+
 
                     android:id="@+id/tilCategoria"
                     android:layout_width="match_parent"
@@ -167,7 +171,7 @@
                     app:boxStrokeWidth="2dp"
                     app:errorTextAppearance="@style/HintTextAppearance">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
                         android:id="@+id/editCategoria"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -175,6 +179,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
@@ -194,7 +199,7 @@
                     app:boxStrokeWidth="2dp"
                     app:errorTextAppearance="@style/HintTextAppearance">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <AutoCompleteTextView
                         android:id="@+id/editProveedor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

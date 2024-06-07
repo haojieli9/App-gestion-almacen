@@ -93,15 +93,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="@string/almacen_totalart"
+                    android:text="Total art."
                     android:textSize="16sp"
                     android:textColor="@color/gray" />
 
                 <TextView
-                    android:layout_width="47dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="@string/almacen_valor"
+                    android:text="Total val. (€)"
                     android:textSize="16sp"
                     android:textAlignment="center"
                     android:textColor="@color/gray" />
@@ -120,7 +120,7 @@
                     android:id="@+id/tvMainAlmDisp"
                     android:layout_width="97dp"
                     android:layout_height="wrap_content"
-                    android:text="5"
+                    android:text="0"
 
                     android:textAlignment="center"
                     android:textColor="@color/black"
@@ -129,10 +129,10 @@
 
                 <TextView
                     android:id="@+id/tvMainArtTot"
-                    android:layout_width="55dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="45dp"
-                    android:text="0 unit"
+                    android:layout_marginStart="60dp"
+                    android:text="0"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -140,10 +140,10 @@
 
                 <TextView
                     android:id="@+id/tvMainValTot"
-                    android:layout_width="50dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:text="2401€"
+                    android:layout_marginStart="90dp"
+                    android:text="0"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -186,7 +186,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="7dp"
+                app:cardElevation="4dp"
                 app:cardPreventCornerOverlap="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.4"
@@ -234,7 +234,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="7dp"
+                app:cardElevation="4dp"
                 app:cardPreventCornerOverlap="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.476"
@@ -279,7 +279,7 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="120dp"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             tools:layout_editor_absoluteX="16dp">
@@ -296,7 +296,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="7dp"
+                app:cardElevation="4dp"
                 app:cardPreventCornerOverlap="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.421"
@@ -342,7 +342,7 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="7dp"
+                app:cardElevation="4dp"
                 app:cardPreventCornerOverlap="true"
                 app:layout_constraintEnd_toStartOf="@+id/cardview3"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -372,9 +372,107 @@
                     android:layout_marginStart="120dp"
                     android:contentDescription="@string/description_img"
                     android:src="@drawable/img_movimiento" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            tools:layout_editor_absoluteX="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview6"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/cardview_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:cardPreventCornerOverlap="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.421"
+                app:layout_constraintStart_toEndOf="@+id/cardview_articulo"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Categorias"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="96dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:text="Detalle categorias"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="120dp"
+                    android:contentDescription="@string/description_img"
+                    android:src="@drawable/svg_category" />
 
 
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview7"
+                android:layout_width="180dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/cardview_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:cardPreventCornerOverlap="true"
+                app:layout_constraintEnd_toStartOf="@+id/cardview3"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Empleados"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="92dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:text="Detalles empleados"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="120dp"
+                    android:contentDescription="@string/description_img"
+                    android:src="@drawable/img_menu_perfil" />
+            </androidx.cardview.widget.CardView>
+
 
         </LinearLayout>
 
@@ -391,7 +489,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvArt"
