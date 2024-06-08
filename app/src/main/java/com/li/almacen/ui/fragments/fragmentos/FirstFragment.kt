@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -31,6 +32,7 @@ import com.li.almacen.databinding.FragmentFirstBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.ui.productos.ActivityProductos
 import com.li.almacen.ui.productos.ProductViewModel
+import com.li.almacen.ui.productos.details.DetailProduct
 
 class FirstFragment : Fragment() {
     private var _binding: FragmentFirstBinding? = null
@@ -186,11 +188,36 @@ class FirstFragment : Fragment() {
             if (result.contents == null) {
                 Toast.makeText(requireContext(), "Operación cancelada", Toast.LENGTH_LONG).show()
             } else {
+                onBarcodeScanned(result.contents)
                 Toast.makeText(requireContext(), "Codigo barra: " + result.contents, Toast.LENGTH_LONG).show()
-                barcode = result.contents
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    fun onBarcodeScanned(barcode: String) {
+        val product = productViewModel.isRepeatBarcode(barcode)
+        if (product != null) {
+            val intent = Intent(context, DetailProduct::class.java).apply {
+                putExtra("idProd", product.id)
+                putExtra("nameProd", product.name)
+                putExtra("barcodeProd", product.barcode)
+                putExtra("almacenProd", product.almacenDestino)
+                putExtra("categoriaProd", product.categoria)
+                putExtra("proveedorProd", product.proveedor)
+                putExtra("cantidadProd", product.cantidad)
+                putExtra("costeProd", product.coste)
+                putExtra("ventaProd", product.venta)
+                putExtra("descripProd", product.descriptor)
+                putExtra("fechaVencimientoProd", product.fechaVencimiento)
+                putExtra("uriProd", product.uri.toString())
+            }
+            startActivity(intent)
+        } else {
+            Toast.makeText(context, "Este producto no esta registrado.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }
+

@@ -41,6 +41,8 @@ class DetailsAlmacen : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val userEmail = FirebaseAuth.getInstance().currentUser?.email
     private val almacenViewModel: AlmacenViewModel by viewModels()
+    private var isFormModified = false
+
     var uri : Uri? = null
     var newUri : Uri? = null
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { ur ->
@@ -60,6 +62,26 @@ class DetailsAlmacen : AppCompatActivity() {
         initData()
         componentValidation()
 
+    }
+
+    override fun onBackPressed() {
+        if (isFormModified) {
+            AlertDialog.Builder(this@DetailsAlmacen)
+                .setTitle("Atención")
+                .setMessage("Deseas  salir sin guardar los cambios?")
+                .setNegativeButton("Cancelar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton("Confirmar") { dialog, _ ->
+                    dialog.dismiss()
+                    this@DetailsAlmacen.finish()
+                    super.onBackPressed()
+
+                }
+                .show()
+        } else {
+            this@DetailsAlmacen.finish()
+        }
     }
 
     private fun componentValidation() {
@@ -137,7 +159,7 @@ class DetailsAlmacen : AppCompatActivity() {
         edit.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { isFormModified = true }
 
             override fun afterTextChanged(s: Editable?) {
                 val text = s.toString()

@@ -76,27 +76,28 @@ open class DetailProduct : AppCompatActivity() {
 
     }
 
-    fun getUriString2(): String? {
-        return intent.getStringExtra("uriProd")
-    }
-
     override fun onBackPressed() {
-        super.onBackPressed()
         if (isFormModified) {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this@DetailProduct)
-            builder.setMessage("¿Deseas salir sin guardar los cambios?")
-                .setTitle("Alerta")
+            AlertDialog.Builder(this@DetailProduct)
+                .setTitle("Atención")
+                .setMessage("Deseas  salir sin guardar los cambios?")
                 .setNegativeButton("Cancelar") { dialog, _ ->
                     dialog.dismiss()
                 }
                 .setPositiveButton("Confirmar") { dialog, _ ->
                     dialog.dismiss()
-                    finish()
+                    this@DetailProduct.finish()
+                    super.onBackPressed()
+
                 }
                 .show()
         } else {
-            finish()
+            this@DetailProduct.finish()
         }
+    }
+
+    fun getUriString2(): String? {
+        return intent.getStringExtra("uriProd")
     }
 
     private fun componentValidation() {
@@ -164,6 +165,7 @@ open class DetailProduct : AppCompatActivity() {
         toolbar = binding.toolbar
         toolbar?.setNavigationOnClickListener { this@DetailProduct.finish()}
         toolbar?.inflateMenu(R.menu.example_dialog)
+
         toolbar?.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menuSave -> {

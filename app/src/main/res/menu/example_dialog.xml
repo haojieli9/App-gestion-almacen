@@ -4,5 +4,6 @@
     <item
         android:id="@+id/menuSave"
         android:title="SAVE"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/svg_save"/>
 </menu>
