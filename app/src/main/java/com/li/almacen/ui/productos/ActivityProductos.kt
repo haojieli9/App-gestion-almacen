@@ -53,6 +53,11 @@ class ActivityProductos : AppCompatActivity() {
             binding.tvTotalCoste.text = productList.sumOf { it.cantidad?.toInt() ?: 0 }.toString()
             binding.tvValor.text = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
         })
+
+        binding.swipe.setOnRefreshListener {
+            recyclerViewItem()
+            binding.swipe.isRefreshing = false
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

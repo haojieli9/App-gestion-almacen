@@ -91,15 +91,13 @@ class ProductAdapter(private val productViewModel: ProductViewModel, private var
 
         val uriString = articulo.uri as String?
         if (!uriString.isNullOrEmpty()) {
-            Log.d("DetailsAlmacen", "Loading image from URI: $uriString")
             val uri = Uri.parse(uriString)
             Glide.with(holder.itemView.context)
                 .load(uri)
-                .error(R.drawable.product_file) // Imagen en caso de error
+                .error(R.drawable.product_file)
                 .into(holder.image)
         } else {
-            Log.d("DetailsAlmacen", "URI is null or empty, using default image.")
-            holder.image.setImageResource(R.drawable.product_file) // Imagen por defecto
+            holder.image.setImageResource(R.drawable.product_file)
         }
     }
 

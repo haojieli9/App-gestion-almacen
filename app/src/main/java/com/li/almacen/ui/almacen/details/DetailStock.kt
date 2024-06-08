@@ -73,6 +73,8 @@ open class DetailStock : AppCompatActivity() {
             intent.putExtra("uriProd", datos.uri as String)
             ContextCompat.startActivity(this@DetailStock, intent, null)
         }
+
+        Log.d("PRODUCTOS ALMACENES1", "$productList")
     }
 
     private fun recyclerViewItem() {

@@ -55,7 +55,7 @@
 
     <!-- Bottom nav menu -->
     <string name="bottom_menu_home">Home</string>
-    <string name="bottom_menu_productos">Productos</string>
+    <string name="bottom_menu_productos">Detalles</string>
     <string name="bottom_menu_perfil">Perfil</string>
 
     <!-- Descripciones imagen -->

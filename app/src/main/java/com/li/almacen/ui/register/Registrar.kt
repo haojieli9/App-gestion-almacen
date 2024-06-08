@@ -39,7 +39,6 @@ class Registrar : AppCompatActivity() {
         setup()
         validatePwd(R.id.tilPassword, R.id.regPassword1)
         confirmPwd(R.id.tilRepeatPassword, R.id.regPassword2, R.id.regPassword1)
-        validateEditText(R.id.tilNickname, R.id.regUsername)
         validateEmail(R.id.tilEmail, R.id.regEmail)
 
     }
@@ -47,7 +46,7 @@ class Registrar : AppCompatActivity() {
     private fun setup() {
         binding.regButton.setOnClickListener {
             if (binding.regEmail.text!!.isNotEmpty() && binding.regPassword1.text!!.isNotEmpty()
-                && binding.regPassword2.text!!.isNotEmpty() && binding.regUsername.text!!.isNotEmpty()
+                && binding.regPassword2.text!!.isNotEmpty()
                 && binding.regPassword1.text.toString() == binding.regPassword2.text.toString())
             {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(

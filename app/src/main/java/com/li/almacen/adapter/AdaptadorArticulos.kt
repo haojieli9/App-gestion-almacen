@@ -144,10 +144,15 @@ class CustomArticulo(private val productViewModel: ProductViewModel, private var
                                         .document(documentId)
                                         .delete()
                                         .addOnSuccessListener {
-                                            listaArticulos.removeAt(position)
-                                            notifyItemRemoved(position)
-                                            notifyItemRangeChanged(position, listaArticulos.size)
-                                            productViewModel.setProductList(listaArticulos)
+                                            db.collection("usuarios").document(userEmail!!).collection("productos")
+                                                .document(listaArticulos[position].id!!)
+                                                .delete()
+                                                .addOnSuccessListener {
+                                                    listaArticulos.removeAt(position)
+                                                    notifyItemRemoved(position)
+                                                    notifyItemRangeChanged(position, listaArticulos.size)
+                                                    productViewModel.setProductList(listaArticulos)
+                                                }
                                         }
                                         .addOnFailureListener { e ->
                                             Log.e("Firestore", "Error al borrar datos. AdaptadorArticulos - 150", e)

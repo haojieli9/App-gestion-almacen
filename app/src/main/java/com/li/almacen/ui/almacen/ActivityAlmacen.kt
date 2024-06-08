@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,12 +16,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
 import com.li.almacen.adapter.CustomAdapter
+import com.li.almacen.data.ProductData
 import com.li.almacen.databinding.ActivityAlmacenBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
 import com.li.almacen.ui.almacen.details.DetailStock
 import com.li.almacen.ui.productos.ProductViewModel
 
-class ActivityAlmacen : AppCompatActivity() {
+class ActivityAlmacen : AppCompatActivity(), SearchView.OnQueryTextListener{
     private lateinit var binding: ActivityAlmacenBinding
     private lateinit var adaptador : CustomAdapter
     private val almacenViewModel: AlmacenViewModel by viewModels()
@@ -44,6 +46,7 @@ class ActivityAlmacen : AppCompatActivity() {
         //inicio toolbar
         setSupportActionBar(binding.toolbar)
         recyclerViewItem()
+        recyclerViewItem2()
         initCardView()
         swipe()
 
@@ -65,8 +68,8 @@ class ActivityAlmacen : AppCompatActivity() {
         })
 
         productViewModel.productList.observe(this, Observer { productList ->
-            binding.tvArt.text = productList.size.toString()
-            binding.tvValor.text = productList.sumOf { it.venta?.toDouble() ?: 0.0 }.toString()
+            binding.tvArt.text = productList.sumOf { it.cantidad?.toInt() ?: 0 }.toString()
+            binding.tvValor.text = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
         })
 
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
@@ -76,10 +79,6 @@ class ActivityAlmacen : AppCompatActivity() {
             intent.putExtra("nameAlmacen", datos.name)
             startActivity(intent)
         }
-
-        adaptador.setOptionClickListener { datos: AlmacenData, _: Int ->
-
-        }
     }
 
     override fun onResume() {
@@ -88,6 +87,9 @@ class ActivityAlmacen : AppCompatActivity() {
             binding.tvArt.text = productList.size.toString()
             binding.tvValor.text = productList.sumOf { it.venta?.toDouble() ?: 0.0 }.toString()
         })
+
+        recyclerViewItem()
+        recyclerViewItem2()
     }
 
     private fun recyclerViewItem() {
@@ -104,12 +106,45 @@ class ActivityAlmacen : AppCompatActivity() {
             }
     }
 
+    private fun recyclerViewItem2() {
+        userEmail?.let { email ->
+            db.collection("usuarios").document(email)
+                .collection("productos")
+                .get()
+                .addOnSuccessListener { productResults ->
+                    val list = productResults.map { document ->
+                        ProductData(
+                            document.id,
+                            document.getString("name") ?: "",
+                            document.getString("barcode") ?: "",
+                            document.getString("almacenDestino") ?: "",
+                            document.getString("categoria") ?: "",
+                            document.getString("proveedor") ?: "",
+                            document.getString("cantidad") ?: "",
+                            document.getString("coste") ?: "",
+                            document.getString("venta") ?: "",
+                            document.getString("descriptor") ?: "",
+                            document.getString("fechaVencimiento") ?: "",
+                            document.getString("uri") ?: ""
+                        )
+                    }.toMutableList()
+                    binding.tvArt.text = list.size.toString()
+                    binding.tvValor.text = list.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
+                }
+                .addOnFailureListener { e ->
+                    Log.e("Firestore", "Error al obtener datos:", e)
+                }
+        } ?: run {
+            Log.e("Firestore", "Error: userEmail es null")
+        }
+    }
+
     private fun initCardView() {
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.second_menu, menu)
+        menuInflater.inflate(R.menu.search_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -121,6 +156,37 @@ class ActivityAlmacen : AppCompatActivity() {
             }
             else -> { true }
         }
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        query?.let {
+            performSearch(it)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        newText?.let {
+            performSearch(it)
+        }
+        return true
+    }
+
+    private fun performSearch(query: String) {
+        val filteredAlmacenList = almacenList.filter {
+            it.name.contains(query, ignoreCase = true) ||
+                    it.notas.contains(query, ignoreCase = true) ||
+                    it.gerente.contains(query, ignoreCase = true) ||
+                    it.ubicacion.contains(query, ignoreCase = true)
+        }
+
+        almacenViewModel.almacenList.observe(this, Observer { almacenList ->
+            adaptador.updateList(almacenList)
+            adaptador.updateItem(filteredAlmacenList)
+
+            binding.tvAlm.text = almacenList.size.toString()
+        })
+
     }
 
     private fun swipe() {

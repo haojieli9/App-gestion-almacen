@@ -187,4 +187,9 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
         }
         popup.show()
     }
+
+    fun updateItem(newList: List<AlmacenData>) {
+        this.listaAlmacen = newList.toMutableList()
+        notifyDataSetChanged()
+    }
 }
