@@ -20,13 +20,18 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
+import com.li.almacen.data.MovementData
 import com.li.almacen.data.ProductData
 import com.li.almacen.ui.productos.ProductViewModel
 import com.li.almacen.ui.productos.details.DetailProduct
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.Date
 
 class ProductAdapter(private val productViewModel: ProductViewModel, private var listaArticulos: MutableList<ProductData>) : RecyclerView.Adapter<ProductAdapter.ViewHolderArticulo2>() {
     private var userEmail = FirebaseAuth.getInstance().currentUser?.email
     private var db = FirebaseFirestore.getInstance()
+    var nombre : String = ""
 
     inner class ArticuloDiffCallback(private val oldList: MutableList<ProductData>, private val newList: MutableList<ProductData>) : DiffUtil.Callback() {
         override fun getOldListSize(): Int = oldList.size
@@ -134,9 +139,10 @@ class ProductAdapter(private val productViewModel: ProductViewModel, private var
                             if (!querySnapshot.isEmpty) {
                                 val documentId = querySnapshot.documents[0].id
                                 val confirmBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
-                                confirmBuilder.setMessage("Seguro quieres eliminar este producto de este almacén?")
+                                confirmBuilder.setMessage("Seguro quieres eliminar este producto?")
                                     .setTitle("Confirmar")
-                                    .setPositiveButton("Eliminar") { dialog, which ->
+                                    .setPositiveButton("Eliminar") { _, _ ->
+                                        movementRegister(listaArticulos[position].name!!)
                                         db.collection("usuarios").document(userEmail!!).collection("productos_almacenes")
                                             .document(documentId)
                                             .delete()
@@ -176,5 +182,18 @@ class ProductAdapter(private val productViewModel: ProductViewModel, private var
         val result = DiffUtil.calculateDiff(estanteriaDiff)
         listaArticulos = newList
         result.dispatchUpdatesTo(this)
+    }
+
+    private fun movementRegister(name : String) {
+        val nuevoMovimiento = MovementData(
+            null, "Producto $name", "Administrador", "Borrado registro", Date.from(
+                LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())
+        )
+        db.collection("usuarios").document(userEmail!!).collection("movimientos")
+            .add(nuevoMovimiento)
+            .addOnSuccessListener { documentReference ->
+                nuevoMovimiento.id = documentReference.id
+                documentReference.update("id", nuevoMovimiento.id)
+            }
     }
 }

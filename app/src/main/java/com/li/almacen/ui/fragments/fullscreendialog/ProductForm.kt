@@ -28,6 +28,7 @@ import com.li.almacen.R
 import com.li.almacen.adapter.DataPickerFragment
 import com.li.almacen.data.AlmacenData
 import com.li.almacen.data.CategoryData
+import com.li.almacen.data.MovementData
 import com.li.almacen.data.ProductData
 import com.li.almacen.data.ProveedorData
 import com.li.almacen.databinding.FormProductBinding
@@ -209,6 +210,7 @@ class ProductForm : DialogFragment() {
                     }
                     else -> {
                         saveProduct()
+                        movementRegister()
                         dialog.dismiss()
                         this@ProductForm.dismiss()
                     }
@@ -507,5 +509,18 @@ class ProductForm : DialogFragment() {
         } else {
             this@ProductForm.dismiss()
         }
+    }
+
+    private fun movementRegister() {
+        val nombre = binding.editName.text.toString()
+        val nuevoMovimiento = MovementData(
+            null, "Producto $nombre", "Administrador", "Alta producto", Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())
+        )
+        db.collection("usuarios").document(userEmail!!).collection("movimientos")
+            .add(nuevoMovimiento)
+            .addOnSuccessListener { documentReference ->
+                nuevoMovimiento.id = documentReference.id
+                documentReference.update("id", nuevoMovimiento.id)
+            }
     }
 }

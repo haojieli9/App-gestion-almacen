@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
 import com.li.almacen.data.EmpleadoData
-import com.li.almacen.data.ProveedorData
+import com.li.almacen.data.MovementData
 import com.li.almacen.databinding.FormAlmacenBinding
 import com.li.almacen.ui.almacen.AlmacenViewModel
 import java.time.LocalDate
@@ -135,7 +135,6 @@ class AlmacenForm : DialogFragment() {
             .add(nuevoAlmacen)
             .addOnSuccessListener { documentReference ->
                 nuevoAlmacen.id = documentReference.id
-
                 documentReference.update("id", nuevoAlmacen.id)
                     .addOnSuccessListener {
                         if (isAdded) {
@@ -150,6 +149,20 @@ class AlmacenForm : DialogFragment() {
                 if (isAdded) {
                     Toast.makeText(requireContext(), "Error al registrar almacén.", Toast.LENGTH_LONG).show()
                 }
+            }
+    }
+
+    private fun movementRegister() {
+        val nombre = binding.formEdit1.text.toString()
+        val empleado = binding.formEdit3.text.toString()
+        val nuevoMovimiento = MovementData(
+            null, "Almacén $nombre", empleado, "Alta almacén", Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant())
+        )
+        db.collection("usuarios").document(userEmail!!).collection("movimientos")
+            .add(nuevoMovimiento)
+            .addOnSuccessListener { documentReference ->
+                nuevoMovimiento.id = documentReference.id
+                documentReference.update("id", nuevoMovimiento.id)
             }
     }
 
@@ -185,6 +198,7 @@ class AlmacenForm : DialogFragment() {
                     }
                     else -> {
                         stockRegister()
+                        movementRegister()
                         dialog.dismiss()
                         this@AlmacenForm.dismiss()
                     }

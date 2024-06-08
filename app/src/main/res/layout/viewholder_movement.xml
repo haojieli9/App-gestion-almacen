@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="0dp"
+    android:backgroundTint="@color/white">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID movimiento: "
+                android:textStyle="bold"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/tvIdMovement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABC11001"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre: "
+                android:textStyle="bold"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/tvNameMovement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ALMACEN 1"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Responsable: "
+                android:textStyle="bold"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/tvResponsibleMovement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Administrador"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo movimiento: "
+                android:textStyle="bold"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/tvTypeMovement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interna"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha: "
+                android:textStyle="bold"
+                android:textSize="17sp"/>
+
+            <TextView
+                android:id="@+id/tvDateMovement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2024-01-01"
+                android:layout_marginStart="10dp"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

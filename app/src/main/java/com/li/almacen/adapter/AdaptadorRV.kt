@@ -21,7 +21,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.li.almacen.R
 import com.li.almacen.data.AlmacenData
+import com.li.almacen.data.MovementData
 import com.li.almacen.ui.almacen.details.DetailsAlmacen
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.Date
 
 
 class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -158,6 +162,7 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
                                 confirmBuilder.setMessage("Seguro quieres eliminar este almacén?")
                                     .setTitle("Confirmar")
                                     .setPositiveButton("Eliminar") { dialog, which ->
+                                        movementRegister(listaAlmacen[position].name, listaAlmacen[position].gerente)
                                         db.collection("usuarios").document(userEmail!!).collection("almacenes")
                                             .document(listaAlmacen[position].id!!)
                                             .delete()
@@ -191,5 +196,18 @@ class CustomAdapter (private var listaAlmacen : MutableList<AlmacenData>) : Recy
     fun updateItem(newList: List<AlmacenData>) {
         this.listaAlmacen = newList.toMutableList()
         notifyDataSetChanged()
+    }
+
+    private fun movementRegister(name : String, gerente : String) {
+        val nuevoMovimiento = MovementData(
+            null, "Almacén $name", gerente, "Alta almacén", Date.from(LocalDate.now().atStartOfDay(
+                ZoneId.systemDefault()).toInstant())
+        )
+        db.collection("usuarios").document(userEmail!!).collection("movimientos")
+            .add(nuevoMovimiento)
+            .addOnSuccessListener { documentReference ->
+                nuevoMovimiento.id = documentReference.id
+                documentReference.update("id", nuevoMovimiento.id)
+            }
     }
 }

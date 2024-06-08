@@ -336,7 +336,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardview_articulo"
+                android:id="@+id/cardMovement"
                 android:layout_width="180dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="10dp"

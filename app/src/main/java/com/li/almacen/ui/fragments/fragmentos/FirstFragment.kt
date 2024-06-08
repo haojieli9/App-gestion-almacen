@@ -30,6 +30,7 @@ import com.li.almacen.test.ActivityPruebas
 import com.li.almacen.ui.almacen.ActivityAlmacen
 import com.li.almacen.databinding.FragmentFirstBinding
 import com.li.almacen.ui.fragments.bottomsheetdialog.BottomSheetFragment
+import com.li.almacen.ui.movimiento.ActivityMovement
 import com.li.almacen.ui.productos.ActivityProductos
 import com.li.almacen.ui.productos.ProductViewModel
 import com.li.almacen.ui.productos.details.DetailProduct
@@ -105,6 +106,11 @@ class FirstFragment : Fragment() {
 
         binding.cardview3.setOnClickListener {
             val intent = Intent(requireContext(), ActivityProductos::class.java)
+            this@FirstFragment.startActivity(intent)
+        }
+
+        binding.cardMovement.setOnClickListener {
+            val intent = Intent(requireContext(), ActivityMovement::class.java)
             this@FirstFragment.startActivity(intent)
         }
     }
