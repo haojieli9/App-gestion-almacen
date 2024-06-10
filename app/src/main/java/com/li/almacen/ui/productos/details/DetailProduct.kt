@@ -412,7 +412,11 @@ open class DetailProduct : AppCompatActivity() {
                 venta = venta,
                 descriptor = descriptor,
                 fechaVencimiento = fechaVencimiento,
-                newUri
+                if (newUri!=null) {
+                    newUri
+                } else {
+                    getUriString2()
+                }
             )
 
             // Actualiza los datos en Firestore

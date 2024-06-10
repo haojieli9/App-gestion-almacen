@@ -47,6 +47,7 @@ class Registrar : AppCompatActivity() {
         binding.regButton.setOnClickListener {
             if (binding.regEmail.text!!.isNotEmpty() && binding.regPassword1.text!!.isNotEmpty()
                 && binding.regPassword2.text!!.isNotEmpty()
+                && binding.checkbox.isChecked
                 && binding.regPassword1.text.toString() == binding.regPassword2.text.toString())
             {
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(

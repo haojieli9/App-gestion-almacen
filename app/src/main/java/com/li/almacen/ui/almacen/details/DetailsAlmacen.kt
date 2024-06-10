@@ -245,7 +245,11 @@ class DetailsAlmacen : AppCompatActivity() {
                 descripcion,
                 empleado,
                 ubicacion,
-                newUri,
+                if (newUri!=null) {
+                    newUri
+                } else {
+                    getUriString()
+                } ,
                 Date.from(
                     LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant()
                 )

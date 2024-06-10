@@ -54,7 +54,8 @@ open class DetailStock : AppCompatActivity() {
             adaptador.updateList(productList)
             binding.tvCantProductos.text = productList.size.toString()
             binding.tvTotalCoste.text = productList.sumOf { it.cantidad?.toInt() ?: 0 }.toString()
-            binding.tvValor.text = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
+            val total = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }
+            binding.tvValor.text = String.format("%.2f", total)
         })
 
         adaptador.setOnClickListener { datos: ProductData, position: Int ->

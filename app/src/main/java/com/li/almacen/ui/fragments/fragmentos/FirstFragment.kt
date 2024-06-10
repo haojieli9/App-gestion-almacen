@@ -34,6 +34,7 @@ import com.li.almacen.ui.movimiento.ActivityMovement
 import com.li.almacen.ui.productos.ActivityProductos
 import com.li.almacen.ui.productos.ProductViewModel
 import com.li.almacen.ui.productos.details.DetailProduct
+import java.text.DecimalFormat
 
 class FirstFragment : Fragment() {
     private var _binding: FragmentFirstBinding? = null
@@ -78,8 +79,9 @@ class FirstFragment : Fragment() {
         productViewModel.productList.observe(viewLifecycleOwner, Observer { productList ->
             adaptador2.updateList(productList)
             binding.tvMainArtTot.text = productList.sumOf { it.cantidad?.toInt() ?: 0 }.toString()
-            binding.tvMainValTot.text = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
-        })
+            val total = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }
+            val df = DecimalFormat("#.00")
+            binding.tvMainValTot.text = df.format(total)        })
     }
 
     override fun onResume() {
@@ -154,7 +156,11 @@ class FirstFragment : Fragment() {
                     }.toMutableList()
                     productViewModel.setProductList(list)
                     binding.tvMainArtTot.text = list.size.toString()
-                    binding.tvMainValTot.text = list.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
+
+                    val total = list.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }
+                    val df = DecimalFormat("#.00")
+                    binding.tvMainValTot.text = df.format(total)
+
                 }
                 .addOnFailureListener { e ->
                     Log.e("Firestore", "Error al obtener datos:", e)

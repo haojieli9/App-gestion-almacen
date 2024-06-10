@@ -109,9 +109,14 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Acepto los terminos y condiciones de uso"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_gravity="center_horizontal"/>
 
             <Button
                 android:layout_gravity="center"

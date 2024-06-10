@@ -47,6 +47,7 @@ class Login : AppCompatActivity() {
         binding.logTv3.setOnClickListener {
             val intent = Intent(this, Registrar::class.java)
             startActivity(intent)
+            this@Login.finish()
         }
 
         validateEmail(R.id.tilEmail, R.id.email)

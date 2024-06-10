@@ -53,6 +53,7 @@ class ProductAdapter(private val productViewModel: ProductViewModel, private var
         val tvPrecio: TextView
         val image: ImageView
         val menuoption: ImageView
+        val categoria: TextView
 
         init {
             tvArID = itemView.findViewById(R.id.tvProductId)
@@ -61,6 +62,7 @@ class ProductAdapter(private val productViewModel: ProductViewModel, private var
             tvPrecio = itemView.findViewById(R.id.tvPrecio)
             image = itemView.findViewById(R.id.imgArticulo)
             menuoption = itemView.findViewById(R.id.imgOption)
+            categoria = itemView.findViewById(R.id.tvCategoria)
         }
     }
 
@@ -89,6 +91,7 @@ class ProductAdapter(private val productViewModel: ProductViewModel, private var
         holder.tvArName.text = listaArticulos[position].name
         holder.tvProCant.text = listaArticulos[position].cantidad
         holder.tvPrecio.text = listaArticulos[position].venta
+        holder.categoria.text = listaArticulos[position].categoria
 
         holder.menuoption.setOnClickListener { view ->
             showPopupMenu(view, holder.itemView.context, position)

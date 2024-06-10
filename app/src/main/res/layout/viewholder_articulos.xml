@@ -38,6 +38,29 @@
             android:text="@string/product_name"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Categoría: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCategoria"
+                android:layout_marginStart="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Varios" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/imgOption"
             android:layout_width="25dp"
@@ -60,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="130dp"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="90dp"
             android:text="Cantidad:"
             android:textStyle="bold"/>
 
@@ -68,15 +91,15 @@
             android:id="@+id/tvProCant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="194dp"
-            android:layout_marginTop="85dp"
+            android:layout_marginStart="196dp"
+            android:layout_marginTop="90dp"
             android:text="0 Units" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="255dp"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="90dp"
             android:text="Precio/Uni:"
             android:textStyle="bold"/>
 
@@ -85,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="330dp"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="90dp"
             android:text="0,99999€" />
     </androidx.cardview.widget.CardView>
 

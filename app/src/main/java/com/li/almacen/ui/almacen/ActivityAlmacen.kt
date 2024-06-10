@@ -69,7 +69,8 @@ class ActivityAlmacen : AppCompatActivity(), SearchView.OnQueryTextListener{
 
         productViewModel.productList.observe(this, Observer { productList ->
             binding.tvArt.text = productList.sumOf { it.cantidad?.toInt() ?: 0 }.toString()
-            binding.tvValor.text = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
+            val total = productList.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }
+            binding.tvValor.text = String.format("%.2f", total)
         })
 
         adaptador.setOnClickListener { datos: AlmacenData, _: Int ->
@@ -129,7 +130,8 @@ class ActivityAlmacen : AppCompatActivity(), SearchView.OnQueryTextListener{
                         )
                     }.toMutableList()
                     binding.tvArt.text = list.size.toString()
-                    binding.tvValor.text = list.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }.toString()
+                    val total = list.sumOf { it.venta?.toDouble()!! * it.cantidad!!.toInt() }
+                    binding.tvValor.text = String.format("%.2f", total)
                 }
                 .addOnFailureListener { e ->
                     Log.e("Firestore", "Error al obtener datos:", e)

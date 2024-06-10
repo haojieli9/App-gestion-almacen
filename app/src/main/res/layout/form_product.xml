@@ -83,7 +83,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
-                        android:maxLines="1"/>
+                        android:maxLines="1"
+                        android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -115,7 +116,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
-                        android:maxLines="1"/>
+                        android:maxLines="1"
+                        android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -228,11 +230,12 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editCantidad"
-                            android:maxLength="15"
+                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@android:color/black"
-                            android:maxLines="1"/>
+                            android:maxLines="1"
+                            android:singleLine="true"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -256,11 +259,12 @@
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editCoste"
-                            android:maxLength="15"
+                            android:maxLength="10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@android:color/black"
-                            android:maxLines="1"/>
+                            android:maxLines="1"
+                            android:singleLine="true"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -291,7 +295,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
-                        android:maxLines="1"/>
+                        android:maxLines="1"
+                        android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -361,7 +366,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/black"
-                        android:maxLines="1" />
+                        android:maxLines="1"
+                        android:singleLine="true"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </ScrollView>
