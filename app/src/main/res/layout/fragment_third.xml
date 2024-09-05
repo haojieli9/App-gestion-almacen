@@ -35,7 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/perfil"
-            android:src="@drawable/png_foto"
             android:contentDescription="@string/description_img"/>
     </androidx.cardview.widget.CardView>
 
